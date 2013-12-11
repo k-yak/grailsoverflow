@@ -42,4 +42,4 @@
 # other
 *.iws
 *.class
-/target
+target

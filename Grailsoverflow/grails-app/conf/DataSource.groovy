@@ -7,39 +7,55 @@ dataSource {
 hibernate {
     cache.use_second_level_cache = true
     cache.use_query_cache = false
-    cache.region.factory_class = 'net.sf.ehcache.hibernate.EhCacheRegionFactory' // Hibernate 3
-//    cache.region.factory_class = 'org.hibernate.cache.ehcache.EhCacheRegionFactory' // Hibernate 4
+    cache.region.factory_class = 'net.sf.ehcache.hibernate.EhCacheRegionFactory'
 }
-
 // environment specific settings
 environments {
     development {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
         }
     }
     test {
+        // DEMO EMBEDDED DATA SOURCE (INSTEAD OF USING THE JNDI DATA SOURCE)
         dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            pooled = true // one of 'create', 'create-drop', 'update', 'validate', ''
+            dbCreate = "create-drop"
+            driverClassName = "com.mysql.jdbc.Driver"
+            dialect = 'org.hibernate.dialect.MySQL5InnoDBDialect'
+
+            // CLOUDBEES INJECTS BOUND DATABASES CONNECTION PARAMETERS WITH SYSTEM PROPERTIES
+            // for a database binding alias "mydb", system properties look like DATABASE_XXX_MYDB
+            // see CloudBees SDK : "bees app:bind -a my-grails-application -db my-database -as mydb"
+            // see http://wiki.cloudbees.com/bin/view/RUN/Resource+Management
+            url = "jdbc:" + System.getProperty('DATABASE_URL_MYDB')
+            username = System.getProperty('DATABASE_USERNAME_MYDB')
+            password = System.getProperty('DATABASE_PASSWORD_MYDB')
+
+            properties {
+                maxActive = 20
+                maxIdle = 1
+                maxWait = 10000
+
+                removeAbandoned = true
+                removeAbandonedTimeout = 60
+                logAbandoned = true
+
+                validationQuery = "SELECT 1"
+                testOnBorrow = true
+            }
         }
     }
+
     production {
+        // DEMO JNDI DATA SOURCE
         dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
-            properties {
-               maxActive = -1
-               minEvictableIdleTimeMillis=1800000
-               timeBetweenEvictionRunsMillis=1800000
-               numTestsPerEvictionRun=3
-               testOnBorrow=true
-               testWhileIdle=true
-               testOnReturn=false
-               validationQuery="SELECT 1"
-               jdbcInterceptors="ConnectionState"
-            }
+            dialect = 'org.hibernate.dialect.MySQL5InnoDBDialect'
+            pooled = false
+
+            dbCreate = 'create-drop' // WARNING! on production, should probably be 'update' or 'validate'
+            jndiName = 'java:comp/env/jdbc/mydb'
         }
     }
 }

@@ -12,9 +12,8 @@
 // }
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
-
-// The ACCEPT header will not be used for content negotiation for user agents containing the following strings (defaults to the 4 major rendering engines)
-grails.mime.disable.accept.header.userAgents = ['Gecko', 'WebKit', 'Presto', 'Trident']
+grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
+grails.mime.use.accept.header = false
 grails.mime.types = [
     all:           '*/*',
     atom:          'application/atom+xml',
@@ -27,7 +26,6 @@ grails.mime.types = [
     multipartForm: 'multipart/form-data',
     rss:           'application/rss+xml',
     text:          'text/plain',
-    hal:           ['application/hal+json','application/hal+xml'],
     xml:           ['text/xml', 'application/xml']
 ]
 
@@ -37,34 +35,12 @@ grails.mime.types = [
 // What URL patterns should be processed by the resources plugin
 grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
 
-// Legacy setting for codec used to encode data with ${}
-grails.views.default.codec = "html"
-
-// The default scope for controllers. May be prototype, session or singleton.
-// If unspecified, controllers are prototype scoped.
-grails.controllers.defaultScope = 'singleton'
-
-// GSP settings
-grails {
-    views {
-        gsp {
-            encoding = 'UTF-8'
-            htmlcodec = 'xml' // use xml escaping instead of HTML4 escaping
-            codecs {
-                expression = 'html' // escapes values inside ${}
-                scriptlet = 'html' // escapes output from scriptlets in GSPs
-                taglib = 'none' // escapes output from taglibs
-                staticparts = 'none' // escapes output from static template parts
-            }
-        }
-        // escapes all not-encoded output at final stage of outputting
-        filteringCodecForContentType {
-            //'text/html' = 'html'
-        }
-    }
-}
- 
+// The default codec used to encode data with ${}
+grails.views.default.codec = "none" // none, html, base64
+grails.views.gsp.encoding = "UTF-8"
 grails.converters.encoding = "UTF-8"
+// enable Sitemesh preprocessing of GSP pages
+grails.views.gsp.sitemesh.preprocess = true
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'
 
@@ -86,9 +62,11 @@ grails.hibernate.cache.queries = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+        welcomeMessage = "Welcome on the development environment!"
     }
     production {
         grails.logging.jul.usebridge = false
+        welcomeMessage = "Welcome on the production environment!"
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }

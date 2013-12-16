@@ -1,22 +1,29 @@
 package fr.isima.grailsoverflow
 
-class SomePeople {
-    def name
-}
+import fr.isima.grailsoverflow.People
 
 class TestController {
 
     def index() {
-        SomePeople sp = new SomePeople(name: "A name")
-        SomePeople sp2 = new SomePeople(name: "A name 2")
-        [SomePeople : sp, SomePeople2 : sp2]
+        People sp = new People(name: "A name")
+        People sp2 = new People(name: "A name 2")
+        
+        People update = People.getAll()[0]
+        if (update != null)
+            update.name = "${sp.name} UPDATED"
+        else
+            update = sp;
+            
+        update.save()
+        
+        [SomePeople : update, SomePeople2 : sp2]
     }
     
     def list() {
         def list = [];
         
-        list << new SomePeople(name : "People 1")
-        list << new SomePeople(name : "People 2")
+        list << new People(name : "People 1")
+        list << new People(name : "People 2")
         
         [list : list]
     }

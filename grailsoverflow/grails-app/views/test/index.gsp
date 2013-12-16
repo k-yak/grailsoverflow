@@ -9,10 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="layout" content="main"/>
         <title>Sample title</title>
     </head>
     <body>
-        <h1>Person</h1>
+        <h1>People</h1>
         
         Name : ${SomePeople.name} <br />
         Name2 : ${SomePeople2.name}

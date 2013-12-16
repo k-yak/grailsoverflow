@@ -1,4 +1,4 @@
-package com.mycompany
+package fr.isima.grailsoverflow
 
 import javax.sql.DataSource
 import java.sql.Connection

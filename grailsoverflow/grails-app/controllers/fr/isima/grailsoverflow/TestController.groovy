@@ -1,4 +1,4 @@
-package com.mycompany
+package fr.isima.grailsoverflow
 
 class SomePeople {
     def name

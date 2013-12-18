@@ -116,9 +116,6 @@
                         <li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
                     </g:each>
                 </ul>
-
-                <h2>OAuth</h2>
-                <oauth:connect provider="google" id="google-connect-link">Google</oauth:connect>
             </div>
         </div>
     </body>

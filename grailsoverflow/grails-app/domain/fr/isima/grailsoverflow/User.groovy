@@ -1,11 +1,20 @@
 package fr.isima.grailsoverflow
 
 class User {
-    String username
     String displayName
     String email
     
+    static User CurrentUser
+    
+    static {
+        CurrentUser = null
+    }
+    
+    static boolean isUserAuthenticated() {
+        CurrentUser != null
+    }
+    
     static constraints = {
-        username blank: false, unique: true
+        email blank: false, unique: true
     }
 }

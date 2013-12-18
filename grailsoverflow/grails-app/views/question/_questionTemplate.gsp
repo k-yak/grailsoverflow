@@ -2,7 +2,7 @@
     <g:link action="showQuestion" params='[title: "${question.title}"]'>
         <h2>${question.title}</h2>
     </g:link>
-    <p>${question.content}</p>
+    <own:textToParagraph>${question.content}</own:textToParagraph>
     <span>Status : ${question.status}</span><br />
     <span>Tags :</span><br />
     <g:each in="${question.tags}" var="tag">

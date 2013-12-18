@@ -31,9 +31,7 @@
                 </div>
 
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" >
-                    <div class="">
-                        <g:render template="tagTemplate" collection="${tags}" var="tag"/>
-                    </div>
+                    <g:render template="tagTemplate" collection="${tags}" var="tag" model="neededTag: ${neededTag}"/>
                 </div>
             </div>
 

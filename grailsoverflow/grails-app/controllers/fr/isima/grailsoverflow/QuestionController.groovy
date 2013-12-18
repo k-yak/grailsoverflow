@@ -9,4 +9,13 @@ class QuestionController {
         
         return [questions: questions, tags: tags]
     }
+    
+    def questionsForTags() {
+        def neededTag = Tag.findByName(params.name)
+        def questions = neededTag.questions
+        def tags = Tag.list(sort: "name", order: "asc")
+        
+        def map = [questions: questions, neededTag: neededTag, tags: tags]
+        render(view: "index", model: map)
+    }
 }

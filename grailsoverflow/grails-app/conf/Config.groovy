@@ -63,11 +63,12 @@ environments {
     development {
         grails.logging.jul.usebridge = true
         welcomeMessage = "Welcome on the development environment!"
+        grails.serverURL = "http://localhost:8080/${appName}"
     }
     production {
         grails.logging.jul.usebridge = false
         welcomeMessage = "Welcome on the production environment!"
-        // TODO: grails.serverURL = "http://www.changeme.com"
+        grails.serverURL = "http://grailsoverflow.drusy.cloudbees.net/"
     }
 }
 
@@ -98,8 +99,8 @@ oauth {
             api = org.scribe.builder.api.GoogleApi
             key = '561476212517.apps.googleusercontent.com'
             secret = 'Yk92uV3BfO9tmSEJ8RpvqNZb'
-            successUri = '/authenticate/success'
-            failureUri = '/authenticate/failure'
+            successUri = "/authenticate/success"
+            failureUri = "/authenticate/failure"
             scope = 'https://www.googleapis.com/auth/userinfo.email'
             callback = "${grails.serverURL}/oauth/google/callback"
         }

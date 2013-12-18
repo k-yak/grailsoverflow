@@ -5,7 +5,8 @@ class QuestionController {
     
     def index() { 
         def questions = Question.list(sort: "dateCreated", order: "desc")
+        def tags = Tag.list(sort: "name", order: "asc")
         
-        return [questions: questions]
+        return [questions: questions, tags: tags]
     }
 }

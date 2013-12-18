@@ -9,7 +9,7 @@ class BootStrap {
         
         def question = new Question(
             title: "How to create a simple Controller in Groovy ?",
-            summary: "Hi, \nI would like to know how to create a simple Controller in Groovy\n\
+            content: "Hi, \nI would like to know how to create a simple Controller in Groovy\n\
                       \n\
                       Thanks.",
             dateCreated: new Date(),

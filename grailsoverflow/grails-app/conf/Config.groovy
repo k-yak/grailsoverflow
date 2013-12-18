@@ -91,3 +91,17 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+oauth {
+    providers {
+        google {
+            api = org.scribe.builder.api.GoogleApi
+            key = '561476212517.apps.googleusercontent.com'
+            secret = 'Yk92uV3BfO9tmSEJ8RpvqNZb'
+            successUri = '/authenticate/success'
+            failureUri = '/authenticate/failure'
+            scope = 'https://www.googleapis.com/auth/userinfo.email'
+            callback = "${grails.serverURL}/oauth/google/callback"
+        }
+    }
+}

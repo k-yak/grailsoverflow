@@ -119,9 +119,6 @@
 
                 <h2>OAuth</h2>
                 <oauth:connect provider="google" id="google-connect-link">Google</oauth:connect>
-                    Logged with google?
-                <s2o:ifLoggedInWith provider="google">yes</s2o:ifLoggedInWith>
-                <s2o:ifNotLoggedInWith provider="google">no</s2o:ifNotLoggedInWith>
             </div>
         </div>
     </body>

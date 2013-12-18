@@ -18,4 +18,10 @@ class QuestionController {
         def map = [questions: questions, neededTag: neededTag, tags: tags]
         render(view: "index", model: map)
     }
+    
+    def showQuestion() {
+        def question = Question.findByTitle(params.title)
+        
+        return [question: question]
+    }
 }

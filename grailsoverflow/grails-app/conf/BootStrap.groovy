@@ -11,7 +11,8 @@ class BootStrap {
         
         def question = new Question(
             title: "How to create a simple Controller in Groovy ?",
-            content: "Hi, \nI would like to know how to create a simple Controller in Groovy\n\
+            content: "Hi,\n\
+                      I would like to know how to create a simple Controller in Groovy\n\
                       \n\
                       Thanks.",
             dateCreated: new Date(),
@@ -22,7 +23,8 @@ class BootStrap {
         
         question = new Question(
             title: "Is Groovy a good way deploy a web app ?",
-            content: "Hi, \nI would like to know if groovy was a good way to deploy a web app\n\
+            content: "Hi,\n\
+                      I would like to know if groovy was a good way to deploy a web app\n\
                       \n\
                       Thanks.",
             dateCreated: new Date(),
@@ -32,19 +34,22 @@ class BootStrap {
         question.save(failOnError: true)
         
         question = new Question(
-            title: "What's the best coutinuous integration solution ?",
-            content: "Hi, \nI would like to know what's the best coutinuous integration solution\n\
+            title: "What's the best coutinuous integration solution to deploy a grails application ?",
+            content: "Hi,\n\
+                      I would like to know what's the best coutinuous integration solution to deploy a grails application\n\
                       \n\
                       Thanks.",
             dateCreated: new Date(),
             status: "Unanswered"
         )
         question.addToTags(jenkins)
+        question.addToTags(grails)
         question.save(failOnError: true)
         
         question = new Question(
             title: "Is a template difficult to implement in Grails ?",
-            content: "Hi, \nI would like to know if it is difficult to implement a template in grails\n\
+            content: "Hi, \n\
+                      I would like to know if it is difficult to implement a template in grails\n\
                       \n\
                       Thanks.",
             dateCreated: new Date(),

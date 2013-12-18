@@ -1,5 +1,7 @@
 <div class="col-6 col-sm-6 col-lg-4">
-    <h2>${question.title}</h2>
+    <g:link action="showQuestion" params='[title: "${question.title}"]'>
+        <h2>${question.title}</h2>
+    </g:link>
     <p>${question.content}</p>
     <span>Status : ${question.status}</span><br />
     <span>Tags :</span><br />

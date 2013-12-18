@@ -49,14 +49,30 @@ grails.project.dependency.resolution = {
         //runtime ":zipped-resources:1.0"
         //runtime ":cached-resources:1.0"
         //runtime ":yui-minify-resources:0.1.5"
+        compile ':cache:1.0.1'
+        //compile ':spring-security-oauth-google:0.1'
 
         build ":tomcat:$grailsVersion"
         
-        compile ':cache:1.0.1'
+        
         
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.8.3"
         runtime ":resources:1.1.6"
         runtime ":database-migration:1.3.2"
     }
+   
+    /*oauth {
+        providers {
+            google {
+                api = org.scribe.builder.api.GoogleApi20
+                key = '561476212517.apps.googleusercontent.com'
+                secret = 'Yk92uV3BfO9tmSEJ8RpvqNZb'
+                successUri = '/oauth/google/success'
+                failureUri = '/oauth/google/error'
+                callback = "${baseURL}/oauth/google/callback"
+                scope = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+            }
+        }
+    }*/
 }

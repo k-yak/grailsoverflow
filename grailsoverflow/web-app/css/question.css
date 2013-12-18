@@ -4,6 +4,7 @@ body {
 }
 body {
   padding-top: 70px;
+  min-height: 2000px;
 }
 footer {
   padding: 30px 0;

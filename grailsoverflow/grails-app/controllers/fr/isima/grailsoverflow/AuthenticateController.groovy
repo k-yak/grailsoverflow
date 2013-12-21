@@ -19,4 +19,11 @@ class AuthenticateController {
         
         redirect(controller: "question", action: "index")
     }
+    
+    def logout() {
+        session.invalidate()
+        User.CurrentUser = null
+        
+        redirect(controller: "question", action: "index")
+    }
 }

@@ -4,6 +4,8 @@ class User {
     String displayName
     String email
     
+    // Static block
+    static scope = "session"
     static User CurrentUser
     
     static {

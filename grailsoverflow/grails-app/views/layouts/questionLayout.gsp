@@ -8,58 +8,68 @@
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> 
 <html lang="en" class="no-js"><!--<![endif]-->
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title><g:layoutTitle default="Grails"/></title>
+    <title><g:layoutTitle default="Grails"/></title>
 
-        <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
-        <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-        <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
-        <link href="${resource(dir: 'bootstrap/css', file: 'bootstrap.min.css')}" rel="stylesheet">
+    <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
+    <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
+    <link href="${resource(dir: 'bootstrap/css', file: 'bootstrap.min.css')}" rel="stylesheet">
 
-        <script type="${resource(dir: 'bootstrap/js', file: 'bootstrap.min.js')}"></script>
+    <script type="${resource(dir: 'bootstrap/js', file: 'bootstrap.min.js')}"></script>
 
-        <g:layoutHead/>
-    <r:layoutResources />
+  <g:layoutHead/>
+  <r:layoutResources />
 </head>
 <body>
-    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <g:link class="navbar-brand" controller="question" action="index">
-                    GrailsOverflow
-                </g:link>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <g:if test="${User.isUserAuthenticated() == true}">
-                            <a>Connected (${User.CurrentUser.email})</a>
-                        </g:if>
-                        <g:else>
-                            <oauth:connect provider="google" id="google-connect-link">Google Connection</oauth:connect>
-                        </g:else>
-                    </li>
-                </ul>
-            </div><!-- /.nav-collapse -->
-        </div><!-- /.container -->
-    </div><!-- /.navbar -->
-
+  <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
     <div class="container">
-        <g:layoutBody/>
+      <div class="navbar-header">
+        <g:link class="navbar-brand" controller="question" action="index">
+          GrailsOverflow
+        </g:link>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
 
-        <hr>
+          <g:if test="${User.isUserAuthenticated() == true}">
+            <li>
+              <a>Connected (${User.CurrentUser.email})</a>
+            </li>
+            <li>
+            <g:link controller="authenticate" action="logout">
+              logout
+            </g:link>
+            </li>
+          </g:if>
+          <g:else>
+            <li>
+            <oauth:connect provider="google" id="google-connect-link">Google Connection</oauth:connect>
+            </li>
+          </g:else>
 
-        <footer>
-            <p>© GrailsOverflow 2013</p>
-        </footer>
-    </div>
-    <g:javascript library="application"/>
+
+        </ul>
+      </div><!-- /.nav-collapse -->
+    </div><!-- /.container -->
+  </div><!-- /.navbar -->
+
+  <div class="container">
+    <g:layoutBody/>
+
+    <hr>
+
+    <footer>
+      <p>© GrailsOverflow 2013</p>
+    </footer>
+  </div>
+<g:javascript library="application"/>
 <r:layoutResources />
 </body>
 </html>

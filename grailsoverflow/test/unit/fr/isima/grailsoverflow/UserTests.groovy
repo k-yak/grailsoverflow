@@ -11,7 +11,7 @@ import org.junit.*
 @TestFor(User)
 class UserTests {
 
-    void testSomething() {
+    void testLoginSession() {
        fail "Implement me"
     }
 }

@@ -5,6 +5,6 @@
     <g:set var="styleClass" value="list-group-item"/>
 </g:else>
 
-<g:link class="${styleClass}" action="questionsForTags" params='[name: "${tag.name}"]'>
+<g:link class="${styleClass}" controller="question" action="questionsForTags" params='[tag: "${tag.name}"]'>
     ${tag.name}
 </g:link>

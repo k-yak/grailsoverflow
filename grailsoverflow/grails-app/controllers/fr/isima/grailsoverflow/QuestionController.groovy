@@ -11,7 +11,7 @@ class QuestionController {
     }
     
     def questionsForTags() {
-        def neededTag = Tag.findByName(params.name)
+        def neededTag = Tag.findByName(params.tag)
         def questions = neededTag.questions
         def tags = Tag.list(sort: "name", order: "asc")
         
@@ -20,7 +20,7 @@ class QuestionController {
     }
     
     def showQuestion() {
-        def question = Question.findByTitle(params.title)
+        def question = Question.findById(params.question)
         
         return [question: question]
     }

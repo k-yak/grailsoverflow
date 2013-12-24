@@ -6,6 +6,6 @@
 </g:else>
 
 <g:link class="${styleClass}" action="questionsForTag" params='[tag: "${tag.name}"]'>
-    <span class="badge pull-right">${tag.questions.count{ completeQuestionList.contains(it) }}</span>
+    <span class="badge pull-right">${tag.questions.count{ completeQuestionList.contains(it) }} / ${tag.questions.size()}</span>
     ${tag.name}
 </g:link>

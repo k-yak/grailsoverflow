@@ -18,6 +18,7 @@
     <link href="${resource(dir: 'bootstrap/css', file: 'bootstrap.min.css')}" rel="stylesheet">
 
     <script type="${resource(dir: 'bootstrap/js', file: 'bootstrap.min.js')}"></script>
+    <script type="${resource(dir: 'js', file: 'jquery.min.js')}"></script>
 
   <g:layoutHead/>
   <r:layoutResources />

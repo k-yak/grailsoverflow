@@ -5,6 +5,7 @@
     <g:set var="styleClass" value="list-group-item"/>
 </g:else>
 
-<g:link class="${styleClass}" controller="question" action="questionsForTags" params='[tag: "${tag.name}"]'>
+<g:link class="${styleClass}" action="questionsForTag" params='[tag: "${tag.name}"]'>
+    <span class="badge pull-right">${tag.questions.count{ completeQuestionList.contains(it) }}</span>
     ${tag.name}
 </g:link>

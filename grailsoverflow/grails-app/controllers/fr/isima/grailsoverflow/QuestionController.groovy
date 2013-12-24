@@ -1,21 +1,25 @@
 package fr.isima.grailsoverflow
 
 class QuestionController {
-    static scaffold = Question
+    String subtitle = "Latest questions"
     
+    /**
+     * Latest questions
+     */
     def index() { 
-        def questions = Question.list(sort: "dateCreated", order: "desc")
-        def tags = Tag.list(sort: "name", order: "asc")
+        def latestQuestions = Question.list(sort: "dateCreated", order: "desc", max: 100)
+        def tags = Question.tagsForQuestions(latestQuestions)
         
-        return [questions: questions, tags: tags]
+        return [questionsToDisplay: latestQuestions, completeQuestionList: latestQuestions, tags: tags, subtitle: subtitle]
     }
     
-    def questionsForTags() {
+    def questionsForTag() { 
+        def latestQuestions = Question.list(sort: "dateCreated", order: "desc", max: 100)
         def neededTag = Tag.findByName(params.tag)
-        def questions = neededTag.questions
-        def tags = Tag.list(sort: "name", order: "asc")
+        def latesteForNeededTag = Question.findAllByIdInList(neededTag.questions*.id, [sort: "dateCreated", order: "desc", max: 100])
+        def tags = Question.tagsForQuestions(latestQuestions)
         
-        def map = [questions: questions, neededTag: neededTag, tags: tags]
+        def map = [questionsToDisplay: latesteForNeededTag, completeQuestionList: latestQuestions, neededTag: neededTag, tags: tags, subtitle: subtitle]
         render(view: "index", model: map)
     }
     

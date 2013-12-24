@@ -11,17 +11,17 @@
     <body>
         <div class="row row-offcanvas row-offcanvas-right">
             <div class="col-xs-12 col-sm-9">
-                <div class="jumbotron">
-                    <h1>Questions</h1>
-                    <p>List of questions</p>
+                <div class="page-header">
+                    <h1>Questions <small>${subtitle}</small></h1>
                 </div>
+              
                 <div class="row">
-                    <g:render template="questionTemplate" collection="${questions}" var="question"/>
+                    <g:render template="/question/questionTemplate" collection="${questionsToDisplay}" var="question"/>
                 </div>
             </div>
 
             <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" >
-                <g:render template="tagTemplate" collection="${tags}" var="tag" model="neededTag: ${neededTag}"/>
+                <g:render template="/question/tagTemplate" collection="${tags}" var="tag"/>
             </div>
         </div>
     </body>

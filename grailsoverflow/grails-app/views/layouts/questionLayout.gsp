@@ -15,9 +15,6 @@
 
     <title><g:layoutTitle default="Grails"/></title>
 
-    <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
-    <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-    <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
     <link href="${resource(dir: 'bootstrap/css', file: 'bootstrap.min.css')}" rel="stylesheet">
 
     <script type="${resource(dir: 'bootstrap/js', file: 'bootstrap.min.js')}"></script>
@@ -32,6 +29,11 @@
         <g:link class="navbar-brand" controller="question" action="index">
           GrailsOverflow
         </g:link>
+
+        <ul class="nav navbar-nav">
+          <li><g:link controller="question" action="index">Lastest</g:link></li>
+          <li><g:link controller="unaccepted" action="index">Unaccepted</g:link></li>
+        </ul>
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">

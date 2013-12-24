@@ -1,11 +1,15 @@
 
 import fr.isima.grailsoverflow.Question
 import fr.isima.grailsoverflow.Tag
+import fr.isima.grailsoverflow.User
 
 class BootStrap {
 
     def init = { servletContext ->
+        User admin = new User(email: "kevin.renella@gmail.com", displayName: "kevin.renella@gmail.com").save(failOnError: true)
+        
         Tag groovy = new Tag(name: "groovy").save(failOnError: true)
+        Tag unused = new Tag(name: "unused").save(failOnError: true)
         Tag grails = new Tag(name: "grails").save(failOnError: true)
         Tag jenkins = new Tag(name: "jenkins").save(failOnError: true)
         
@@ -16,7 +20,8 @@ class BootStrap {
                       \n\
                       Thanks.",
             dateCreated: new Date(),
-            status: "Unanswered"
+            status: "Accepted",
+            user: admin
         )
         question.addToTags(groovy)
         question.save(failOnError: true)
@@ -28,7 +33,8 @@ class BootStrap {
                       \n\
                       Thanks.",
             dateCreated: new Date(),
-            status: "Unanswered"
+            status: "Unanswered",
+            user: admin
         )
         question.addToTags(groovy)
         question.save(failOnError: true)
@@ -40,7 +46,8 @@ class BootStrap {
                       \n\
                       Thanks.",
             dateCreated: new Date(),
-            status: "Unanswered"
+            status: "Unanswered",
+            user: admin
         )
         question.addToTags(jenkins)
         question.addToTags(grails)
@@ -53,7 +60,8 @@ class BootStrap {
                       \n\
                       Thanks.",
             dateCreated: new Date(),
-            status: "Unanswered"
+            status: "Unanswered",
+            user: admin
         )
         question.addToTags(grails)
         question.save(failOnError: true)

@@ -5,8 +5,22 @@ class Question extends Message {
     String title
     int views
     Date dateCreated
+    
+    static def tagsForQuestions(def questions) {
+        def tags = []
         
-    static hasMany = [tags: Tag]
+        for (def question in questions) {
+            for (def tag in question.tags) {
+                tags << tag
+            }
+        }
+        tags = tags.unique().sort { a, b ->
+            a.questions.size() < b.questions.size() ? 1 : -1
+        }
+    }
+        
+    static hasMany = [tags: Tag, answers: Answer, comments: Comment]
+    static belongsTo = [user: User]
 
     static constraints = {
         title blank: false, unique: true

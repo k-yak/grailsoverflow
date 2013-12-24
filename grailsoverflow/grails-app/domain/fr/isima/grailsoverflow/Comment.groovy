@@ -1,6 +1,6 @@
 package fr.isima.grailsoverflow
 
-class Comment {
+class Comment extends Message {
 
     static constraints = {
     }

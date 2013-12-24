@@ -1,10 +1,8 @@
 package fr.isima.grailsoverflow
 
-class Question {
-    String content
+class Question extends Message {
     String status
     String title
-    int vote
     int views
     Date dateCreated
         

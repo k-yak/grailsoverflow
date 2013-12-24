@@ -1,6 +1,6 @@
 package fr.isima.grailsoverflow
 
-class Answer {
+class Answer extends Message {
 
     static constraints = {
     }

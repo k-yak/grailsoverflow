@@ -9,6 +9,16 @@ footer {
   padding: 30px 0;
 }
 
+#vote {
+    text-align: center;
+    font-size: 15pt;
+    text-decoration: none;
+}
+
+a.vote {
+    text-decoration: none;
+}
+
 @media screen and (max-width: 767px) {
   .row-offcanvas {
     position: relative;

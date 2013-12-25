@@ -28,4 +28,20 @@ class QuestionController {
         
         return [question: question]
     }
+    
+    def voteUp() {
+        def question = Question.get(params.id)
+        question.vote++
+        question.save(failOnError: true)
+        
+        render(text:"${question.vote}", contentType:'text/html')
+    }
+    
+    def voteDown() {
+        def question = Question.get(params.id)
+        question.vote--
+        question.save(failOnError: true)
+        
+        render(text:"${question.vote}", contentType:'text/html')
+    }
 }

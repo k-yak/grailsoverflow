@@ -1,7 +1,7 @@
 <%@page import="fr.isima.grailsoverflow.User" %> 
 <%@page import="fr.isima.grailsoverflow.Vote" %> 
 
-<div class="row panel-body">
+<div class="row panel-body list-group">
     <div class="col-md-1">
         <div id="vote">
             <g:set var="upArrowStyle" value="vote" />
@@ -17,16 +17,38 @@
                 <g:set var="downArrowStyle" value="vote selected"  />
             </g:if>
             <g:remoteLink class="${downArrowStyle}" controller="message" action="voteDown" update="answer_voteContent_${answer.id}" id="${answer.id}">
-                <span class="glyphicon glyphicon-chevron-down"></span>
-            </g:remoteLink>                    
+                <span class="glyphicon glyphicon-chevron-down"></span><br />
+            </g:remoteLink>
+            <g:set var="tickStyle" value="gray-tick" />
+            <g:if test="${answer.accepted == true}">
+                <g:set var="tickStyle" value="gray-tick selected" />
+            </g:if>
+            <g:if test="${question.user == User.CurrentUser}">
+                <div id="answerTick">
+                    <hr />
+                    <g:remoteLink class="${tickStyle}" controller="answer" action="accept" update="" id="${answer.id}">
+                        <span class="glyphicon glyphicon-ok tick"></span>
+                    </g:remoteLink>
+                </div>
+            </g:if>
+            <g:elseif test="${answer.accepted == true}">
+                <div id="answerTick">
+                    <hr />
+                    <g:remoteLink class="gray-tick selected">
+                        <span class="glyphicon glyphicon-ok tick"></span>
+                    </g:remoteLink>
+                </div>
+            </g:elseif>
         </div>
     </div>
-    <div class="col-md-11">
+    <div id="answerContent" class="col-md-11">
         <blockquote>
             ${answer.content}
             <p></p>
             <small>Answered by <cite>${answer.user.displayName}</cite></small>
         </blockquote>
     </div>
-
+</div>
+<div id="answerSeparator">
+    <hr />
 </div>

@@ -59,6 +59,7 @@ class BootStrap {
             user: admin,
             question: question
         )
+        answer.accepted = true;
         answer.vote.userVote(admin, Vote.VOTE_UP)
         answer.vote.userVote(floyd, Vote.VOTE_UP)
         answer.save(failOnError: true)

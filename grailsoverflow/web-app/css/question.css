@@ -1,17 +1,30 @@
 html,
 body {
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
+    overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 body {
-  padding-top: 70px;
+    padding-top: 70px;
 }
 footer {
-  padding: 30px 0;
+    padding: 30px 0;
 }
 
 #vote {
     text-align: center;
     font-size: 15pt;
+}
+
+#answerContent blockquote {
+    min-height: 125px;
+}
+
+#answerSeparator hr {
+    margin-top: -15px;
+    margin-bottom: 0px;
+}
+
+#answerTick {
+    margin-top: -15px;
 }
 
 a.vote {
@@ -23,35 +36,47 @@ a.vote.selected {
     color: #428BCA;
 }
 
+.tick {
+    top: -8px;
+}
+
+a.gray-tick {
+    color: lightgray;
+}
+
+a.gray-tick.selected {
+    color: #428BCA;
+}
+
 @media screen and (max-width: 767px) {
-  .row-offcanvas {
-    position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-  }
+    .row-offcanvas {
+        position: relative;
+        -webkit-transition: all 0.25s ease-out;
+        -moz-transition: all 0.25s ease-out;
+        transition: all 0.25s ease-out;
+    }
 
-  .row-offcanvas-right
-  .sidebar-offcanvas {
-    right: -50%; /* 6 columns */
-  }
+    .row-offcanvas-right
+    .sidebar-offcanvas {
+        right: -50%; /* 6 columns */
+    }
 
-  .row-offcanvas-left
-  .sidebar-offcanvas {
-    left: -50%; /* 6 columns */
-  }
+    .row-offcanvas-left
+    .sidebar-offcanvas {
+        left: -50%; /* 6 columns */
+    }
 
-  .row-offcanvas-right.active {
-    right: 50%; /* 6 columns */
-  }
+    .row-offcanvas-right.active {
+        right: 50%; /* 6 columns */
+    }
 
-  .row-offcanvas-left.active {
-    left: 50%; /* 6 columns */
-  }
+    .row-offcanvas-left.active {
+        left: 50%; /* 6 columns */
+    }
 
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-    width: 50%; /* 6 columns */
-  }
+    .sidebar-offcanvas {
+        position: absolute;
+        top: 0;
+        width: 50%; /* 6 columns */
+    }
 }

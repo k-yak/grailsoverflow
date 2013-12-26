@@ -22,16 +22,18 @@
             </div>
         </g:if> 
         
-        <div class="alert alert-info">
-            <strong>+100</strong> to anyone that answer this question. 
-            <g:if test="${User.isUserAuthenticated() == true}">
-                <span class="alert-link">Try your luck!</span>
-            </g:if>
-            <g:else>
-                <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />
-                <oauth:connect class="alert-link" provider="google" id="google-connect-link">Sign In!</oauth:connect>
-            </g:else>
-        </div>
+        <g:if test="${question.status != 'Accepted'}">
+            <div class="alert alert-info">
+                <strong>+100</strong> to anyone that answer this question. 
+                <g:if test="${User.isUserAuthenticated() == true}">
+                    <span class="alert-link">Try your luck!</span>
+                </g:if>
+                <g:else>
+                    <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />
+                    <oauth:connect class="alert-link" provider="google" id="google-connect-link">Sign In!</oauth:connect>
+                </g:else>
+            </div>
+        </g:if>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2>${question.title}</h2>
@@ -44,7 +46,7 @@
                             <g:set var="upArrowStyle" value="vote selected"  />
                         </g:if>
                         <g:remoteLink class="${upArrowStyle}" controller="message" action="voteUp" update="voteContent" id="${question.id}">
-                            <span  class="glyphicon glyphicon-chevron-up"></span><br />
+                            <span class="glyphicon glyphicon-chevron-up"></span><br />
                         </g:remoteLink>
                         <span id="voteContent">${question.vote.value}</span><br />
                         <g:set var="downArrowStyle" value="vote"/>
@@ -53,7 +55,7 @@
                         </g:if>
                         <g:remoteLink id="voteDown" class="${downArrowStyle}" controller="message" action="voteDown" update="voteContent" id="${question.id}">
                             <span class="glyphicon glyphicon-chevron-down"></span>
-                        </g:remoteLink>                    
+                        </g:remoteLink>
                     </div>
                 </div>
                 <div class="col-md-11">
@@ -79,7 +81,7 @@
             <div class="panel-heading">
                 <h2>${question.answers.size()} answer<g:if test="${question.answers.size() > 1}">s</g:if></h2>
             </div>
-            <g:render template="/question/answerTemplate" collection="${question.sortedAnswers()}" var="answer"/>
+            <g:render template="/question/answerTemplate" collection="${question.sortedAnswers()}" var="answer" />
         </div>
         <g:if test="${User.isUserAuthenticated() == true}">
             <div id="js_contentRequired" style="display: none;" class="alert alert-danger">
@@ -108,6 +110,12 @@
                     $(this).parent().find('a').each(function(){
                         $(this).removeClass('selected');
                     });
+                    
+                    if ($(this).parent().attr('id') == "answerTick") {
+                        $("body").find("#answerTick a").each(function(){
+                            $(this).removeClass('selected');
+                        });
+                    }
                     
                     if (shouldSelect)
                         $(this).addClass('selected');

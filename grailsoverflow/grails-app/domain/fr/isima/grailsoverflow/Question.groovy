@@ -4,7 +4,12 @@ class Question extends Message {
     String status
     String title
     int views
-    Date dateCreated
+    
+    def sortedAnswers() {
+        answers.sort { a, b ->
+            a.vote.value < b.vote.value ? 1 : -1
+        }
+    }
     
     static def tagsForQuestions(def questions) {
         def tags = []

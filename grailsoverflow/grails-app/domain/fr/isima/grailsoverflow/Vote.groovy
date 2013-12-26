@@ -5,8 +5,10 @@ class Vote {
     static final int VOTE_DOWN = -1
     
     int value = 0
+    Map users = [:]
     
     def userVote(User user, int value) {
+        this.value += value
         users[user.email] = value.toString()
     }
     
@@ -14,8 +16,7 @@ class Vote {
         users[user.email].toInteger()
     }
 
-    static hasOne = [users: Map]
-    static belongsTo = Question
+    static belongsTo = Message
     
     static constraints = {
     }

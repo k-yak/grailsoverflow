@@ -29,6 +29,19 @@ class QuestionController {
         return [question: question]
     }
     
+    def answer() {
+        def question = Question.findById(params.id)
+        Answer answer = new Answer(
+            content: params.answerContent,
+            dateCreated: new Date(),
+            user: User.CurrentUser,
+            question: question
+        )
+        answer.save(failOnError: true)
+        
+        redirect(uri: "/question/show/${params.id}")
+    }
+    
     def voteUp() {
         voteProcess(params.id, Vote.VOTE_UP)
     }
@@ -50,7 +63,6 @@ class QuestionController {
                     println "DEBUG : Your vote changed"
                 }
             }
-            question.vote.value += value
             question.vote.userVote(User.CurrentUser, value)
             question.save(failOnError: true)
         } else {

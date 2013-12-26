@@ -8,6 +8,7 @@
         <title>GrailsOverflow - ${question.title}</title>
 
         <link href="${resource(dir: 'css', file: 'question.css')}" rel="stylesheet">
+        <g:javascript src="ckeditor/ckeditor.js" />
     </head>
 
     <body>
@@ -20,7 +21,14 @@
         </g:if> 
         
         <div class="alert alert-info">
-            <strong>+100</strong> to anyone that answer this question <a href="" class="alert-link">Try your luck!</a>
+            <strong>+100</strong> to anyone that answer this question. 
+            <g:if test="${User.isUserAuthenticated() == true}">
+                <span class="alert-link">Try your luck!</span>
+            </g:if>
+            <g:else>
+                <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />
+                <oauth:connect class="alert-link" provider="google" id="google-connect-link">Sign In!</oauth:connect>
+            </g:else>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -57,16 +65,46 @@
                 </li>
             </ul>
         </div>
-      <script>
-        $(".vote").click(function() {
-            $("#js_voteLogin").fadeIn(1000);
-            return false;
-        });
-        $(".close").click(function() {
-            $(this).parent().fadeOut(500);
-            return false;
-        });
-      </script>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>${question.answers.size()} answer<g:if test="${question.answers.size() > 1}">s</g:if></h2>
+            </div>
+            <g:render template="/question/answerTemplate" collection="${question.sortedAnswers()}" var="answer"/>
+        </div>
+        <g:if test="${User.isUserAuthenticated() == true}">
+            <div id="js_contentRequired" style="display: none;" class="alert alert-danger">
+                <a class="close">&times;</a>
+                Your answer is empty.
+            </div>
+            <g:form name="myForm" action="answer" id="${question.id}">
+                <textarea name="answerContent" id="CKEditor" placeholder="Your answer here ..." required></textarea><br />
+                <button type="submit" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-ok"></span> Post your answer
+                </button>
+            </g:form>
+            <script>
+                CKEDITOR.replace('CKEditor').on('required', function( evt ) {
+                    $("#js_contentRequired").fadeIn(1000);
+                    evt.cancel(); // Prevent submit.
+                });
+            </script>
+        </g:if>
+        <script>
+            $(".vote").click(function() {
+                $("#js_voteLogin").fadeIn(1000);
+                return false;
+            });
+            $(".close").click(function() {
+                $(this).parent().fadeOut(500);
+                return false;
+            });
+            
+            function GetCKEditorContents() {
+                var editor = CKEDITOR.instances.CKEditor;
+
+                alert( editor.getData() );
+            }
+        </script>
     </body>
 </html>
 

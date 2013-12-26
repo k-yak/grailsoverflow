@@ -3,11 +3,13 @@ import fr.isima.grailsoverflow.Question
 import fr.isima.grailsoverflow.Tag
 import fr.isima.grailsoverflow.User
 import fr.isima.grailsoverflow.Vote
+import fr.isima.grailsoverflow.Answer
 
 class BootStrap {
 
     def init = { servletContext ->
         User admin = new User(email: "kevin.renella@gmail.com", displayName: "kevin.renella@gmail.com").save(failOnError: true)
+        User floyd = new User(email: "florian.rotagnon@gmail.com", displayName: "florian.rotagnon@gmail.com").save(failOnError: true)
         
         Tag groovy = new Tag(name: "groovy").save(failOnError: true)
         Tag unused = new Tag(name: "unused").save(failOnError: true)
@@ -53,6 +55,23 @@ class BootStrap {
         question.addToTags(jenkins)
         question.addToTags(grails)
         question.save(failOnError: true)
+        
+        Answer answer = new Answer(
+            content: "I would advise <strong>Jenkins</strong> !",
+            dateCreated: new Date(),
+            user: admin,
+            question: question
+        )
+        answer.vote.userVote(admin, Vote.VOTE_UP)
+        answer.save(failOnError: true)
+        
+        answer = new Answer(
+            content: "Maybe travis-ci would be better <a href='https://travis-ci.org/'>https://travis-ci.org/</a>",
+            dateCreated: new Date(),
+            user: floyd,
+            question: question
+        )
+        answer.save(failOnError: true)
         
         question = new Question(
             title: "Is a template difficult to implement in Grails ?",

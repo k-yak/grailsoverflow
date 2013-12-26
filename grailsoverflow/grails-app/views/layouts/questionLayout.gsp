@@ -15,9 +15,10 @@
 
         <title><g:layoutTitle default="Grails"/></title>
 
-        <link href="${resource(dir: 'bootstrap/css', file: 'bootstrap.min.css')}" rel="stylesheet">
-
-        <g:javascript library="jquery"/>
+        <link type="text/css" href="${resource(dir: 'css/bootstrap', file: 'bootstrap.min.css')}" rel="stylesheet">
+        <g:javascript src="jquery.min.js"/>
+        <g:javascript src="bootstrap/bootstrap.min.js" />
+        
         <g:layoutHead/>
     <r:layoutResources />
 </head>

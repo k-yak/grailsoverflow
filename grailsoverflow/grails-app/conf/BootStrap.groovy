@@ -63,6 +63,7 @@ class BootStrap {
             question: question
         )
         answer.vote.userVote(admin, Vote.VOTE_UP)
+        answer.vote.userVote(floyd, Vote.VOTE_UP)
         answer.save(failOnError: true)
         
         answer = new Answer(

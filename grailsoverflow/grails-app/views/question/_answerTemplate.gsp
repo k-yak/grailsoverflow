@@ -1,11 +1,11 @@
 <div class="row panel-body">
     <div class="col-md-1">
         <div id="vote">
-            <g:remoteLink class="vote" controller="question" action="voteUp" update="voteContent" id="${question.id}">
+            <g:remoteLink class="vote" controller="answer" action="voteUp" update="answer_voteContent_${answer.id}" id="${answer.id}">
                 <span class="glyphicon glyphicon-chevron-up"></span><br />
             </g:remoteLink>
-            <span id="voteContent">${answer.vote.value}</span><br />
-            <g:remoteLink class="vote" controller="question" action="voteDown" update="voteContent" id="${question.id}">
+            <span id="answer_voteContent_${answer.id}">${answer.vote.value}</span><br />
+            <g:remoteLink class="vote" controller="answer" action="voteDown" update="answer_voteContent_${answer.id}" id="${answer.id}">
                 <span class="glyphicon glyphicon-chevron-down"></span>
             </g:remoteLink>                    
         </div>

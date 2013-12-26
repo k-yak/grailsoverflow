@@ -44,6 +44,7 @@
                             <a>Connected (${User.CurrentUser.email})</a>
                         </li>
                         <li>
+                            <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />
                             <g:link controller="authenticate" action="logout">
                                 logout
                             </g:link>
@@ -51,7 +52,8 @@
                     </g:if>
                     <g:else>
                         <li>
-                        <oauth:connect provider="google" id="google-connect-link">Google Connection</oauth:connect>
+                            <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />
+                            <oauth:connect provider="google" id="google-connect-link">Google Connection</oauth:connect>
                         </li>
                     </g:else>
 

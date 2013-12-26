@@ -20,13 +20,15 @@ class AuthenticateController {
         }
         User.CurrentUser = user
         
-        redirect(controller: "question", action: "index")
+        def targetUri = session.targetUri ?: "/question/index"
+        redirect(uri: targetUri)
     }
     
     def logout() {
-        session.invalidate()
         User.CurrentUser = null
+        def targetUri = session.targetUri ?: "/question/index"
         
-        redirect(controller: "question", action: "index")
+        session.invalidate()
+        redirect(uri: targetUri)
     }
 }

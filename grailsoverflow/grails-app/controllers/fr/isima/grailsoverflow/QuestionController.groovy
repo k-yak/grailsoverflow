@@ -30,18 +30,33 @@ class QuestionController {
     }
     
     def voteUp() {
-        def question = Question.get(params.id)
-        question.vote++
-        question.save(failOnError: true)
-        
-        render(text:"${question.vote}", contentType:'text/html')
+        voteProcess(params.id, Vote.VOTE_UP)
     }
     
     def voteDown() {
-        def question = Question.get(params.id)
-        question.vote--
-        question.save(failOnError: true)
+        voteProcess(params.id, Vote.VOTE_DOWN)
+    }
+    
+    def voteProcess(def id, def value) {
+        def question = Question.get(id)
         
-        render(text:"${question.vote}", contentType:'text/html')
+        if (User.isUserAuthenticated()) {     
+            if (question.hasVoted(User.CurrentUser)) {
+                // Remove old vote 
+                question.vote.value -= question.vote.getUserVote(User.CurrentUser)
+                if (question.vote.getUserVote(User.CurrentUser) == value) {
+                    println "DEBUG : You have already voted (${User.CurrentUser.email} -> ${question.vote.getUserVote(User.CurrentUser)})"
+                } else {
+                    println "DEBUG : Your vote changed"
+                }
+            }
+            question.vote.value += value
+            question.vote.userVote(User.CurrentUser, value)
+            question.save(failOnError: true)
+        } else {
+            println "DEBUG : You must be logged in to vote"
+        }
+        
+        render(text:"${question.vote.value}", contentType:'text/html') 
     }
 }

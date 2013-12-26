@@ -13,10 +13,10 @@ class AuthenticateController {
         
         User user = User.findByEmail(email) 
         if (!user) {
-            println "New User created : " + email
+            println "DEBUG : New User created : " + email
             user = new User(email: email, displayName: email).save(failOnError: true)
         } else {
-            println "User " + email + " found"
+            println "DEBUG : User " + email + " found"
         }
         User.CurrentUser = user
         

@@ -2,6 +2,7 @@
 import fr.isima.grailsoverflow.Question
 import fr.isima.grailsoverflow.Tag
 import fr.isima.grailsoverflow.User
+import fr.isima.grailsoverflow.Vote
 
 class BootStrap {
 

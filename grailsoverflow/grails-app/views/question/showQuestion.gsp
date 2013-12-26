@@ -21,10 +21,11 @@
             <div class="row panel-body">
                 <div class="col-md-1">
                     <div id="vote">
+                        
                         <g:remoteLink class="vote" controller="question" action="voteUp" update="voteContent" id="${question.id}">
                             <span class="glyphicon glyphicon-chevron-up"></span><br />
                         </g:remoteLink>
-                        <span id="voteContent">${question.vote}</span><br />
+                        <span id="voteContent">${question.vote.value}</span><br />
                         <g:remoteLink class="vote" controller="question" action="voteDown" update="voteContent" id="${question.id}">
                             <span class="glyphicon glyphicon-chevron-down"></span>
                         </g:remoteLink>                    

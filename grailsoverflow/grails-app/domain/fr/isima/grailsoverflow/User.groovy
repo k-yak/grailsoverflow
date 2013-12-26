@@ -1,5 +1,8 @@
 package fr.isima.grailsoverflow
 
+import groovy.transform.EqualsAndHashCode
+
+@EqualsAndHashCode
 class User {
     String displayName
     String email

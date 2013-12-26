@@ -30,7 +30,7 @@
                 </g:link>
 
                 <ul class="nav navbar-nav">
-                    <li><g:link controller="question" action="index">Lastest</g:link></li>
+                    <li><g:link controller="question" action="index">Latest</g:link></li>
                     <li><g:link controller="unaccepted" action="index">Unaccepted</g:link></li>
                     </ul>
                 </div>

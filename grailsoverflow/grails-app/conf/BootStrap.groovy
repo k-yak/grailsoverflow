@@ -23,7 +23,6 @@ class BootStrap {
                       \n\
                       Thanks.",
             dateCreated: new Date(),
-            status: "Accepted",
             user: admin
         )
         question.addToTags(groovy)
@@ -36,7 +35,6 @@ class BootStrap {
                       \n\
                       Thanks.",
             dateCreated: new Date(),
-            status: "Unanswered",
             user: admin
         )
         question.addToTags(groovy)
@@ -49,7 +47,6 @@ class BootStrap {
                       \n\
                       Thanks.",
             dateCreated: new Date(),
-            status: "Unanswered",
             user: admin
         )
         question.addToTags(jenkins)
@@ -65,6 +62,7 @@ class BootStrap {
         answer.vote.userVote(admin, Vote.VOTE_UP)
         answer.vote.userVote(floyd, Vote.VOTE_UP)
         answer.save(failOnError: true)
+        question.answer(answer)
         
         answer = new Answer(
             content: "Maybe travis-ci would be better <a href='https://travis-ci.org/'>https://travis-ci.org/</a>",
@@ -73,6 +71,9 @@ class BootStrap {
             question: question
         )
         answer.save(failOnError: true)
+        answer.vote.userVote(floyd, Vote.VOTE_UP)
+        question.answer(answer)
+        question.save(failOnError: true)
         
         question = new Question(
             title: "Is a template difficult to implement in Grails ?",
@@ -81,7 +82,6 @@ class BootStrap {
                       \n\
                       Thanks.",
             dateCreated: new Date(),
-            status: "Unanswered",
             user: admin
         )
         question.addToTags(grails)

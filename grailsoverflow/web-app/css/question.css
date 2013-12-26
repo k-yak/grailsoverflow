@@ -12,11 +12,15 @@ footer {
 #vote {
     text-align: center;
     font-size: 15pt;
-    text-decoration: none;
 }
 
 a.vote {
     text-decoration: none;
+    color: lightgray;
+}
+
+a.vote.selected {
+    color: #428BCA;
 }
 
 @media screen and (max-width: 767px) {

@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+
 <%@page import="fr.isima.grailsoverflow.User" %> 
+<%@page import="fr.isima.grailsoverflow.Vote" %> 
 
 <html>
     <head>
@@ -37,11 +39,19 @@
             <div class="row panel-body">
                 <div class="col-md-1">
                     <div id="vote">
-                        <g:remoteLink class="vote" controller="question" action="voteUp" update="voteContent" id="${question.id}">
-                            <span class="glyphicon glyphicon-chevron-up"></span><br />
+                        <g:set var="upArrowStyle" value="vote" />
+                        <g:if test="${User.isUserAuthenticated() == true && question.vote.getUserVote(User.CurrentUser) == Vote.VOTE_UP}">
+                            <g:set var="upArrowStyle" value="vote selected"  />
+                        </g:if>
+                        <g:remoteLink class="${upArrowStyle}" controller="message" action="voteUp" update="voteContent" id="${question.id}">
+                            <span  class="glyphicon glyphicon-chevron-up"></span><br />
                         </g:remoteLink>
                         <span id="voteContent">${question.vote.value}</span><br />
-                        <g:remoteLink class="vote" controller="question" action="voteDown" update="voteContent" id="${question.id}">
+                        <g:set var="downArrowStyle" value="vote"/>
+                        <g:if test="${User.isUserAuthenticated() == true && question.vote.getUserVote(User.CurrentUser) == Vote.VOTE_DOWN}">
+                            <g:set var="downArrowStyle" value="vote selected"/>
+                        </g:if>
+                        <g:remoteLink id="voteDown" class="${downArrowStyle}" controller="message" action="voteDown" update="voteContent" id="${question.id}">
                             <span class="glyphicon glyphicon-chevron-down"></span>
                         </g:remoteLink>                    
                     </div>
@@ -87,23 +97,33 @@
                     $("#js_contentRequired").fadeIn(1000);
                     evt.cancel(); // Prevent submit.
                 });
+                
+                
+                $("#vote a").click(function() {
+                    var shouldSelect = true;
+                    
+                    if (this.classList.contains('selected'))
+                        shouldSelect = false;
+                      
+                    $(this).parent().find('a').each(function(){
+                        $(this).removeClass('selected');
+                    });
+                    
+                    if (shouldSelect)
+                        $(this).addClass('selected');
+                });
             </script>
         </g:if>
-        <script>
+        <script>          
             $(".vote").click(function() {
                 $("#js_voteLogin").fadeIn(1000);
                 return false;
             });
+            
             $(".close").click(function() {
                 $(this).parent().fadeOut(500);
                 return false;
             });
-            
-            function GetCKEditorContents() {
-                var editor = CKEDITOR.instances.CKEditor;
-
-                alert( editor.getData() );
-            }
         </script>
     </body>
 </html>

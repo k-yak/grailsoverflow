@@ -1,13 +1,35 @@
 package fr.isima.grailsoverflow
 
 class Question extends Message {
-    String status
+    String status = "Unanswered"
     String title
     int views
+    Set answers = []
     
     def sortedAnswers() {
         answers.sort { a, b ->
             a.vote.value < b.vote.value ? 1 : -1
+        }
+    }
+    
+    def updateStatus() {
+        if (answers.isEmpty()) {
+            status = "Unanswered"
+        } else if (acceptedAnswer() != null) {
+            status = "Accepted"
+        } else {
+            status = "Answered"
+        }
+    }
+    
+    def answer(Answer answer) {
+        addToAnswers(answer)
+        updateStatus()
+    }
+
+    def acceptedAnswer() {
+        answers.find() {
+            it.accepted == true
         }
     }
     

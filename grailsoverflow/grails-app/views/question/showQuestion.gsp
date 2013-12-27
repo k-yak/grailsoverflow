@@ -106,14 +106,15 @@
                     
                     if (this.classList.contains('selected'))
                         shouldSelect = false;
-                      
-                    $(this).parent().find('a').each(function(){
-                        $(this).removeClass('selected');
-                    });
-                    
+                                          
                     if ($(this).parent().attr('id') == "answerTick") {
                         $("body").find("#answerTick a").each(function(){
                             $(this).removeClass('selected');
+                        });
+                    } else {
+                        $(this).parent().find('a').each(function(){
+                            if ($(this).parent().attr('id') != "answerTick")
+                                $(this).removeClass('selected');
                         });
                     }
                     

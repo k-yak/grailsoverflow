@@ -14,6 +14,7 @@
     </head>
 
     <body>
+        <!-- Vote logged in error -->
         <g:if test="${User.isUserAuthenticated() == false}">
             <div id="js_voteLogin" style="display: none;" class="alert alert-danger">
                 <a class="close">&times;</a>
@@ -21,7 +22,8 @@
                 You must be <oauth:connect class="alert-link" provider="google" id="google-connect-link">logged in</oauth:connect> to vote.
             </div>
         </g:if> 
-        
+
+        <!-- Answer points message -->
         <g:if test="${question.status != 'Accepted'}">
             <div class="alert alert-info">
                 <strong>+100</strong> to anyone that answer this question. 
@@ -40,6 +42,7 @@
             </div>
             <div class="row panel-body">
                 <div class="col-md-1">
+                    <!-- Vote panel -->
                     <div id="vote">
                         <g:set var="upArrowStyle" value="vote" />
                         <g:if test="${User.isUserAuthenticated() == true && question.vote.getUserVote(User.CurrentUser) == Vote.VOTE_UP}">
@@ -58,13 +61,13 @@
                         </g:remoteLink>
                     </div>
                 </div>
+                <!-- Question panel -->
                 <div class="col-md-11">
                     <blockquote>
                         <p><own:textToParagraph>${question.content}</own:textToParagraph></p>
                         <small>Asked by <cite>${question.user.displayName}</cite></small>
                     </blockquote>
                 </div>
-
             </div>
             <ul class="list-group">
                 <li class="list-group-item"><b>Status :</b> ${question.status}</li>
@@ -77,12 +80,14 @@
                 </li>
             </ul>
         </div>
+        <!-- Answers panel -->
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2>${question.answers.size()} answer<g:if test="${question.answers.size() > 1}">s</g:if></h2>
             </div>
             <g:render template="/question/answerTemplate" collection="${question.sortedAnswers()}" var="answer" />
         </div>
+        <!-- Answer textarea  -->
         <g:if test="${User.isUserAuthenticated() == true}">
             <div id="js_contentRequired" style="display: none;" class="alert alert-danger">
                 <a class="close">&times;</a>

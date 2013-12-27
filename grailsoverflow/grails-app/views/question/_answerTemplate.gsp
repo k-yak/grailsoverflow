@@ -3,6 +3,7 @@
 
 <div class="row panel-body list-group">
     <div class="col-md-1">
+        <!-- Vote panel -->
         <div id="vote">
             <g:set var="upArrowStyle" value="vote" />
             <g:if test="${User.isUserAuthenticated() == true && answer.vote.getUserVote(User.CurrentUser) == Vote.VOTE_UP}">
@@ -19,6 +20,8 @@
             <g:remoteLink class="${downArrowStyle}" controller="message" action="voteDown" update="answer_voteContent_${answer.id}" id="${answer.id}">
                 <span class="glyphicon glyphicon-chevron-down"></span><br />
             </g:remoteLink>
+            
+            <!-- Accepted answer panel -->
             <g:set var="tickStyle" value="gray-tick" />
             <g:if test="${answer.accepted == true}">
                 <g:set var="tickStyle" value="gray-tick selected" />

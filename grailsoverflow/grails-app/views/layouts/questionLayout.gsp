@@ -25,21 +25,21 @@
 <body>
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
         <div class="container">
+            <!-- Navigation bar -->
             <div class="navbar-header">
                 <g:link class="navbar-brand" controller="question" action="index">
                     GrailsOverflow
                 </g:link>
 
+                <!-- Left side  -->
                 <ul class="nav navbar-nav">
                     <li><g:link controller="question" action="index">Latest</g:link></li>
                     <li><g:link controller="unaccepted" action="index">Unaccepted</g:link></li>
                     </ul>
                 </div>
+                <!-- Right side -->
                 <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                    </ul>
                     <ul class="nav navbar-nav navbar-right">
-
                     <g:if test="${User.isUserAuthenticated() == true}">
                         <li>
                             <a>Connected (${User.CurrentUser.email})</a>
@@ -60,9 +60,9 @@
 
 
                 </ul>
-            </div><!-- /.nav-collapse -->
-        </div><!-- /.container -->
-    </div><!-- /.navbar -->
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <g:layoutBody/>

@@ -44,7 +44,7 @@ class QuestionController {
     def answer() {
         def question = Question.findById(params.id)
         Answer answer = new Answer(
-            content: params.answerContent,
+            content: params.answerContent - "<p>&nbsp;</p>",
             dateCreated: new Date(),
             user: User.CurrentUser,
             question: question

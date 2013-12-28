@@ -21,10 +21,11 @@ class BootStrap {
         
             def question = new Question(
                 title: "How to create a simple Controller in Groovy ?",
-                content: "Hi,\n\
-                      I would like to know how to create a simple Controller in Groovy\n\
-                      \n\
-                      Thanks.",
+                content: "<p>Hi,</p>\
+                      <p></p>\
+                      <p>I would like to know how to create a simple Controller in Groovy</p>\
+                      <p></p>\
+                      <p>Thanks.</p>",
                 dateCreated: new Date(),
                 user: floyd
             )
@@ -33,10 +34,11 @@ class BootStrap {
         
             question = new Question(
                 title: "Is Groovy a good way deploy a web app ?",
-                content: "Hi,\n\
-                      I would like to know if groovy was a good way to deploy a web app\n\
-                      \n\
-                      Thanks.",
+                content: "<p>Hi,</p>\
+                      <p></p>\
+                      <p>I would like to know if groovy was a good way to deploy a web app</p>\
+                      <p></p>\
+                      <p>Thanks.</p>",
                 dateCreated: new Date(),
                 user: admin
             )
@@ -45,10 +47,11 @@ class BootStrap {
         
             question = new Question(
                 title: "What's the best coutinuous integration solution to deploy a grails application ?",
-                content: "Hi,\n\
-                      I would like to know what's the best coutinuous integration solution to deploy a grails application\n\
-                      \n\
-                      Thanks.",
+                content: "<p>Hi,</p>\
+                      <p></p>\
+                      <p>I would like to know what's the best coutinuous integration solution to deploy a grails application</p>\
+                      <p></p>\
+                      <p>Thanks.</p>",
                 dateCreated: new Date(),
                 user: admin
             )
@@ -57,7 +60,7 @@ class BootStrap {
             question.save(failOnError: true)
         
             Answer answer = new Answer(
-                content: "I would advise <strong>Jenkins</strong> !",
+                content: "<p>I would advise <strong>Jenkins</strong> !</p>",
                 dateCreated: new Date(),
                 user: admin,
                 question: question
@@ -69,7 +72,7 @@ class BootStrap {
             question.answer(answer)
         
             answer = new Answer(
-                content: "Maybe travis-ci would be better <a href='https://travis-ci.org/'>https://travis-ci.org/</a>",
+                content: "<p>Maybe travis-ci would be better <a href='https://travis-ci.org/'>https://travis-ci.org/</a></p>",
                 dateCreated: new Date(),
                 user: floyd,
                 question: question
@@ -81,10 +84,11 @@ class BootStrap {
         
             question = new Question(
                 title: "Is a template difficult to implement in Grails ?",
-                content: "Hi, \n\
-                      I would like to know if it is difficult to implement a template in grails\n\
-                      \n\
-                      Thanks.",
+                content: "<p>Hi,</p>\
+                      <p></p>\
+                      <p>I would like to know if it is difficult to implement a template in grails</p>\
+                      <p></p>\
+                      <p>Thanks.</p>",
                 dateCreated: new Date(),
                 user: admin
             )

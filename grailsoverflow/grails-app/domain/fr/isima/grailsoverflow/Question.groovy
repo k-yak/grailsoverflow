@@ -55,4 +55,8 @@ class Question extends Message {
         status inList: [ "Unanswered", "Answered", "Accepted" ]
         views min: 0
     }
+    
+    static mapping = {
+        answers cascade:"all,delete-orphan"
+    }
 }

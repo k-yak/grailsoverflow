@@ -8,10 +8,11 @@ class User {
     String email
     
     def isOwnerOfQuestion(def question) {
-        // We must do this due to static User
-        User user = User.get(id)
-        
-        return user?.questions*.id.contains(question.id) ?: false
+        question.user.email == email
+    }
+    
+    def isOwnerOfAnswer(def answer) {
+        answer.user.email == email
     }
     
     static hasMany = [questions: Question]

@@ -13,6 +13,9 @@ class UrlMappings {
         
         // Unaccepted
         "/unaccepted/tag/$tag"(controller:"unaccepted", action:"questionsForTag")
+        
+        // Answer
+        "/answer/delete/$answer"(controller:"answer", action:"delete")
 
         "/"(view:"/index")
         "500"(view:'/error')

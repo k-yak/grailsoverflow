@@ -64,7 +64,7 @@
                 <!-- Question panel -->
                 <div class="col-md-11">
                     <blockquote>
-                        <p><own:textToParagraph>${question.content}</own:textToParagraph></p>
+                        <p>${question.content}</p>
                         <small>Asked by <cite>${question.user.displayName}</cite></small>
                        
                         <!-- Edit/Delete panel -->

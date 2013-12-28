@@ -20,7 +20,7 @@
             <g:remoteLink class="${downArrowStyle}" controller="message" action="voteDown" update="answer_voteContent_${answer.id}" id="${answer.id}">
                 <span class="glyphicon glyphicon-chevron-down"></span><br />
             </g:remoteLink>
-            
+
             <!-- Accepted answer panel -->
             <g:set var="tickStyle" value="gray-tick" />
             <g:if test="${answer.accepted == true}">
@@ -47,8 +47,15 @@
     <div id="answerContent" class="col-md-11">
         <blockquote>
             ${answer.content}
-            <p></p>
             <small>Answered by <cite>${answer.user.displayName}</cite></small>
+             <!-- Edit/Delete panel -->
+            <g:if test="${User.isUserAuthenticated() && User.CurrentUser.isOwnerOfAnswer(answer)}" >
+                <br />
+                <button type="button" class="btn btn-default btn-xs">Edit</button>
+                <g:link controller="answer" action="delete" params='[answer: "${answer.id}"]'>
+                    <button type="button" class="btn btn-danger btn-xs">Delete</button>
+                </g:link>
+            </g:if>
         </blockquote>
     </div>
 </div>

@@ -6,7 +6,7 @@
             </g:link>
         </div>
         <div class="panel-body">
-            <own:textToParagraph>${question.content}</own:textToParagraph>
+            ${question.content}
         </div>
         
         <ul class="list-group">

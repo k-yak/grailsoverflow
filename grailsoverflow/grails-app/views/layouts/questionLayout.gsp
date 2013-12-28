@@ -57,8 +57,6 @@
                             <oauth:connect provider="google" id="google-connect-link">Google Connection</oauth:connect>
                         </li>
                     </g:else>
-
-
                 </ul>
             </div>
         </div>

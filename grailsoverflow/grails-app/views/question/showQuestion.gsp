@@ -66,6 +66,15 @@
                     <blockquote>
                         <p><own:textToParagraph>${question.content}</own:textToParagraph></p>
                         <small>Asked by <cite>${question.user.displayName}</cite></small>
+                       
+                        <!-- Edit/Delete panel -->
+                        <g:if test="${User.isUserAuthenticated() && User.CurrentUser.isOwnerOfQuestion(question)}" >
+                            <br />
+                            <button type="button" class="btn btn-default btn-xs">Edit</button>
+                            <g:link action="delete" params='[id: "${question.id}"]'>
+                                <button type="button" class="btn btn-danger btn-xs">Delete</button>
+                            </g:link>
+                        </g:if>
                     </blockquote>
                 </div>
             </div>

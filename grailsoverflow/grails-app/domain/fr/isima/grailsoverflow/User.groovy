@@ -7,6 +7,13 @@ class User {
     String displayName
     String email
     
+    def isOwnerOfQuestion(def question) {
+        // We must do this due to static User
+        User user = User.get(id)
+        
+        return user?.questions*.id.contains(question.id) ?: false
+    }
+    
     static hasMany = [questions: Question]
     
     // Static block

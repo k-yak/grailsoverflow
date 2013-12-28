@@ -26,7 +26,7 @@ class BootStrap {
                       \n\
                       Thanks.",
                 dateCreated: new Date(),
-                user: admin
+                user: floyd
             )
             question.addToTags(groovy)
             question.save(failOnError: true)

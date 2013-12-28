@@ -29,6 +29,18 @@ class QuestionController {
         return [question: question]
     }
     
+    def delete() {
+        def question = Question.findById(params.question)
+        
+        if (User.CurrentUser.isOwnerOfQuestion(question)) {
+            User user = User.get(User.CurrentUser.id)
+            
+            user.removeFromQuestions(question)
+        }
+        
+        redirect(controller: "question", action: "index")
+    }
+    
     def answer() {
         def question = Question.findById(params.id)
         Answer answer = new Answer(

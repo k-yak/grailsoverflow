@@ -31,4 +31,8 @@ class User {
     static constraints = {
         email blank: false, unique: true
     }
+    
+    static mapping = {
+        questions cascade:"all,delete-orphan"
+    }
 }

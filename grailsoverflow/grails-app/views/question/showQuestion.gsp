@@ -41,7 +41,7 @@
                 <h2>${question.title}</h2>
             </div>
             <div class="row panel-body">
-                <div class="col-md-1">
+                <div class="col-md-1 col-sm-2 col-xs-2">
                     <!-- Vote panel -->
                     <div id="vote">
                         <g:set var="upArrowStyle" value="vote" />
@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <!-- Question panel -->
-                <div class="col-md-11">
+                <div class="col-md-11 col-sm-4 col-xs-10">
                     <blockquote>
                         <p>${question.content}</p>
                         <small>Asked by <cite>${question.user.displayName}</cite></small>

@@ -2,7 +2,7 @@
 <%@page import="fr.isima.grailsoverflow.Vote" %> 
 
 <div class="row panel-body list-group">
-    <div class="col-md-1">
+    <div class="col-md-1 col-sm-2 col-xs-2">
         <!-- Vote panel -->
         <div id="vote">
             <g:set var="upArrowStyle" value="vote" />
@@ -44,7 +44,7 @@
             </g:elseif>
         </div>
     </div>
-    <div id="answerContent" class="col-md-11">
+    <div id="answerContent" class="col-md-11 col-sm-4 col-xs-10">
         <blockquote>
             ${answer.content}
             <small>Answered by <cite>${answer.user.displayName}</cite></small>

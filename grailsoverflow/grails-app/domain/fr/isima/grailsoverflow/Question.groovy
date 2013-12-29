@@ -12,6 +12,10 @@ class Question extends Message {
         }
     }
     
+    def edit() {
+        
+    }
+    
     def updateStatus() {
         if (answers.isEmpty()) {
             status = "Unanswered"

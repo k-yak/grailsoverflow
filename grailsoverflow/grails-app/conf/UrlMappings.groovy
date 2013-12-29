@@ -10,6 +10,7 @@ class UrlMappings {
         "/question/tag/$tag"(controller:"question", action:"questionsForTag")
         "/question/show/$question"(controller:"question", action:"showQuestion")
         "/question/delete/$question"(controller:"question", action:"delete")
+        "/question/edit/$question"(controller:"question", action:"edit")
         
         // Unaccepted
         "/unaccepted/tag/$tag"(controller:"unaccepted", action:"questionsForTag")

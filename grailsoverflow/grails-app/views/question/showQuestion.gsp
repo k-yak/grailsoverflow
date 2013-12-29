@@ -33,7 +33,7 @@
                 <g:else>
                     <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />
                     <oauth:connect class="alert-link" provider="google" id="google-connect-link">Sign In!</oauth:connect>
-                </g:else>
+                    </g:else>
             </div>
         </g:if>
         <div class="panel panel-default">
@@ -66,12 +66,14 @@
                     <blockquote>
                         <p>${question.content}</p>
                         <small>Asked by <cite>${question.user.displayName}</cite></small>
-                       
+
                         <!-- Edit/Delete panel -->
                         <g:if test="${User.isUserAuthenticated() && User.CurrentUser.isOwnerOfQuestion(question)}" >
                             <br />
-                            <button type="button" class="btn btn-default btn-xs">Edit</button>
-                            <g:link action="delete" params='[question: "${question.id}"]'>
+                            <g:link style="text-decoration: none;" action="edit" params='[question: "${question.id}"]'>
+                                <button type="button" class="btn btn-default btn-xs">Edit</button>
+                            </g:link>
+                            <g:link style="text-decoration: none;" action="delete" params='[question: "${question.id}"]'>
                                 <button type="button" class="btn btn-danger btn-xs">Delete</button>
                             </g:link>
                         </g:if>
@@ -93,7 +95,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2>${question.answers.size()} answer<g:if test="${question.answers.size() > 1}">s</g:if></h2>
-            </div>
+                </div>
             <g:render template="/question/answerTemplate" collection="${question.sortedAnswers()}" var="answer" />
         </div>
         <!-- Answer textarea  -->
@@ -102,7 +104,7 @@
                 <a class="close">&times;</a>
                 Your answer is empty.
             </div>
-            <g:form name="myForm" action="answer" id="${question.id}">
+            <g:form action="answer" id="${question.id}">
                 <textarea name="answerContent" id="CKEditor" placeholder="Your answer here ..." required></textarea><br />
                 <button type="submit" class="btn btn-default btn-lg">
                     <span class="glyphicon glyphicon-ok"></span> Post your answer
@@ -113,25 +115,25 @@
                     $("#js_contentRequired").fadeIn(1000);
                     evt.cancel(); // Prevent submit.
                 });
-                
-                
+
+
                 $("#vote a").click(function() {
                     var shouldSelect = true;
-                    
+
                     if (this.classList.contains('selected'))
                         shouldSelect = false;
-                                          
+
                     if ($(this).parent().attr('id') == "answerTick") {
                         $("body").find("#answerTick a").each(function(){
-                            $(this).removeClass('selected');
+                        $   (this).removeClass('selected');
                         });
                     } else {
                         $(this).parent().find('a').each(function(){
-                            if ($(this).parent().attr('id') != "answerTick")
-                                $(this).removeClass('selected');
+                        if ($(this).parent().attr('id') != "answerTick")
+                            $(this).removeClass('selected');
                         });
                     }
-                    
+
                     if (shouldSelect)
                         $(this).addClass('selected');
                 });
@@ -142,7 +144,7 @@
                 $("#js_voteLogin").fadeIn(1000);
                 return false;
             });
-            
+
             $(".close").click(function() {
                 $(this).parent().fadeOut(500);
                 return false;

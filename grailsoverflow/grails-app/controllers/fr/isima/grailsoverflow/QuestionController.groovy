@@ -29,6 +29,21 @@ class QuestionController {
         return [question: question]
     }
     
+    def edit() {
+        def question = Question.findById(params.question)
+        
+        return [question: question]
+    }
+    
+    def editQuestion() {
+        def question = Question.findById(params.id)
+        
+        question.content = params.newQuestionContent  - "<p>&nbsp;</p>"
+        question.save(failOnError: true)
+        
+        redirect(uri: "/question/show/${question.id}")
+    }
+    
     def delete() {
         def question = Question.findById(params.question)
         

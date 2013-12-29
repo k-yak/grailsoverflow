@@ -10,6 +10,7 @@ abstract class Message {
     }
     
     static constraints = {
+        content type: 'text', maxSize: 10000000 
     }
 }
 

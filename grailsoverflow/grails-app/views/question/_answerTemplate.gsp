@@ -52,7 +52,7 @@
             <g:if test="${User.isUserAuthenticated() && User.CurrentUser.isOwnerOfAnswer(answer)}" >
                 <br />
                 <button type="button" class="btn btn-default btn-xs">Edit</button>
-                <g:link controller="answer" action="delete" params='[answer: "${answer.id}"]'>
+                <g:link style="text-decoration: none;" controller="answer" action="delete" params='[answer: "${answer.id}"]'>
                     <button type="button" class="btn btn-danger btn-xs">Delete</button>
                 </g:link>
             </g:if>

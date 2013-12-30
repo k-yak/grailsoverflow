@@ -48,10 +48,13 @@
         <blockquote>
             ${answer.content}
             <small>Answered by <cite>${answer.user.displayName}</cite></small>
+
              <!-- Edit/Delete panel -->
             <g:if test="${User.isUserAuthenticated() && User.CurrentUser.isOwnerOfAnswer(answer)}" >
                 <br />
-                <button type="button" class="btn btn-default btn-xs">Edit</button>
+                <g:link style="text-decoration: none;" controller="answer" action="edit" params='[answer: "${answer.id}"]'>
+                    <button type="button" class="btn btn-default btn-xs">Edit</button>
+                </g:link>
                 <g:link style="text-decoration: none;" controller="answer" action="delete" params='[answer: "${answer.id}"]'>
                     <button type="button" class="btn btn-danger btn-xs">Delete</button>
                 </g:link>

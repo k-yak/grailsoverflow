@@ -17,6 +17,7 @@ class UrlMappings {
         
         // Answer
         "/answer/delete/$answer"(controller:"answer", action:"delete")
+        "/answer/edit/$answer"(controller:"answer", action:"edit")
 
         "/"(view:"/index")
         "500"(view:'/error')

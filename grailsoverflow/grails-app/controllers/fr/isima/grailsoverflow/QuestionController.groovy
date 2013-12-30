@@ -16,10 +16,10 @@ class QuestionController {
     def questionsForTag() { 
         def latestQuestions = Question.list(sort: "dateCreated", order: "desc", max: 100)
         def neededTag = Tag.findByName(params.tag)
-        def latesteForNeededTag = Question.findAllByIdInList(neededTag.questions*.id, [sort: "dateCreated", order: "desc", max: 100])
+        def latestForNeededTag = Question.findAllByIdInList(neededTag.questions*.id, [sort: "dateCreated", order: "desc", max: 100])
         def tags = Question.tagsForQuestions(latestQuestions)
         
-        def map = [questionsToDisplay: latesteForNeededTag, completeQuestionList: latestQuestions, neededTag: neededTag, tags: tags, subtitle: subtitle]
+        def map = [questionsToDisplay: latestForNeededTag, completeQuestionList: latestQuestions, neededTag: neededTag, tags: tags, subtitle: subtitle]
         render(view: "index", model: map)
     }
     

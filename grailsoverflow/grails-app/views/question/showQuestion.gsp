@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
-<%@page import="fr.isima.grailsoverflow.User" %> 
-<%@page import="fr.isima.grailsoverflow.Vote" %> 
+<%@page import="fr.isima.grailsoverflow.User" %>
+<%@page import="fr.isima.grailsoverflow.Vote" %>
 
 <html>
     <head>
@@ -21,12 +21,12 @@
                 <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />
                 You must be <oauth:connect class="alert-link" provider="google" id="google-connect-link">logged in</oauth:connect> to vote.
             </div>
-        </g:if> 
+        </g:if>
 
         <!-- Answer points message -->
         <g:if test="${question.status != 'Accepted'}">
             <div class="alert alert-info">
-                <strong>+100</strong> to anyone that answer this question. 
+                <strong>+100</strong> to anyone that answer this question.
                 <g:if test="${User.isUserAuthenticated() == true}">
                     <span class="alert-link">Try your luck!</span>
                 </g:if>
@@ -42,6 +42,7 @@
             </div>
             <div class="row panel-body">
                 <div class="col-md-1 col-sm-2 col-xs-2">
+
                     <!-- Vote panel -->
                     <div id="vote">
                         <g:set var="upArrowStyle" value="vote" />
@@ -61,6 +62,7 @@
                         </g:remoteLink>
                     </div>
                 </div>
+
                 <!-- Question panel -->
                 <div class="col-md-11 col-sm-4 col-xs-10">
                     <blockquote>
@@ -91,6 +93,7 @@
                 </li>
             </ul>
         </div>
+
         <!-- Answers panel -->
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -98,6 +101,7 @@
                 </div>
             <g:render template="/question/answerTemplate" collection="${question.sortedAnswers()}" var="answer" />
         </div>
+
         <!-- Answer textarea  -->
         <g:if test="${User.isUserAuthenticated() == true}">
             <div id="js_contentRequired" style="display: none;" class="alert alert-danger">
@@ -125,7 +129,7 @@
 
                     if ($(this).parent().attr('id') == "answerTick") {
                         $("body").find("#answerTick a").each(function(){
-                        $   (this).removeClass('selected');
+                            $(this).removeClass('selected');
                         });
                     } else {
                         $(this).parent().find('a').each(function(){
@@ -139,7 +143,7 @@
                 });
             </script>
         </g:if>
-        <script>          
+        <script>
             $(".vote").click(function() {
                 $("#js_voteLogin").fadeIn(1000);
                 return false;

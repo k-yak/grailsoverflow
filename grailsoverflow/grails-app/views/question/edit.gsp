@@ -6,7 +6,7 @@
     <head>
         <meta name="layout" content="questionLayout"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>GrailsOverflow - Edit</title>
+        <title>GrailsOverflow - Edit question</title>
 
         <link href="${resource(dir: 'css', file: 'question.css')}" rel="stylesheet">
         <g:javascript src="ckeditor/ckeditor.js" />
@@ -24,7 +24,7 @@
                 Your answer is empty.
             </div>
             <g:form action="editQuestion" id="${question.id}">
-                <textarea name="newQuestionContent" id="CKEditor" placeholder="Your answer here ..." required><br />
+                <textarea name="newQuestionContent" id="CKEditor" placeholder="Your question here ..." required><br />
                     ${question.content}
                 </textarea>
                 <br />

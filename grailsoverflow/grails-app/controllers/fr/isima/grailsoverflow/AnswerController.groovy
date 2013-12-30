@@ -18,6 +18,23 @@ class AnswerController {
         answer.save(failOnError: true)
         question.save(failOnError: true)
     }
+
+    def edit() {
+        def answer = Answer.findById(params.answer)
+        def question = answer.question
+
+        return [question: question, answer: answer]
+    }
+
+    def editAnswer() {
+        def answer = Answer.findById(params.id)
+
+        answer.content = params.newAnswerContent  - "<p>&nbsp;</p>"
+        answer.save(failOnError: true)
+
+        redirect(uri: "/question/show/${answer.question.id}")
+    }
+
         
     def delete() {
         def answer = Answer.findById(params.answer)

@@ -26,7 +26,7 @@
             <g:if test="${answer.accepted == true}">
                 <g:set var="tickStyle" value="gray-tick selected" />
             </g:if>
-            <g:if test="${User.isUserAuthenticated() && question.user == User.getCurrentUserFromDB()}">
+            <g:if test="${User.isUserAuthenticated() && question.user.email == User.getCurrentUserFromDB().email}">
                 <div id="answerTick">
                     <hr />
                     <g:remoteLink class="${tickStyle}" controller="answer" action="accept" update="" id="${answer.id}">

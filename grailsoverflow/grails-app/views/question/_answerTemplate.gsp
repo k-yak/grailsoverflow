@@ -6,7 +6,7 @@
         <!-- Vote panel -->
         <div id="vote">
             <g:set var="upArrowStyle" value="vote" />
-            <g:if test="${User.isUserAuthenticated() == true && answer.vote.getUserVote(User.CurrentUser) == Vote.VOTE_UP}">
+            <g:if test="${User.isUserAuthenticated() == true && answer.vote.getUserVote(User.getCurrentUserFromDB()) == Vote.VOTE_UP}">
                 <g:set var="upArrowStyle" value="vote selected"  />
             </g:if>
             <g:remoteLink class="${upArrowStyle}" controller="message" action="voteUp" update="answer_voteContent_${answer.id}" id="${answer.id}">
@@ -14,7 +14,7 @@
             </g:remoteLink>
             <span id="answer_voteContent_${answer.id}">${answer.vote.value}</span><br />
             <g:set var="downArrowStyle" value="vote" />
-            <g:if test="${User.isUserAuthenticated() == true && answer.vote.getUserVote(User.CurrentUser) == Vote.VOTE_DOWN}">
+            <g:if test="${User.isUserAuthenticated() == true && answer.vote.getUserVote(User.getCurrentUserFromDB()) == Vote.VOTE_DOWN}">
                 <g:set var="downArrowStyle" value="vote selected"  />
             </g:if>
             <g:remoteLink class="${downArrowStyle}" controller="message" action="voteDown" update="answer_voteContent_${answer.id}" id="${answer.id}">
@@ -26,7 +26,7 @@
             <g:if test="${answer.accepted == true}">
                 <g:set var="tickStyle" value="gray-tick selected" />
             </g:if>
-            <g:if test="${question.user == User.CurrentUser}">
+            <g:if test="${User.isUserAuthenticated() && question.user == User.getCurrentUserFromDB()}">
                 <div id="answerTick">
                     <hr />
                     <g:remoteLink class="${tickStyle}" controller="answer" action="accept" update="" id="${answer.id}">
@@ -50,7 +50,7 @@
             <small>Answered by <cite>${answer.user.displayName}</cite></small>
 
              <!-- Edit/Delete panel -->
-            <g:if test="${User.isUserAuthenticated() && User.CurrentUser.isOwnerOfAnswer(answer)}" >
+            <g:if test="${User.isUserAuthenticated() && User.getCurrentUserFromDB().isOwnerOfAnswer(answer)}" >
                 <br />
                 <g:link style="text-decoration: none;" controller="answer" action="edit" params='[answer: "${answer.id}"]'>
                     <button type="button" class="btn btn-default btn-xs">Edit</button>

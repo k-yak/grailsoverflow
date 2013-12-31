@@ -27,7 +27,7 @@ class Vote {
                 break;
             case -1:
                 message.user.score += AppConfig.VOTE_SCORE
-                if (value == -1) {
+                if (value == 1) {
                     message.user.score += AppConfig.VOTE_SCORE
                 }
                 break;

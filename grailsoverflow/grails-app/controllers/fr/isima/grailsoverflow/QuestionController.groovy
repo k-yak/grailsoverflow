@@ -47,7 +47,7 @@ class QuestionController {
     def delete() {
         def question = Question.findById(params.question)
         
-        if (User.CurrentUser.isOwnerOfQuestion(question)) {
+        if (User.getCurrentUserFromDB().isOwnerOfQuestion(question)) {
             User user = User.getCurrentUserFromDB()
             
             user.removeFromQuestions(question)
@@ -62,7 +62,7 @@ class QuestionController {
         Answer answer = new Answer(
             content: params.answerContent - "<p>&nbsp;</p>",
             dateCreated: new Date(),
-            user: User.CurrentUser,
+            user: User.getCurrentUserFromDB(),
             question: question
         )
 

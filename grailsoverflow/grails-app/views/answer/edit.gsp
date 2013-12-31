@@ -13,7 +13,7 @@
 </head>
 <body>
 <!-- Security test -->
-<g:if test="${User.isUserAuthenticated() && User.CurrentUser.isOwnerOfAnswer(answer)}" >
+<g:if test="${User.isUserAuthenticated() && User.getCurrentUserFromDB().isOwnerOfAnswer(answer)}" >
     <div class="page-header">
         <h1>Question : ${question.title}<br />
             <small>Edit your answer</small>

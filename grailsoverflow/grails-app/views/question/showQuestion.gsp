@@ -47,7 +47,7 @@
                     <!-- Vote panel -->
                     <div id="vote">
                         <g:set var="upArrowStyle" value="vote" />
-                        <g:if test="${User.isUserAuthenticated() == true && question.vote.getUserVote(User.CurrentUser) == Vote.VOTE_UP}">
+                        <g:if test="${User.isUserAuthenticated() == true && question.vote.getUserVote(User.getCurrentUserFromDB()) == Vote.VOTE_UP}">
                             <g:set var="upArrowStyle" value="vote selected"  />
                         </g:if>
                         <g:remoteLink class="${upArrowStyle}" controller="message" action="voteUp" update="voteContent" id="${question.id}">
@@ -55,7 +55,7 @@
                         </g:remoteLink>
                         <span id="voteContent">${question.vote.value}</span><br />
                         <g:set var="downArrowStyle" value="vote"/>
-                        <g:if test="${User.isUserAuthenticated() == true && question.vote.getUserVote(User.CurrentUser) == Vote.VOTE_DOWN}">
+                        <g:if test="${User.isUserAuthenticated() == true && question.vote.getUserVote(User.getCurrentUserFromDB()) == Vote.VOTE_DOWN}">
                             <g:set var="downArrowStyle" value="vote selected"/>
                         </g:if>
                         <g:remoteLink id="voteDown" class="${downArrowStyle}" controller="message" action="voteDown" update="voteContent" id="${question.id}">
@@ -71,7 +71,7 @@
                         <small>Asked by <cite>${question.user.displayName}</cite></small>
 
                         <!-- Edit/Delete panel -->
-                        <g:if test="${User.isUserAuthenticated() && User.CurrentUser.isOwnerOfQuestion(question)}" >
+                        <g:if test="${User.isUserAuthenticated() && User.getCurrentUserFromDB().isOwnerOfQuestion(question)}" >
                             <br />
                             <g:link style="text-decoration: none;" action="edit" params='[question: "${question.id}"]'>
                                 <button type="button" class="btn btn-default btn-xs">Edit</button>

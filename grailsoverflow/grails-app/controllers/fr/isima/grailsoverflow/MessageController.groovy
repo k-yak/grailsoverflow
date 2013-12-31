@@ -13,18 +13,18 @@ class MessageController {
         def message = Message.get(id)
         
         if (User.isUserAuthenticated()) {     
-            if (message.hasVoted(User.CurrentUser)) {
+            if (message.hasVoted(User.getCurrentUserFromDB())) {
                 // Remove old vote 
-                message.vote.value -= message.vote.getUserVote(User.CurrentUser)
-                if (message.vote.getUserVote(User.CurrentUser) == value) {
+                message.vote.value -= message.vote.getUserVote(User.getCurrentUserFromDB())
+                if (message.vote.getUserVote(User.getCurrentUserFromDB()) == value) {
                     // If the user has already voted this choice, remove the vote
-                    message.vote.userVote(User.CurrentUser, Vote.VOTE_NONE)
+                    message.vote.userVote(User.getCurrentUserFromDB(), Vote.VOTE_NONE)
                 } else {
                      // Otherwise change the vote
-                    message.vote.userVote(User.CurrentUser, value)
+                    message.vote.userVote(User.getCurrentUserFromDB(), value)
                 }
             } else {
-                message.vote.userVote(User.CurrentUser, value)
+                message.vote.userVote(User.getCurrentUserFromDB(), value)
             }
         } else {
             println "DEBUG : You must be logged in to vote"

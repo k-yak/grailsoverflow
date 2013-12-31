@@ -25,6 +25,21 @@ class Answer extends Message {
         save(failOnError: true)
     }
 
+    def beforeDelete() {
+        // Remove user score for answer
+        user.score -= AppConfig.ANSWER_SCORE
+
+        // Remove user score for votes
+        user.score -= vote.value * AppConfig.VOTE_SCORE
+
+        // Remove user score for accepted answer
+        if (accepted) {
+            user.score -= AppConfig.ACCEPT_ANSWER_SCORE
+        }
+
+        user.save(failOnError: true)
+    }
+
     static hasMany = [comments: Comment]
     static belongsTo = [question: Question, user: User]
     

@@ -43,14 +43,17 @@ class QuestionController {
         
         redirect(uri: "/question/show/${question.id}")
     }
-    
+
     def delete() {
         def question = Question.findById(params.question)
         
-        if (User.getCurrentUserFromDB().isOwnerOfQuestion(question)) {
-            User user = User.getCurrentUserFromDB()
-            
+        if (User.isUserAuthenticated() && User.getCurrentUserFromDB().isOwnerOfQuestion(question)) {
+            User user = question.user
+
+            question.clearUserScore()
             user.removeFromQuestions(question)
+
+            user.save(failOnError: true)
         }
         
         redirect(controller: "question", action: "index")

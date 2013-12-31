@@ -1,4 +1,4 @@
-
+import fr.isima.grailsoverflow.AppConfig
 import fr.isima.grailsoverflow.Question
 import fr.isima.grailsoverflow.Tag
 import fr.isima.grailsoverflow.User
@@ -29,6 +29,7 @@ class BootStrap {
                 dateCreated: new Date(),
                 user: floyd
             )
+            question.user.score += AppConfig.QUESTION_SCORE
             question.addToTags(groovy)
             question.save(failOnError: true)
         
@@ -42,6 +43,7 @@ class BootStrap {
                 dateCreated: new Date(),
                 user: admin
             )
+            question.user.score += AppConfig.QUESTION_SCORE
             question.addToTags(groovy)
             question.save(failOnError: true)
         
@@ -55,6 +57,7 @@ class BootStrap {
                 dateCreated: new Date(),
                 user: admin
             )
+            question.user.score += AppConfig.QUESTION_SCORE
             question.addToTags(jenkins)
             question.addToTags(grails)
             question.save(failOnError: true)
@@ -92,6 +95,7 @@ class BootStrap {
                 dateCreated: new Date(),
                 user: admin
             )
+            question.user.score += AppConfig.QUESTION_SCORE
             question.addToTags(grails)
             question.save(failOnError: true)
             break;

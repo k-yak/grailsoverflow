@@ -12,10 +12,6 @@ class Question extends Message {
         }
     }
     
-    def edit() {
-        
-    }
-    
     def updateStatus() {
         if (answers.isEmpty()) {
             status = "Unanswered"
@@ -40,6 +36,16 @@ class Question extends Message {
         answers.find() {
             it.accepted == true
         }
+    }
+
+    def clearUserScore() {
+        // Remove user score for question
+        user.score -= AppConfig.QUESTION_SCORE
+
+        // Remove user score for votes
+        user.score -= vote.value * AppConfig.VOTE_SCORE
+
+        user.save(failOnError: true)
     }
     
     static def tagsForQuestions(def questions) {

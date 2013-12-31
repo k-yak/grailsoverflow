@@ -6,6 +6,7 @@ import groovy.transform.EqualsAndHashCode
 class User {
     String displayName
     String email
+    int score = 0
     
     def isOwnerOfQuestion(def question) {
         question.user.email == email
@@ -27,6 +28,10 @@ class User {
     
     static boolean isUserAuthenticated() {
         CurrentUser != null
+    }
+
+    static User getCurrentUserFromDB() {
+        User.get(CurrentUser.id)
     }
     
     static constraints = {

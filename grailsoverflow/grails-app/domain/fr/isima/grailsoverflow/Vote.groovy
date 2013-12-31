@@ -9,15 +9,39 @@ class Vote {
     Map users = [:]
     
     def userVote(User user, int value) {
+        def oldValue = users[user.email] ?: '0'
+
         this.value += value
         users[user.email] = value.toString()
+
+        // Manage message user vote
+        switch (oldValue.toInteger()) {
+            case 0:
+                message.user.score += AppConfig.VOTE_SCORE * value
+                break;
+            case 1:
+                message.user.score -= AppConfig.VOTE_SCORE
+                if (value == -1) {
+                    message.user.score -= AppConfig.VOTE_SCORE
+                }
+                break;
+            case -1:
+                message.user.score += AppConfig.VOTE_SCORE
+                if (value == -1) {
+                    message.user.score += AppConfig.VOTE_SCORE
+                }
+                break;
+        }
+        println "DEBUG : New score by vote : ${message.user.email} -> ${message.user.score}"
+        message.user.save(failOnError: true)
+        message.save(failOnError: true)
     }
     
     def getUserVote(User user) {
         users[user.email]?.toInteger() ?: 0
     }
 
-    static belongsTo = Message
+    static belongsTo = [message: Message]
     
     static constraints = {
     }

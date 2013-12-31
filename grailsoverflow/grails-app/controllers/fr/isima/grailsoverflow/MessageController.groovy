@@ -26,7 +26,6 @@ class MessageController {
             } else {
                 message.vote.userVote(User.CurrentUser, value)
             }
-            message.save(failOnError: true)
         } else {
             println "DEBUG : You must be logged in to vote"
         }

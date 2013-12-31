@@ -42,7 +42,7 @@
                     <ul class="nav navbar-nav navbar-right">
                     <g:if test="${User.isUserAuthenticated() == true}">
                         <li>
-                            <a>Connected (${User.CurrentUser.email})</a>
+                            <a>${User.getCurrentUserFromDB().displayName} (${User.getCurrentUserFromDB().score} pts)</a>
                         </li>
                         <li>
                             <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />

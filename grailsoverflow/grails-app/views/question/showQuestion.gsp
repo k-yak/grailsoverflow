@@ -2,6 +2,7 @@
 
 <%@page import="fr.isima.grailsoverflow.User" %>
 <%@page import="fr.isima.grailsoverflow.Vote" %>
+<%@page import="fr.isima.grailsoverflow.AppConfig" %>
 
 <html>
     <head>
@@ -26,7 +27,7 @@
         <!-- Answer points message -->
         <g:if test="${question.status != 'Accepted'}">
             <div class="alert alert-info">
-                <strong>+100</strong> to anyone that answer this question.
+                <strong>+${AppConfig.ANSWER_SCORE}</strong> to anyone that answer this question.
                 <g:if test="${User.isUserAuthenticated() == true}">
                     <span class="alert-link">Try your luck!</span>
                 </g:if>

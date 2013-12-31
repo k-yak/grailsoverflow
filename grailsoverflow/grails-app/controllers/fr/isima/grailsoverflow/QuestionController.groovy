@@ -48,7 +48,7 @@ class QuestionController {
         def question = Question.findById(params.question)
         
         if (User.CurrentUser.isOwnerOfQuestion(question)) {
-            User user = User.get(User.CurrentUser.id)
+            User user = User.getCurrentUserFromDB()
             
             user.removeFromQuestions(question)
         }
@@ -58,15 +58,16 @@ class QuestionController {
     
     def answer() {
         def question = Question.findById(params.id)
+
         Answer answer = new Answer(
             content: params.answerContent - "<p>&nbsp;</p>",
             dateCreated: new Date(),
             user: User.CurrentUser,
             question: question
         )
+
         answer.save(failOnError: true)
         question.answer(answer)
-        question.save(failOnError: true)
         
         redirect(uri: "/question/show/${params.id}")
     }

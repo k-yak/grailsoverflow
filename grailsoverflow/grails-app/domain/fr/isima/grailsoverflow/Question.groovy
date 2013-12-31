@@ -27,8 +27,13 @@ class Question extends Message {
     }
     
     def answer(Answer answer) {
+        answer.user.score += AppConfig.ANSWER_SCORE
+        answer.user.save(failOnError: true)
+
         addToAnswers(answer)
         updateStatus()
+
+        save(failOnError: true)
     }
 
     def acceptedAnswer() {

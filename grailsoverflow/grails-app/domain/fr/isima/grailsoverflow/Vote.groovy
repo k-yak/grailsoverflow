@@ -32,7 +32,6 @@ class Vote {
                 }
                 break;
         }
-        println "DEBUG : New score by vote : ${message.user.email} -> ${message.user.score}"
         message.user.save(failOnError: true)
         message.save(failOnError: true)
     }

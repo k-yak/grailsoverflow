@@ -41,6 +41,9 @@ class AnswerController {
         def question = answer.question
         
         if (User.CurrentUser.isOwnerOfAnswer(answer)) {
+            answer.user.score -= AppConfig.ANSWER_SCORE
+            answer.user.save(failOnError: true)
+
             question.removeFromAnswers(answer)
             question.updateStatus()
             question.save(failOnError: true)

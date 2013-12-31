@@ -74,4 +74,11 @@ class QuestionController {
         
         redirect(uri: "/question/show/${params.id}")
     }
+
+    def add() {
+        def latestQuestions = Question.list(sort: "dateCreated", order: "desc", max: 100)
+        def tags = Question.tagsForQuestions(latestQuestions)
+
+        [tags: tags, completeQuestionList: latestQuestions]
+    }
 }

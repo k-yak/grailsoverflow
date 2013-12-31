@@ -42,6 +42,11 @@
                     <ul class="nav navbar-nav navbar-right">
                     <g:if test="${User.isUserAuthenticated() == true}">
                         <li>
+                            <g:link controller="question" action="add">
+                                New question
+                            </g:link>
+                        </li>
+                        <li>
                             <a>${User.getCurrentUserFromDB().displayName} (${User.getCurrentUserFromDB().score} pts)</a>
                         </li>
                         <li>

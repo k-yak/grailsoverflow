@@ -13,7 +13,7 @@ abstract class Message {
     static belongsTo = [user: User]
     
     static constraints = {
-        content type: 'text', maxSize: 10000000 
+        content type: 'text', maxSize: 1000
     }
 }
 

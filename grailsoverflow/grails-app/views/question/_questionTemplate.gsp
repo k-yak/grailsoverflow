@@ -1,4 +1,5 @@
-<div class="col-6 col-sm-6 ">
+<!-- <div class="col-6 col-sm-6"> -->
+<div>
     <div class="panel panel-default">
         <div class="panel-heading">
             <g:link controller="question" action="showQuestion" params='[question: "${question.id}"]'>
@@ -7,6 +8,9 @@
         </div>
         <div class="panel-body">
             ${question.content}
+            <div style="float: right; color: darkgray;">
+                <small>Asked ${question.dateCreated.format('dd MMM yyyy')} at ${question.dateCreated.format('HH:mm')} by ${question.user.displayName}</small>
+            </div>
         </div>
         
         <ul class="list-group">

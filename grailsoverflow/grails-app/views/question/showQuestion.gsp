@@ -68,7 +68,7 @@
                 <div class="col-md-11 col-sm-4 col-xs-10">
                     <blockquote>
                         <p>${question.content}</p>
-                        <small>Asked by <cite>${question.user.displayName}</cite></small>
+                        <small>Asked ${question.dateCreated.format('dd MMM yyyy')} at ${question.dateCreated.format('HH:mm')} by ${question.user.displayName}</small>
 
                         <!-- Edit/Delete panel -->
                         <g:if test="${User.isUserAuthenticated() && User.getCurrentUserFromDB().isOwnerOfQuestion(question)}" >

@@ -47,7 +47,7 @@
     <div id="answerContent" class="col-md-11 col-sm-4 col-xs-10">
         <blockquote>
             ${answer.content}
-            <small>Answered by <cite>${answer.user.displayName}</cite></small>
+            <small>Answered ${answer.dateCreated.format('dd MMM yyyy')} at ${answer.dateCreated.format('HH:mm')} by ${answer.user.displayName}</small>
 
              <!-- Edit/Delete panel -->
             <g:if test="${User.isUserAuthenticated() && User.getCurrentUserFromDB().isOwnerOfAnswer(answer)}" >

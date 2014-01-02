@@ -47,6 +47,36 @@ class Question extends Message {
 
         user.save(failOnError: true)
     }
+
+    def tagsToString() {
+        def tagsBuilder = new StringBuffer()
+
+        tags?.each() { tag ->
+            tagsBuilder << tag.name << ','
+        }
+
+        String tagsString = tagsBuilder.toString()
+        int lastCommaIndex = tagsString.lastIndexOf(",")
+
+        if (lastCommaIndex != -1) {
+            tagsString = tagsString.substring(0, lastCommaIndex)
+        }
+
+        return tagsString.toString()
+    }
+
+    def newTagsFromString(String tagsString) {
+        if (!tagsString.isEmpty()) {
+            tags?.clear()
+
+            def newTags = tagsString.split(',')
+            newTags.each() { tagName ->
+                tagName = tagName.toLowerCase()
+                Tag tag = Tag.findByName(tagName) ?: new Tag(name: tagName).save(failOnError: true)
+                addToTags(tag)
+            }
+        }
+    }
     
     static def tagsForQuestions(def questions) {
         def tags = []

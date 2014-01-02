@@ -9,7 +9,27 @@
         <title>GrailsOverflow - Edit question</title>
 
         <link href="${resource(dir: 'css', file: 'question.css')}" rel="stylesheet">
+        <link href="${resource(dir: 'css/tagit', file: 'jquery.tagit.css')}" rel="stylesheet">
+        <link href="${resource(dir: 'css/tagit', file: 'tagit.ui-zendesk.css')}" rel="stylesheet">
+
+        <g:javascript src="tagit/tag-it.js" />
         <g:javascript src="ckeditor/ckeditor.js" />
+
+        <script>
+            $(function(){
+                var sampleTags = ['c', 'ant', 'c++', 'java', 'php', 'c#', 'groovy', 'jquery', 'grails', 'javascript', 'asp', 'ruby', 'python', 'scala', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
+
+                //-------------------------------
+                // Single field
+                //-------------------------------
+                $('#tagit_singleFieldTags').tagit({
+                    availableTags: sampleTags,
+                    // This will make Tag-it submit a single form value, as a comma-delimited field.
+                    singleField: true,
+                    singleFieldNode: $('#tagit_singleFieldTags_value')
+                });
+            });
+        </script>
     </head>
     <body>
         <!-- Security test -->
@@ -24,10 +44,21 @@
                 Your answer is empty.
             </div>
             <g:form action="editQuestion" id="${question.id}">
-                <textarea name="newQuestionContent" id="CKEditor" placeholder="Your question here ..." required><br />
-                    ${question.content}
-                </textarea>
-                <br />
+                <div class="form-group">
+                    <label for="inputTitle">Title</label>
+                    <input name="newQuestionTitle" type="text" class="form-control" id="inputTitle" placeholder="Question title ..." value="${question.title}" required>
+                </div>
+                <div class="form-group">
+                    <label for="CKEditor">Content</label>
+                    <textarea name="newQuestionContent" id="CKEditor" placeholder="Your question here ..." required><br />
+                        ${question.content}
+                    </textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tagit_singleFieldTags">Tags</label>
+                    <input name="tags" id="tagit_singleFieldTags_value" value="${question.tagsToString()}" hidden="true">
+                    <ul id="tagit_singleFieldTags"></ul>
+                </div>
                 <g:link style="text-decoration: none;" action="showQuestion" params='[question: "${question.id}"]'>
                     <button type="button" class="btn btn-default">Cancel</button>
                 </g:link>

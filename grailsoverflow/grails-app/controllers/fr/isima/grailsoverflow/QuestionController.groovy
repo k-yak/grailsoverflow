@@ -37,8 +37,13 @@ class QuestionController {
     
     def editQuestion() {
         def question = Question.findById(params.id)
-        
+
+        question.title = params.newQuestionTitle
         question.content = params.newQuestionContent  - "<p>&nbsp;</p>"
+
+        // Manage tags
+        question.newTagsFromString(params.tags)
+
         question.save(failOnError: true)
         
         redirect(uri: "/question/show/${question.id}")
@@ -70,14 +75,7 @@ class QuestionController {
         question.user.score += AppConfig.QUESTION_SCORE
 
         // Manage tags
-        if (!params.tags.isEmpty()) {
-            def tags = params.tags.split(',')
-            tags.each() { tagName ->
-                tagName = tagName.toLowerCase()
-                Tag tag = Tag.findByName(tagName) ?: new Tag(name: tagName).save(failOnError: true)
-                question.addToTags(tag)
-            }
-        }
+        question.newTagsFromString(params.tags)
 
         question.save(failOnError: true)
 

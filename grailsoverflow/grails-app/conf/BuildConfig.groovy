@@ -7,9 +7,11 @@ grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 
 // uncomment (and adjust settings) to fork the JVM to isolate classpaths
-//grails.project.fork = [
-//   run: [maxMemory:1024, minMemory:64, debug:false, maxPerm:256]
-//]
+grails.project.fork = [
+   run: [maxMemory:1024, minMemory:64, debug:false, maxPerm:512]
+]
+
+grails.tomcat.jvmArgs= ["-Xms256m",  "-Xmx1024m", "-XX:PermSize=512m", "-XX:MaxPermSize=512m"]
 
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies

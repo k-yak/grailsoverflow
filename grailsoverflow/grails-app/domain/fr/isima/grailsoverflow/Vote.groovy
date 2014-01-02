@@ -8,26 +8,26 @@ class Vote {
     int value = 0
     Map users = [:]
     
-    def userVote(User user, int value) {
+    def userVote(User user, int newValue) {
         def oldValue = users[user.email] ?: '0'
 
-        this.value += value
-        users[user.email] = value.toString()
+        value += newValue
+        users[user.email] = newValue.toString()
 
         // Manage message user vote
         switch (oldValue.toInteger()) {
             case 0:
-                message.user.score += AppConfig.VOTE_SCORE * value
+                message.user.score += AppConfig.VOTE_SCORE * newValue
                 break;
             case 1:
                 message.user.score -= AppConfig.VOTE_SCORE
-                if (value == -1) {
+                if (newValue == -1) {
                     message.user.score -= AppConfig.VOTE_SCORE
                 }
                 break;
             case -1:
                 message.user.score += AppConfig.VOTE_SCORE
-                if (value == 1) {
+                if (newValue == 1) {
                     message.user.score += AppConfig.VOTE_SCORE
                 }
                 break;

@@ -14,7 +14,7 @@ class MessageController {
         
         if (User.isUserAuthenticated()) {     
             if (message.hasVoted(User.getCurrentUserFromDB())) {
-                // Remove old vote 
+                // Remove old vote
                 message.vote.value -= message.vote.getUserVote(User.getCurrentUserFromDB())
                 if (message.vote.getUserVote(User.getCurrentUserFromDB()) == value) {
                     // If the user has already voted this choice, remove the vote

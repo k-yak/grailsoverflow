@@ -63,7 +63,7 @@ class QuestionController {
         // Manage question
         Question question = new Question(
                 title: params.newQuestionTitle,
-                content: params.newQuestionContent,
+                content: params.newQuestionContent - "<p>&nbsp;</p>",
                 dateCreated: new Date(),
                 user: User.getCurrentUserFromDB()
         )

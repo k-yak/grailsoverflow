@@ -79,7 +79,7 @@ class QuestionController {
 
         question.save(failOnError: true)
 
-        redirect(controller: "question", action: "index")
+        redirect(uri: "/question/show/${question.id}")
     }
     
     def answer() {

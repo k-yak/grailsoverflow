@@ -58,6 +58,31 @@ class QuestionController {
         
         redirect(controller: "question", action: "index")
     }
+
+    def addQuestion() {
+        // Manage question
+        Question question = new Question(
+                title: params.newQuestionTitle,
+                content: params.newQuestionContent,
+                dateCreated: new Date(),
+                user: User.getCurrentUserFromDB()
+        )
+        question.user.score += AppConfig.QUESTION_SCORE
+
+        // Manage tags
+        if (!params.tags.isEmpty()) {
+            def tags = params.tags.split(',')
+            tags.each() { tagName ->
+                tagName = tagName.toLowerCase()
+                Tag tag = Tag.findByName(tagName) ?: new Tag(name: tagName).save(failOnError: true)
+                question.addToTags(tag)
+            }
+        }
+
+        question.save(failOnError: true)
+
+        redirect(controller: "question", action: "index")
+    }
     
     def answer() {
         def question = Question.findById(params.id)

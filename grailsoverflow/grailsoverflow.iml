@@ -42,9 +42,8 @@
       <sourceFolder url="file://$MODULE_DIR$/test/integration" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target/classes" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="JDK 1.7" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="grails-2.2.1" level="application" />
     <orderEntry type="module-library" exported="">
       <library name="Grails User Library (grailsoverflow)">
         <CLASSES>
@@ -58,6 +57,8 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="grailsoverflow-grailsPlugins" />
+    <orderEntry type="library" name="grails-2.2.1" level="application" />
+    <orderEntry type="library" name="grails-2.2.1" level="application" />
   </component>
 </module>
 

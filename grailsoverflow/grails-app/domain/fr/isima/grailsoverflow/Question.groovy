@@ -65,7 +65,7 @@ class Question extends Message {
     static belongsTo = [user: User]
 
     static constraints = {
-        title blank: false, unique: true
+        title blank: false
         content blank: false, maxSize: 1000
         status inList: [ "Unanswered", "Answered", "Accepted" ]
         views min: 0

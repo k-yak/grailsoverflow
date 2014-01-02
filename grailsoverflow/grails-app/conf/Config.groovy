@@ -68,7 +68,7 @@ environments {
     production {
         grails.logging.jul.usebridge = false
         welcomeMessage = "Welcome on the production environment!"
-        grails.serverURL = "http://grailsoverflow.drusy.cloudbees.net"
+        grails.serverURL = "http://grow.drusy.cloudbees.net"
     }
 }
 

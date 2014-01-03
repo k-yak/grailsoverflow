@@ -29,10 +29,12 @@
 
 
             <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" >
-                <div class="form-group">
-                    <label for="sidebar">Related tags</label>
-                    <g:render template="/question/tagTemplate" collection="${tags}" var="tag"/>
-                </div>
+                <g:if test="${tags != null && !tags.isEmpty()}">
+                    <div class="form-group">
+                        <label for="sidebar">Related tags</label>
+                        <g:render template="/question/tagTemplate" collection="${tags}" var="tag"/>
+                    </div>
+                </g:if>
                 <g:if test="${User.isUserAuthenticated() \
                 && User.getCurrentUserFromDB().favoriteTags != null \
                 && !User.getCurrentUserFromDB().favoriteTags.isEmpty()}">

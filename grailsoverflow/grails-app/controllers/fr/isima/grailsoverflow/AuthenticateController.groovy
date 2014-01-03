@@ -18,14 +18,14 @@ class AuthenticateController {
         } else {
             println "DEBUG : User " + email + " found"
         }
-        User.CurrentUser = user
+        session.user = user
         
         def targetUri = session.targetUri ?: "/question/index"
         redirect(uri: targetUri)
     }
     
     def logout() {
-        User.CurrentUser = null
+        session.user = null
         def targetUri = session.targetUri ?: "/question/index"
         
         session.invalidate()

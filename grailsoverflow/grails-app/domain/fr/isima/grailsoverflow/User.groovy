@@ -14,24 +14,19 @@ class User {
     
     def isOwnerOfAnswer(def answer) {
         answer.user.email == email
+        session.user
     }
-    
+
+    static transients = ['userService']
+    static UserService userService
     static hasMany = [questions: Question, favoriteTags: Tag]
     
-    // Static block
-    static scope = "session"
-    static User CurrentUser
-    
-    static {
-        CurrentUser = null
-    }
-    
     static boolean isUserAuthenticated() {
-        CurrentUser != null
+        userService.getSessionUser() != null
     }
 
     static User getCurrentUserFromDB() {
-        User.get(CurrentUser.id)
+        User.get(userService.getSessionUser().id)
     }
     
     static constraints = {

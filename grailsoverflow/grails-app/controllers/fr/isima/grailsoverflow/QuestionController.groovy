@@ -1,6 +1,9 @@
 package fr.isima.grailsoverflow
 
+import org.compass.core.engine.SearchEngineQueryParseException
+
 class QuestionController {
+    def searchableService
     String subtitle = "Latest questions"
     
     /**
@@ -41,6 +44,25 @@ class QuestionController {
         def question = Question.findById(params.question)
         
         return [question: question]
+    }
+
+    def search() {
+        def error = false
+        def searchedQuestions = null
+
+        if (!params.q?.trim()) {
+            error = true
+        }
+        else {
+            try {
+                // .results .offset .total .max
+                searchedQuestions = searchableService.search(params.q, params)
+            } catch (SearchEngineQueryParseException ex) {
+                error = true
+            }
+        }
+
+        return [searchedQuestions: searchedQuestions, error: error]
     }
     
     def editQuestion() {

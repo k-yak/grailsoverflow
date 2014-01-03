@@ -22,7 +22,7 @@
 
                     <div class="center">
                         <g:set var="totalPages" value="${Math.ceil(completePaginationList.size() / AppConfig.MAX_QUESTION)}" />
-                        <own:paginate controller="${controllerName}" action="index" max="${AppConfig.MAX_QUESTION}" total="${completePaginationList.size()}" prev="&lt; previous" next="next &gt;"/>
+                        <own:paginate controller="${controllerName}" action="index" max="${AppConfig.MAX_QUESTION}" total="${completePaginationList.size()}" prev="Previous" next="Next"/>
                     </div>
                 </div>
             </div>

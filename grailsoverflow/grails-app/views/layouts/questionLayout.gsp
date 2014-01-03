@@ -63,6 +63,14 @@
                             <oauth:connect provider="google" id="google-connect-link">Google Connection</oauth:connect>
                         </li>
                     </g:else>
+                    <li>
+                        <g:form style="width: 275px;" class="input-group navbar-form" url='[controller: "question", action: "search"]' method="get">
+                            <input type="text" name="q" size="50" class="form-control" placeholder="Search" value="${params.q}" required>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>
+                        </g:form>
+                    </li>
                 </ul>
             </div>
         </div>

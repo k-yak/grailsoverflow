@@ -6,5 +6,5 @@ class AppConfig {
     static final int ANSWER_SCORE = 50
     static final int ACCEPT_ANSWER_SCORE = 200
     static final int QUESTION_SCORE = 100
-    static final int MAX_QUESTION = 2
+    static final int MAX_QUESTION = 10
 }

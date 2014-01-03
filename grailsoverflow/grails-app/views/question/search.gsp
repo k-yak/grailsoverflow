@@ -19,17 +19,22 @@
 
         <div class="row">
             <g:if test="${searchedQuestions?.results != null}" >
-                <g:each var="question" in="${searchedQuestions.results}">
-                    <g:render template="/question/questionTemplate" bean="${Question.get(question.id)}" var="question"/>
-                </g:each>
+                <g:if test="${!searchedQuestions.results.isEmpty()}">
+                    <g:each var="question" in="${searchedQuestions.results}">
+                        <g:render template="/question/questionTemplate" bean="${Question.get(question.id)}" var="question"/>
+                    </g:each>
 
-                <div class="center">
-                    <g:set var="totalPages" value="${Math.ceil(searchedQuestions.total / searchedQuestions.max)}" />
-                    <own:paginate controller="${controllerName}" params="[q: params.q]" action="${actionName}" max="${searchedQuestions.max}" total="${searchedQuestions.total}" prev="Previous" next="Next"/>
-                </div>
+                    <div class="center">
+                        <g:set var="totalPages" value="${Math.ceil(searchedQuestions.total / searchedQuestions.max)}" />
+                        <own:paginate controller="${controllerName}" params="[q: params.q]" action="${actionName}" max="${searchedQuestions.max}" total="${searchedQuestions.total}" prev="Previous" next="Next"/>
+                    </div>
+                </g:if>
+                <g:else>
+                    <div class="center">Nothing matched your query</div>
+                </g:else>
             </g:if>
             <g:else>
-                ERROR
+                <div class="center">Nothing matched your query</div>
             </g:else>
         </div>
     </div>

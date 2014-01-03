@@ -31,9 +31,9 @@ searchable {
      *
      * The default is "${user.home}/.grails/projects/${app.name}/searchable-index/${grails.env}"
      */
-    compassConnection = new File(
+    /*compassConnection = new File(
         "${userHome}/.grails/projects/${appName}/searchable-index/${grailsEnv}"
-    ).absolutePath
+    ).absolutePath*/
 
     /**
      * Any settings you wish to pass to Compass
@@ -147,6 +147,7 @@ environments {
     development {
         searchable {
             // development is default; inherits from above
+            compassConnection = "ram://dev-index"
         }
     }
 
@@ -163,6 +164,7 @@ environments {
     production {
         searchable {
             // add your production settings here
+            compassConnection = "ram://prod-index"
         }
     }
 }

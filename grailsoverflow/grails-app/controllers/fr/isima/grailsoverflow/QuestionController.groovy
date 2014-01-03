@@ -6,20 +6,28 @@ class QuestionController {
     /**
      * Latest questions
      */
-    def index() { 
-        def latestQuestions = Question.list(sort: "dateCreated", order: "desc", max: 100)
-        def tags = Question.tagsForQuestions(latestQuestions)
+    def index() {
+        def offset = params?.offset ?: 0
+        def max = params?.max ?: AppConfig.MAX_QUESTION
+
+        def latestQuestionsPaginate = Question.list(sort: "dateCreated", order: "desc", offset: offset, max: max)
+        def completeQuestionList = Question.list(sort: "dateCreated", order: "desc", max: 100)
+        def tags = Question.tagsForQuestions(completeQuestionList)
         
-        return [questionsToDisplay: latestQuestions, completeQuestionList: latestQuestions, tags: tags, subtitle: subtitle]
+        return [questionsToDisplay: latestQuestionsPaginate, completeQuestionList: completeQuestionList, completePaginationList: completeQuestionList, tags: tags, subtitle: subtitle]
     }
     
-    def questionsForTag() { 
-        def latestQuestions = Question.list(sort: "dateCreated", order: "desc", max: 100)
+    def questionsForTag() {
+        def offset = params?.offset ?: 0
+        def max = params?.max ?: AppConfig.MAX_QUESTION
+
+        def completeQuestionList = Question.list(sort: "dateCreated", order: "desc", max: 100)
         def neededTag = Tag.findByName(params.tag)
         def latestForNeededTag = Question.findAllByIdInList(neededTag.questions*.id, [sort: "dateCreated", order: "desc", max: 100])
-        def tags = Question.tagsForQuestions(latestQuestions)
+        def completePaginationList = Question.findAllByIdInList(neededTag.questions*.id, [sort: "dateCreated", order: "desc", offset: offset, max: max])
+        def tags = Question.tagsForQuestions(completeQuestionList)
         
-        def map = [questionsToDisplay: latestForNeededTag, completeQuestionList: latestQuestions, neededTag: neededTag, tags: tags, subtitle: subtitle]
+        def map = [questionsToDisplay: latestForNeededTag, completeQuestionList: completeQuestionList, completePaginationList: completePaginationList, neededTag: neededTag, tags: tags, subtitle: subtitle]
         render(view: "index", model: map)
     }
     

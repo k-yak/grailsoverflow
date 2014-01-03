@@ -7,6 +7,7 @@
           <root url="file://$USER_HOME$/.grails/2.2.1/projects/GrailsOverflow/plugins/jquery-1.8.3/web-app" relative="/" />
           <root url="file://$USER_HOME$/.grails/2.2.1/projects/GrailsOverflow/plugins/database-migration-1.3.2/grails-app/views" relative="/" />
           <root url="file://$USER_HOME$/.grails/2.2.1/projects/GrailsOverflow/plugins/oauth-2.1.0/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/2.2.1/projects/GrailsOverflow/plugins/searchable-0.6.6/grails-app/views" relative="/" />
         </webroots>
         <sourceRoots />
       </configuration>
@@ -55,6 +56,12 @@
       <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/GrailsOverflow/plugins/resources-1.1.6/grails-app/i18n" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/GrailsOverflow/plugins/resources-1.1.6/grails-app/taglib" isTestSource="false" />
     </content>
+    <content url="file://$USER_HOME$/.grails/2.2.1/projects/GrailsOverflow/plugins/searchable-0.6.6">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/GrailsOverflow/plugins/searchable-0.6.6/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/GrailsOverflow/plugins/searchable-0.6.6/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/GrailsOverflow/plugins/searchable-0.6.6/grails-app/controllers" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/GrailsOverflow/plugins/searchable-0.6.6/grails-app/services" isTestSource="false" />
+    </content>
     <content url="file://$USER_HOME$/.grails/2.2.1/projects/GrailsOverflow/plugins/tomcat-2.2.1" />
     <content url="file://$USER_HOME$/.grails/2.2.1/projects/GrailsOverflow/plugins/webxml-1.4.1">
       <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/GrailsOverflow/plugins/webxml-1.4.1/src/groovy" isTestSource="false" />
@@ -68,6 +75,9 @@
         <CLASSES>
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.scribe/scribe/jars/scribe-1.3.2.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/mysql/mysql-connector-java/jars/mysql-connector-java-5.1.24.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.lucene/lucene-core/jars/lucene-core-2.4.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/commons-logging/commons-logging/jars/commons-logging-1.1.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.compass-project/compass/jars/compass-2.2.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

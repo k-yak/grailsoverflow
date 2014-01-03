@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
-<%@page import="fr.isima.grailsoverflow.User" %>
+<%@page import="fr.isima.grailsoverflow.AppConfig; fr.isima.grailsoverflow.User" %>
 
 <html>
     <head>
@@ -19,6 +19,11 @@
               
                 <div class="row">
                     <g:render template="/question/questionTemplate" collection="${questionsToDisplay}" var="question"/>
+
+                    <div class="center">
+                        <g:set var="totalPages" value="${Math.ceil(completePaginationList.size() / AppConfig.MAX_QUESTION)}" />
+                        <own:paginate controller="${controllerName}" action="index" max="${AppConfig.MAX_QUESTION}" total="${completePaginationList.size()}" prev="&lt; previous" next="next &gt;"/>
+                    </div>
                 </div>
             </div>
 

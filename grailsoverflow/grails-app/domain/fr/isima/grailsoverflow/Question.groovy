@@ -90,7 +90,8 @@ class Question extends Message {
             a.questions.size() < b.questions.size() ? 1 : -1
         }
     }
-        
+
+    static searchable = true
     static hasMany = [tags: Tag, answers: Answer, comments: Comment]
     static belongsTo = [user: User]
 

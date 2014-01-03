@@ -1,6 +1,8 @@
 package fr.isima.grailsoverflow
 
 import groovy.transform.EqualsAndHashCode
+import org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequest
+import org.codehaus.groovy.grails.web.util.WebUtils
 
 @EqualsAndHashCode
 class User {
@@ -14,7 +16,6 @@ class User {
     
     def isOwnerOfAnswer(def answer) {
         answer.user.email == email
-        session.user
     }
 
     static transients = ['userService']
@@ -22,11 +23,19 @@ class User {
     static hasMany = [questions: Question, favoriteTags: Tag]
     
     static boolean isUserAuthenticated() {
-        userService.getSessionUser() != null
+        GrailsWebRequest webRequest = WebUtils.retrieveGrailsWebRequest()
+        def session = webRequest.session
+
+        session.user != null
+        //userService.getSessionUser() != null
     }
 
     static User getCurrentUserFromDB() {
-        User.get(userService.getSessionUser().id)
+        GrailsWebRequest webRequest = WebUtils.retrieveGrailsWebRequest()
+        def session = webRequest.session
+
+        User.get(session.user.id)
+        //User.get(userService.getSessionUser().id)
     }
     
     static constraints = {

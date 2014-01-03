@@ -18,8 +18,6 @@ class User {
         answer.user.email == email
     }
 
-    static transients = ['userService']
-    static UserService userService
     static hasMany = [questions: Question, favoriteTags: Tag]
     
     static boolean isUserAuthenticated() {
@@ -27,7 +25,6 @@ class User {
         def session = webRequest.session
 
         session.user != null
-        //userService.getSessionUser() != null
     }
 
     static User getCurrentUserFromDB() {
@@ -35,7 +32,6 @@ class User {
         def session = webRequest.session
 
         User.get(session.user.id)
-        //User.get(userService.getSessionUser().id)
     }
     
     static constraints = {

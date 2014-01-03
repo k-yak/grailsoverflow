@@ -8,7 +8,7 @@ class Tag {
     }
     
     static hasMany = [questions: Question, users: User]
-    static belongsTo = Question
+    static belongsTo = [Question, User]
 
     static constraints = {
         name blank: false, unique: true

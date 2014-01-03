@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
+<%@page import="fr.isima.grailsoverflow.User" %>
+
 <html>
     <head>
         <meta name="layout" content="questionLayout"/>
@@ -20,8 +22,20 @@
                 </div>
             </div>
 
+
             <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" >
-                <g:render template="/question/tagTemplate" collection="${tags}" var="tag"/>
+                <div class="form-group">
+                    <label for="sidebar">Related tags</label>
+                    <g:render template="/question/tagTemplate" collection="${tags}" var="tag"/>
+                </div>
+                <g:if test="${User.isUserAuthenticated() \
+                && User.getCurrentUserFromDB().favoriteTags != null \
+                && !User.getCurrentUserFromDB().favoriteTags.isEmpty()}">
+                    <div class="form-group">
+                        <label for="sidebar">Favorite tags</label>
+                        <g:render template="/question/tagTemplate" collection="${User.getCurrentUserFromDB().favoriteTags}" var="tag"/>
+                    </div>
+                </g:if>
             </div>
         </div>
     </body>

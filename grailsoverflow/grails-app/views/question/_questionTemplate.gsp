@@ -7,7 +7,9 @@
             </g:link>
         </div>
         <div class="panel-body">
-            ${question.content}
+            <p>
+                <own:oneLineContent content="${question.content}" />
+            </p>
             <div style="float: right; color: darkgray;">
                 <small>Asked ${question.dateCreated.format('dd MMM yyyy')} at ${question.dateCreated.format('HH:mm')} by ${question.user.displayName}</small>
             </div>

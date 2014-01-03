@@ -16,7 +16,7 @@ class User {
         answer.user.email == email
     }
     
-    static hasMany = [questions: Question]
+    static hasMany = [questions: Question, favoriteTags: Tag]
     
     // Static block
     static scope = "session"

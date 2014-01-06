@@ -58,7 +58,7 @@
                         <g:if test="${User.isUserAuthenticated() == true && question.vote.getUserVote(User.getCurrentUserFromDB()) == Vote.VOTE_DOWN}">
                             <g:set var="downArrowStyle" value="vote selected"/>
                         </g:if>
-                        <g:remoteLink id="voteDown" class="${downArrowStyle}" controller="message" action="voteDown" update="voteContent" id="${question.id}">
+                        <g:remoteLink class="${downArrowStyle}" controller="message" action="voteDown" update="voteContent" id="${question.id}">
                             <span class="glyphicon glyphicon-chevron-down"></span>
                         </g:remoteLink>
                     </div>

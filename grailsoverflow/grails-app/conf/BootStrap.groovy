@@ -68,8 +68,8 @@ class BootStrap {
                 user: admin,
                 question: question
             )
-            answer.vote.userVote(admin, Vote.VOTE_UP)
-            answer.vote.userVote(floyd, Vote.VOTE_UP)
+            answer.vote.changeUserVote(admin, Vote.VOTE_UP)
+            answer.vote.changeUserVote(floyd, Vote.VOTE_UP)
             answer.save(failOnError: true)
             question.answer(answer)
             answer.accept();
@@ -81,7 +81,7 @@ class BootStrap {
                 question: question
             )
             answer.save(failOnError: true)
-            answer.vote.userVote(floyd, Vote.VOTE_UP)
+            answer.vote.changeUserVote(floyd, Vote.VOTE_UP)
             question.answer(answer)
             question.save(failOnError: true)
         

@@ -102,6 +102,7 @@ class QuestionController {
                 dateCreated: new Date(),
                 user: User.getCurrentUserFromDB()
         )
+        User.getCurrentUserFromDB().addToQuestions(question)
         question.user.score += AppConfig.QUESTION_SCORE
 
         // Manage tags

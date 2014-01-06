@@ -7,15 +7,30 @@ class Vote {
     
     int value = 0
     Map users = [:]
+
+    def changeUserVote(User user, int newValue) {
+        def oldValue = getUserVote(user)
+
+        // Remove old vote
+        value -= oldValue
+
+        if (oldValue == newValue) {
+            // If the user has already voted this choice, remove the vote
+            userVote(user, Vote.VOTE_NONE)
+        } else {
+            // Otherwise change the vote
+            userVote(user, newValue)
+        }
+    }
     
-    def userVote(User user, int newValue) {
-        def oldValue = users[user.email] ?: '0'
+    private def userVote(User user, int newValue) {
+        def oldValue = getUserVote(user)
 
         value += newValue
         users[user.email] = newValue.toString()
 
         // Manage message user vote
-        switch (oldValue.toInteger()) {
+        switch (oldValue) {
             case 0:
                 message.user.score += AppConfig.VOTE_SCORE * newValue
                 break;
@@ -34,6 +49,7 @@ class Vote {
         }
         message.user.save(failOnError: true)
         message.save(failOnError: true)
+        save(failOnError: true)
     }
     
     def getUserVote(User user) {

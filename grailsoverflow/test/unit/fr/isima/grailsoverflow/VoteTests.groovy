@@ -11,7 +11,4 @@ import org.junit.*
 @TestFor(Vote)
 class VoteTests {
 
-    void testSomething() {
-       fail "Implement me"
-    }
 }

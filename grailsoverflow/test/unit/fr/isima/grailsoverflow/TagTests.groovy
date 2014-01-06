@@ -10,8 +10,4 @@ import org.junit.*
  */
 @TestFor(Tag)
 class TagTests {
-
-    void testSomething() {
-       fail "Implement me"
-    }
 }

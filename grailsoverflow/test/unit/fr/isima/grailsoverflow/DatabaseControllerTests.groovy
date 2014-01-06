@@ -8,9 +8,4 @@ import org.junit.*
  */
 @TestFor(DatabaseController)
 class DatabaseControllerTests {
-
-    public testSomething(){
-
-    }
-
 }

@@ -10,8 +10,4 @@ import org.junit.*
  */
 @TestFor(Comment)
 class CommentTests {
-
-    void testSomething() {
-       fail "Implement me"
-    }
 }

@@ -10,8 +10,4 @@ import org.junit.*
  */
 @TestFor(UnacceptedController)
 class UnacceptedControllerTests {
-
-    void testSomething() {
-       fail "Implement me"
-    }
 }

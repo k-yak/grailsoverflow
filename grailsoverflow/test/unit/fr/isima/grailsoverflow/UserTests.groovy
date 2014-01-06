@@ -10,8 +10,4 @@ import org.junit.*
  */
 @TestFor(User)
 class UserTests {
-
-    void testLoginSession() {
-       fail "Implement me"
-    }
 }

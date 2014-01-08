@@ -6,8 +6,8 @@ class AuthenticateController {
 
    def oauthService
  
-    def success() { 
-        def googleAccessToken = session[oauthService.findSessionKeyForAccessToken('google')] 
+    def success() {
+        def googleAccessToken = session[oauthService.findSessionKeyForAccessToken('google')]
         def userInfo = oauthService.getGoogleResource(googleAccessToken, 'https://www.googleapis.com/oauth2/v1/userinfo') 
         def email = JSON.parse(userInfo.body).email
         
@@ -19,9 +19,13 @@ class AuthenticateController {
             println "DEBUG : User " + email + " found"
         }
         session.user = user
-        
+
         def targetUri = session.targetUri ?: "/question/index"
         redirect(uri: targetUri)
+    }
+
+    def failure() {
+        render(view: "/error", model: [errorContent: "Authentication error"])
     }
     
     def logout() {

@@ -41,14 +41,14 @@
                 <!-- Right side -->
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                    <g:if test="${User.isUserAuthenticated() == true}">
+                    <g:if test="${session.user != null}">
                         <li>
                             <g:link controller="question" action="add">
                                 New question
                             </g:link>
                         </li>
                         <li>
-                            <a>${User.getCurrentUserFromDB().displayName} (${User.getCurrentUserFromDB().score} pts)</a>
+                            <a>${session.user.displayName} (${session.user.score} pts)</a>
                         </li>
                         <li>
                             <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />

@@ -7,6 +7,9 @@ import fr.isima.grailsoverflow.Answer
 import grails.util.GrailsUtil
 
 class BootStrap {
+    def questionService
+    def voteService
+    def answerService
 
     def init = { servletContext ->
         switch (GrailsUtil.environment) {
@@ -68,11 +71,12 @@ class BootStrap {
                 user: admin,
                 question: question
             )
-            answer.vote.changeUserVote(admin, Vote.VOTE_UP)
-            answer.vote.changeUserVote(floyd, Vote.VOTE_UP)
+            voteService.changeUserVote(answer, admin, Vote.VOTE_UP)
+            voteService.changeUserVote(answer, floyd, Vote.VOTE_UP)
             answer.save(failOnError: true)
-            question.answer(answer)
-            answer.accept();
+            questionService.addAnswer(question, answer)
+            answer.user.score += AppConfig.ANSWER_SCORE
+            answerService.acceptAnswer(answer.id)
         
             answer = new Answer(
                 content: "<p>Maybe travis-ci would be better <a href='https://travis-ci.org/'>https://travis-ci.org/</a></p>",
@@ -81,8 +85,10 @@ class BootStrap {
                 question: question
             )
             answer.save(failOnError: true)
-            answer.vote.changeUserVote(floyd, Vote.VOTE_UP)
-            question.answer(answer)
+            voteService.changeUserVote(answer, floyd, Vote.VOTE_UP)
+            answer.save(failOnError: true)
+            questionService.addAnswer(question, answer)
+            answer.user.score += AppConfig.ANSWER_SCORE
             question.save(failOnError: true)
         
             question = new Question(
@@ -98,6 +104,9 @@ class BootStrap {
             question.user.score += AppConfig.QUESTION_SCORE
             question.addToTags(grails)
             question.save(failOnError: true)
+
+            admin.save(failOnError: true)
+            floyd.save(failOnError: true)
             break;
         }
     }

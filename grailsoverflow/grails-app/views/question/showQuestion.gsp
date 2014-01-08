@@ -16,7 +16,7 @@
 
     <body>
         <!-- Vote logged in error -->
-        <g:if test="${User.isUserAuthenticated() == false}">
+        <g:if test="${session.user == null}">
             <div id="js_voteLogin" style="display: none;" class="alert alert-danger">
                 <a class="close">&times;</a>
                 <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />
@@ -28,7 +28,7 @@
         <g:if test="${question.status != 'Accepted'}">
             <div class="alert alert-info">
                 <strong>+${AppConfig.ANSWER_SCORE}</strong> to anyone that answer this question.
-                <g:if test="${User.isUserAuthenticated() == true}">
+                <g:if test="${session.user != null}">
                     <span class="alert-link">Try your luck!</span>
                 </g:if>
                 <g:else>
@@ -47,7 +47,7 @@
                     <!-- Vote panel -->
                     <div id="vote">
                         <g:set var="upArrowStyle" value="vote" />
-                        <g:if test="${User.isUserAuthenticated() == true && question.vote.getUserVote(User.getCurrentUserFromDB()) == Vote.VOTE_UP}">
+                        <g:if test="${session.user != null && question.vote.getUserVote(session.user) == Vote.VOTE_UP}">
                             <g:set var="upArrowStyle" value="vote selected"  />
                         </g:if>
                         <g:remoteLink class="${upArrowStyle}" controller="message" action="voteUp" update="voteContent" id="${question.id}">
@@ -55,7 +55,7 @@
                         </g:remoteLink>
                         <span id="voteContent">${question.vote.value}</span><br />
                         <g:set var="downArrowStyle" value="vote"/>
-                        <g:if test="${User.isUserAuthenticated() == true && question.vote.getUserVote(User.getCurrentUserFromDB()) == Vote.VOTE_DOWN}">
+                        <g:if test="${session.user != null && question.vote.getUserVote(session.user) == Vote.VOTE_DOWN}">
                             <g:set var="downArrowStyle" value="vote selected"/>
                         </g:if>
                         <g:remoteLink class="${downArrowStyle}" controller="message" action="voteDown" update="voteContent" id="${question.id}">
@@ -71,7 +71,7 @@
                         <small>Asked ${question.dateCreated.format('dd MMM yyyy')} at ${question.dateCreated.format('HH:mm')} by ${question.user.displayName}</small>
 
                         <!-- Edit/Delete panel -->
-                        <g:if test="${User.isUserAuthenticated() && User.getCurrentUserFromDB().isOwnerOfQuestion(question)}" >
+                        <g:if test="${session.user != null && session.user.isOwnerOfQuestion(question)}" >
                             <br />
                             <g:link style="text-decoration: none;" action="edit" params='[question: "${question.id}"]'>
                                 <button type="button" class="btn btn-default btn-xs">Edit</button>
@@ -104,7 +104,7 @@
         </div>
 
         <!-- Answer textarea  -->
-        <g:if test="${User.isUserAuthenticated() == true}">
+        <g:if test="${session.user != null}">
             <div id="js_contentRequired" style="display: none;" class="alert alert-danger">
                 <a class="close">&times;</a>
                 Your answer is empty.

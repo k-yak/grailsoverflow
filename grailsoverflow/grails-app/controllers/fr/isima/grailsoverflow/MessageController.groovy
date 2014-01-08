@@ -1,6 +1,8 @@
 package fr.isima.grailsoverflow
 
 class MessageController {
+    def voteService
+
     def voteUp() {
         voteProcess(params.id, Vote.VOTE_UP)
     }
@@ -10,14 +12,8 @@ class MessageController {
     }
 
     def voteProcess(def id, def value) {
-        def message = Message.get(id)
+        def voteValue = voteService.processVote(id, value, session.user)
 
-        if (User.isUserAuthenticated()) {
-            message.vote.changeUserVote(User.getCurrentUserFromDB(), value)
-        } else {
-            println "DEBUG : You must be logged in to vote"
-        }
-
-        render(text:"${message.vote.value}", contentType:'text/html')
+        render(text:"${voteValue}", contentType:'text/html')
     }
 }

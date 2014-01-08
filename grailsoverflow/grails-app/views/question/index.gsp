@@ -35,12 +35,10 @@
                         <g:render template="/question/tagTemplate" collection="${tags}" var="tag"/>
                     </div>
                 </g:if>
-                <g:if test="${User.isUserAuthenticated() \
-                && User.getCurrentUserFromDB().favoriteTags != null \
-                && !User.getCurrentUserFromDB().favoriteTags.isEmpty()}">
+                <g:if test="${session.user != null && session.user.favoriteTags != null && !session.user.favoriteTags.isEmpty()}">
                     <div class="form-group">
                         <label for="sidebar">Favorite tags</label>
-                        <g:render template="/question/tagTemplate" collection="${User.getCurrentUserFromDB().favoriteTags}" var="tag"/>
+                        <g:render template="/question/tagTemplate" collection="${session.user.favoriteTags}" var="tag"/>
                     </div>
                 </g:if>
             </div>

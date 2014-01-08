@@ -33,7 +33,7 @@
     </head>
     <body>
         <!-- Security test -->
-        <g:if test="${User.isUserAuthenticated() && User.getCurrentUserFromDB().isOwnerOfQuestion(question)}" >
+        <g:if test="${session.user != null && session.user.isOwnerOfQuestion(question)}" >
             <div class="page-header">
                 <h1>${question.title}<br />
                     <small>Edit your question</small>

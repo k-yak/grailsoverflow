@@ -9,7 +9,8 @@ class User {
     String displayName
     String email
     int score = 0
-    
+    Set favoriteTags = []
+
     def isOwnerOfQuestion(def question) {
         question.user.email == email
     }
@@ -19,26 +20,13 @@ class User {
     }
 
     static hasMany = [questions: Question, favoriteTags: Tag]
-    
-    static boolean isUserAuthenticated() {
-        GrailsWebRequest webRequest = WebUtils.retrieveGrailsWebRequest()
-        def session = webRequest.session
 
-        session.user != null
-    }
-
-    static User getCurrentUserFromDB() {
-        GrailsWebRequest webRequest = WebUtils.retrieveGrailsWebRequest()
-        def session = webRequest.session
-
-        User.get(session.user.id)
-    }
-    
     static constraints = {
         email blank: false, unique: true
     }
     
     static mapping = {
         questions cascade:"all,delete-orphan"
+        favoriteTags lazy: false
     }
 }

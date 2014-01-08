@@ -1,45 +1,36 @@
 package fr.isima.grailsoverflow
 
 class AnswerController {
+    def answerService
+
     def accept() {
-        Answer answer = Answer.get(params.id)
-        def oldState = answer.accepted
-		
-        answer.question.answers.each() {
-            it.reject()
-        }
-		
-        if (oldState == false) {
-            answer.accept()
-        }
+        answerService.acceptAnswer(params.id)
     }
 
     def edit() {
-        def answer = Answer.findById(params.answer)
+        def answer = answerService.getAnswerById(params.answer)
         def question = answer.question
 
         return [question: question, answer: answer]
     }
 
     def editAnswer() {
-        def answer = Answer.findById(params.id)
+        if (session.user == null) {
+            redirect(controller: "question", action: "index")
+        } else {
+            def answer = answerService.editAnswer(params.id, params.newAnswerContent)
 
-        answer.content = params.newAnswerContent  - "<p>&nbsp;</p>"
-        answer.save(failOnError: true)
-
-        redirect(uri: "/question/show/${answer.question.id}")
+            redirect(uri: "/question/show/${answer.question.id}")
+        }
     }
         
     def delete() {
-        def answer = Answer.findById(params.answer)
-        def question = answer.question
-        
-        if (User.getCurrentUserFromDB().isOwnerOfAnswer(answer)) {
-            question.removeFromAnswers(answer)
-            question.updateStatus()
-            question.save(failOnError: true)
+        if (session.user == null) {
+            redirect(controller: "question", action: "index")
+        } else {
+            def question = answerService.deleteAnswer(params.answer, session.user)
+
+            redirect(uri: "/question/show/${question.id}")
         }
-        
-        redirect(uri: "/question/show/${question.id}")    
     }
 }

@@ -40,7 +40,7 @@
 
         <div class="row">
             <!-- Security test -->
-            <g:if test="${User.isUserAuthenticated()}" >
+            <g:if test="${session.user != null}" >
                 <div id="js_contentRequired" style="display: none;" class="alert alert-danger">
                     <a class="close">&times;</a>
                     Your question is empty.

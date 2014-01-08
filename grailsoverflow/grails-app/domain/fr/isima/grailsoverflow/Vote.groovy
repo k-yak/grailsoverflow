@@ -15,5 +15,6 @@ class Vote {
     static belongsTo = [message: Message]
     
     static constraints = {
+        users lazy:false
     }
 }

@@ -18,10 +18,10 @@ class SessionService {
 
         User user = User.findByEmail(email)
         if (!user) {
-            println "DEBUG : New User created : " + email
+            log.info "DEBUG : New User created : " + email
             user = new User(email: email, displayName: email).save(failOnError: true)
         } else {
-            println "DEBUG : User " + email + " found"
+            log.info "DEBUG : User " + email + " found"
         }
         session.user = user
     }
@@ -45,7 +45,7 @@ class SessionService {
                 session.user = User.get(session.user.id);
             }
         } catch (IllegalStateException e) {
-            e.printStackTrace()
+            log.error "ERROR: GrailsWebRequest isn't available, any session instanciated ?"
         }
     }
 }

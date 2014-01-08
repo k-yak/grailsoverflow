@@ -6,7 +6,7 @@ import fr.isima.grailsoverflow.User
 import fr.isima.grailsoverflow.Vote
 
 class VoteService {
-    static transactional = true
+    static transactional = false
 
     def sessionService
 
@@ -38,6 +38,9 @@ class VoteService {
         message.save(failOnError: true)
         message.vote.save(failOnError: true)
         sessionService.reloadUserSession()
+
+        User other = User.findById(user.id)
+        Message otherMessage = Message.findById(message.id)
     }
 
     def changeUserVote(Message message, User user, int newValue) {
@@ -61,7 +64,7 @@ class VoteService {
         if (currentUser != null) {
             changeUserVote(message, currentUser, value)
         } else {
-            println "DEBUG : You must be logged in to vote"
+            log.info "DEBUG : You must be logged in to vote"
         }
 
         return message.vote.value

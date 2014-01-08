@@ -32,13 +32,17 @@
                 <g:if test="${tags != null && !tags.isEmpty()}">
                     <div class="form-group">
                         <label for="sidebar">Related tags</label>
-                        <g:render template="/question/tagTemplate" collection="${tags}" var="tag"/>
+                        <ul class="list-group">
+                            <g:render template="/question/tagTemplate" collection="${tags}" var="tag"/>
+                        </ul>
                     </div>
                 </g:if>
                 <g:if test="${session.user != null && session.user.favoriteTags != null && !session.user.favoriteTags.isEmpty()}">
                     <div class="form-group">
                         <label for="sidebar">Favorite tags</label>
-                        <g:render template="/question/tagTemplate" collection="${session.user.favoriteTags}" var="tag"/>
+                        <ul class="list-group">
+                            <g:render template="/question/tagTemplate" collection="${session.user.favoriteTags}" var="tag"/>
+                        </ul>
                     </div>
                 </g:if>
             </div>

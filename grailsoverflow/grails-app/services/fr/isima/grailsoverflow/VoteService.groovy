@@ -1,9 +1,4 @@
-package grailsoverflow
-
-import fr.isima.grailsoverflow.AppConfig
-import fr.isima.grailsoverflow.Message
-import fr.isima.grailsoverflow.User
-import fr.isima.grailsoverflow.Vote
+package fr.isima.grailsoverflow
 
 class VoteService {
     static transactional = false

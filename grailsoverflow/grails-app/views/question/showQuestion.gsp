@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
-<%@page import="fr.isima.grailsoverflow.User" %>
-<%@page import="fr.isima.grailsoverflow.Vote" %>
-<%@page import="fr.isima.grailsoverflow.AppConfig" %>
+<%@page import="fr.isima.fr.isima.grailsoverflow.User" %>
+<%@page import="fr.isima.fr.isima.grailsoverflow.Vote" %>
+<%@page import="fr.isima.fr.isima.grailsoverflow.AppConfig" %>
 
 <html>
     <head>

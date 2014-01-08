@@ -1,9 +1,4 @@
-package grailsoverflow
-
-import fr.isima.grailsoverflow.Answer
-import fr.isima.grailsoverflow.AppConfig
-import fr.isima.grailsoverflow.Question
-import fr.isima.grailsoverflow.User
+package fr.isima.grailsoverflow
 
 class AnswerService {
     static transactional = true

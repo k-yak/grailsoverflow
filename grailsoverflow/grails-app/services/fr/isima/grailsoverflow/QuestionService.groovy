@@ -1,12 +1,4 @@
-package grailsoverflow
-
-import fr.isima.grailsoverflow.Answer
-import fr.isima.grailsoverflow.AppConfig
-import fr.isima.grailsoverflow.Question
-import fr.isima.grailsoverflow.Tag
-import fr.isima.grailsoverflow.User
-import org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequest
-import org.codehaus.groovy.grails.web.util.WebUtils
+package fr.isima.grailsoverflow
 
 class QuestionService {
     static transactional = true

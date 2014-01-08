@@ -1,9 +1,6 @@
-package grailsoverflow
+package fr.isima.grailsoverflow
 
-import fr.isima.grailsoverflow.User
-import grails.converters.JSON
 import org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequest
-import org.codehaus.groovy.grails.web.util.WebUtils
 
 class SessionService {
     def oauthService

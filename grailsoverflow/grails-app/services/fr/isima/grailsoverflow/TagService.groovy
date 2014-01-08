@@ -1,6 +1,4 @@
-package grailsoverflow
-
-import fr.isima.grailsoverflow.Tag
+package fr.isima.grailsoverflow
 
 class TagService {
     static transactional = true

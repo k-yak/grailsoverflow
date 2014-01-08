@@ -11,28 +11,6 @@ class QuestionTests {
     Tag testTag = new Tag(name: "testTag")
     Tag testTag2 = new Tag(name: "testTag2")
 
-    void testNewTagsFromString() {
-        def question = new Question(title: "titleTest", content: "contentTest", dateCreated: new Date(), user: testUser)
-
-        question.newTagsFromString("tag1,tag1,tag2,tag2")
-
-        assert question.tags.size() == 2
-        assert question.tags*.name.contains("tag1")
-        assert question.tags*.name.contains("tag2")
-    }
-
-    void testTagsForQuestions() {
-        def question = new Question(title: "titleTest", content: "contentTest", dateCreated: new Date(), user: testUser)
-        question.addToTags(testTag)
-        question.addToTags(testTag2)
-
-        def tags = Question.tagsForQuestions(question)
-
-        assert tags.size() == 2
-        assert tags*.name.contains("testTag")
-        assert tags*.name.contains("testTag2")
-    }
-
     void testTagsToString() {
         def question = new Question(title: "titleTest", content: "contentTest", dateCreated: new Date(), user: testUser)
         question.addToTags(testTag)
@@ -40,18 +18,6 @@ class QuestionTests {
 
         assert (question.tagsToString() == "${testTag.name},${testTag2.name}") ||
                (question.tagsToString() == "${testTag2.name},${testTag.name}")
-    }
-
-    void testClearUserScore() {
-        def question = new Question(title: "titleTest", content: "contentTest", dateCreated: new Date(), user: testUser)
-
-        question.user.score += AppConfig.QUESTION_SCORE
-        question.vote.value = 5
-        question.user.score += AppConfig.VOTE_SCORE * question.vote.value
-
-        question.clearUserScore()
-
-        assert question.user.score == 0
     }
 
     void testVoteSortedAnswers() {
@@ -76,35 +42,4 @@ class QuestionTests {
 
         assert question.sortedAnswers().first().content == "answer2"
     }
-
-    void testAcceptedQuestion() {
-        def question = new Question(title: "titleTest", content: "contentTest", dateCreated: new Date(), user: testUser)
-        def answer = new Answer(content: "testContent", dateCreated: new Date(), user: testUser, question: question)
-
-        question.addToAnswers(answer)
-        question.answer(answer)
-
-        assert question.acceptedAnswer() == null
-
-        answer.accept()
-
-        assert question.acceptedAnswer() == answer
-    }
-
-    void testStatus() {
-        def question = new Question(title: "titleTest", content: "contentTest", dateCreated: new Date(), user: testUser)
-        def answer = new Answer(content: "testContent", dateCreated: new Date(), user: testUser, question: question)
-
-        assert question.status == "Unanswered"
-
-        question.answer(answer)
-        question.addToAnswers(answer)
-
-        assert question.status == "Answered"
-
-        answer.accept()
-
-        assert question.status == "Accepted"
-    }
-
 }

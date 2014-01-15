@@ -48,7 +48,9 @@
                             </g:link>
                         </li>
                         <li>
-                            <a>${session.user.displayName} (${session.user.score} pts)</a>
+                            <g:link controller="user" action="show" params='[id: "${session.user.id}"]'>
+                                ${session.user.displayName} (${session.user.score} pts)
+                            </g:link>
                         </li>
                         <li>
                             <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />

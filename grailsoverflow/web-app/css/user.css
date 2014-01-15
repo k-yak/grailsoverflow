@@ -1,0 +1,31 @@
+h1{
+
+}
+
+.page-header{
+    position: relative;
+}
+
+.subtitle-right{
+    position: absolute;
+    bottom: 0px;    
+    right: 0px;
+    color: #000000;
+}
+.subtitle-right:hover{
+    color: #000000;
+}
+
+.avatar{
+    margin: auto;
+    display: block;
+}
+
+div .score{
+    text-align: center  ;
+    font-weight: bold;
+}
+
+tr.info-title{
+    background-color: #f9f9f9;
+}

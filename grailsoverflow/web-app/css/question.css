@@ -116,6 +116,12 @@ a.gray-tick.selected {
     color: #428BCA;
 }
 
+img.smallGravatar {
+    margin-top: -10px;
+    margin-bottom: -10px;
+    margin-right: 5px;
+}
+
 @media screen and (max-width: 767px) {
     .row-offcanvas {
         position: relative;

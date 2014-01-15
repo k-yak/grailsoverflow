@@ -49,6 +49,7 @@
                         </li>
                         <li>
                             <g:link controller="user" action="show" params='[id: "${session.user.id}"]'>
+                                <img class="smallGravatar" src="https://www.gravatar.com/avatar/${session.user.email.encodeAsMD5()}?s=24&r=pg" alt="" />
                                 ${session.user.displayName} (${session.user.score} pts)
                             </g:link>
                         </li>

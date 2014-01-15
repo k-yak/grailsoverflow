@@ -22,6 +22,9 @@ class SessionService {
         } else {
             log.info "DEBUG : User " + email + " found"
         }
+        user.lastVisit = new Date()
+        user.save(failOnError: true)
+
         session.user = user
     }
 

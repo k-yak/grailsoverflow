@@ -7,8 +7,14 @@ import org.codehaus.groovy.grails.web.util.WebUtils
 @EqualsAndHashCode
 class User {
     String displayName
+    String realName
     String email
+    String website
+    String location
     int score = 0
+    Date lastVisit = new Date()
+    int profileView = 0
+
     Set favoriteTags = []
 
     def isOwnerOfQuestion(def question) {
@@ -23,6 +29,10 @@ class User {
 
     static constraints = {
         email blank: false, unique: true
+        realName nullable: true
+        website nullable: true
+        lastVisit blank: false
+        location nullable: true
     }
     
     static mapping = {

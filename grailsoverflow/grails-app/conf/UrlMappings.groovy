@@ -21,6 +21,7 @@ class UrlMappings {
 
         // User
         "/user/show/$id"(controller:"user", action:"show")
+        "/user/edit/$id"(controller:"user", action:"edit")
 
         "/"(view:"/index")
         "500"(view:'/error')

@@ -5,9 +5,10 @@
 <html>
 <head>
     <meta name="layout" content="questionLayout"/>
-    <title>GrailsOverflow - Questions</title>
+    <title>GrailsOverflow - User</title>
 
-    <link href="${resource(dir: 'css', file: 'question.css')}" rel="stylesheet">
+    <link type="text/css" href="${resource(dir: 'css', file: 'question.css')}" rel="stylesheet">
+    <link type="text/css" href="${resource(dir: 'css', file: 'user.css')}" rel="stylesheet">
 </head>
 
 <body>
@@ -15,36 +16,57 @@
     <div class="col-xs-12 col-sm-9">
         <div class="page-header">
             <h1><small>${user.displayName}</small></h1>
+            <g:if test="${session.user.id == user.id}">
+                <g:link class="subtitle-right" controller="user" action="edit" params='[id: "${session.user.id}"]'>edit</g:link>
+            </g:if>
         </div>
 
         <div class="row">
-            <g:render template="/question/questionTemplate" collection="${questionsToDisplay}" var="question"/>
 
-            <div class="center">
+            <div class="col-md-4">
+                <img class="avatar" src="https://www.gravatar.com/avatar/${user.email.encodeAsMD5()}?s=128&r=pg" alt="" />
+                <p class="score">${user.score}</p>
             </div>
+
+            <div class="col-md-8">
+                <table class="table">
+                    <tbody>
+                    <tr class="info-title">
+                        <td>bio</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>website</td>
+                        <td>${user.website}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>location</td>
+                        <td>${user.location}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>email</td>
+                        <td>${user.email}</td>
+                    </tr>
+                    <tr class="info-title">
+                        <td>visits</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>last visit</td>
+                        <td>${user.lastVisit}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
-    </div>
-
-
-    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" >
-        <g:if test="${tags != null && !tags.isEmpty()}">
-            <div class="form-group">
-                <label for="sidebar">Related tags</label>
-                <ul class="list-group">
-                    <g:render template="/question/tagTemplate" collection="${tags}" var="tag"/>
-                </ul>
-            </div>
-        </g:if>
-        <g:if test="${session.user != null && session.user.favoriteTags != null && !session.user.favoriteTags.isEmpty()}">
-            <div class="form-group">
-                <label for="sidebar">Favorite tags</label>
-                <ul class="list-group">
-                    <g:render template="/question/tagTemplate" collection="${session.user.favoriteTags}" var="tag"/>
-                </ul>
-            </div>
-        </g:if>
     </div>
 </div>
 </body>
 </html>
-

@@ -68,7 +68,8 @@
                 <div class="col-md-11 col-sm-4 col-xs-10">
                     <blockquote>
                         <p>${question.content}</p>
-                        <small>Asked ${question.dateCreated.format('dd MMM yyyy')} at ${question.dateCreated.format('HH:mm')} by ${question.user.displayName}</small>
+                        <small>Asked ${question.dateCreated.format('dd MMM yyyy')} at ${question.dateCreated.format('HH:mm')} by
+                            <g:link class="userLink" controller="user" action="show" params='[id: "${question.user.id}"]'>${question.user.displayName}</g:link></small>
 
                         <!-- Edit/Delete panel -->
                         <g:if test="${session.user != null && session.user.isOwnerOfQuestion(question)}" >

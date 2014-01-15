@@ -154,3 +154,11 @@ img.smallGravatar {
         width: 50%; /* 6 columns */
     }
 }
+
+a.userLink {
+    color: darkgray;
+}
+
+a.userLink:hover {
+    color: #696969;
+}

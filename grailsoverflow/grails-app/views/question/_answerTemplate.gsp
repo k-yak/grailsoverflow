@@ -47,7 +47,8 @@
     <div id="answerContent" class="col-md-11 col-sm-4 col-xs-10">
         <blockquote>
             ${answer.content}
-            <small>Answered ${answer.dateCreated.format('dd MMM yyyy')} at ${answer.dateCreated.format('HH:mm')} by ${answer.user.displayName}</small>
+            <small>Answered ${answer.dateCreated.format('dd MMM yyyy')} at ${answer.dateCreated.format('HH:mm')} by
+            <g:link class="userLink" controller="user" action="show" params='[id: "${answer.user.id}"]'>${answer.user.displayName}</g:link></small>
 
              <!-- Edit/Delete panel -->
             <g:if test="${session.user != null && session.user.isOwnerOfAnswer(answer)}" >

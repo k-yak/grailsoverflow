@@ -11,7 +11,8 @@
                 <own:oneLineContent content="${question.content}" />
             </p>
             <div style="float: right; color: darkgray;">
-                <small>Asked ${question.dateCreated.format('dd MMM yyyy')} at ${question.dateCreated.format('HH:mm')} by ${question.user.displayName}</small>
+                <small>Asked ${question.dateCreated.format('dd MMM yyyy')} at ${question.dateCreated.format('HH:mm')} by
+                    <g:link class="userLink" controller="user" action="show" params='[id: "${question.user.id}"]'>${question.user.displayName}</g:link></small>
             </div>
         </div>
         

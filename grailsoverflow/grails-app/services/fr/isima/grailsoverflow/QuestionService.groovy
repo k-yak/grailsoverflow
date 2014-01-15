@@ -4,6 +4,28 @@ class QuestionService {
     static transactional = true
 
     def sessionService
+    def answerService
+
+    def answerToQuestion(def questionId, def content, def currentUser) {
+        def user = User.get(currentUser.id)
+        def question = getQuestion(questionId)
+        def answer = answerService.createAnswer(content, user, question)
+
+        answer.user.score += AppConfig.ANSWER_SCORE
+        user.save(failOnError: true)
+
+        addAnswer(question, answer)
+        sessionService.reloadUserSession()
+
+        return answer
+    }
+
+    def afterInsertActions(def question) {
+        question.user.score += AppConfig.QUESTION_SCORE
+
+        question.user.save(failOnError: true)
+        sessionService.reloadUserSession()
+    }
 
     def getUnacceptedQuestions(int offset, int max) {
         Question.findAllByStatusNotEqual("Accepted", [sort: "dateCreated", order: "desc", offset: offset, max: max])
@@ -67,7 +89,8 @@ class QuestionService {
         question.save(failOnError: true)
     }
 
-    def clearUserScoreForQuestion(Question question) {
+
+    def beforeDeleteActions(Question question) {
         // Remove user score for question
         question.user.score -= AppConfig.QUESTION_SCORE
 
@@ -84,7 +107,11 @@ class QuestionService {
         if (currentUser != null && currentUser.isOwnerOfQuestion(question)) {
             User user = question.user
 
-            clearUserScoreForQuestion(question)
+            question.answers.each() { answer ->
+                answerService.beforeDeleteActions(answer)
+            }
+
+            beforeDeleteActions(question)
             user.removeFromQuestions(question)
 
             user.save(failOnError: true)
@@ -102,13 +129,13 @@ class QuestionService {
                 dateCreated: new Date(),
                 user: user
         ).save(failOnError: true)
-        question.user.score += AppConfig.QUESTION_SCORE
 
         // Manage tags
         newTagsFromString(question, tags)
 
-        question.save(failOnError: true)
         user.addToQuestions(question)
+
+        afterInsertActions(question);
         sessionService.reloadUserSession()
 
         return question

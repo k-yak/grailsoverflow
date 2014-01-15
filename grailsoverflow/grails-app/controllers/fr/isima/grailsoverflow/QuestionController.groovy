@@ -71,7 +71,9 @@ class QuestionController {
     }
     
     def editQuestion() {
-        if (session.user == null) {
+        def question = questionService.getQuestion(params.id)
+
+        if (session.user == null || !session.user.isOwnerOfQuestion(question)) {
             redirect(controller: "question", action: "index")
         } else {
             questionService.editQuestion(params.id, params.newQuestionTitle, params.newQuestionContent, params.tags)
@@ -81,7 +83,9 @@ class QuestionController {
     }
 
     def delete() {
-        if (session.user != null) {
+        def question = questionService.getQuestion(params.question)
+
+        if (session.user != null && session.user.isOwnerOfQuestion(question)) {
             questionService.deleteQuestion(params.question, session.user)
         }
         

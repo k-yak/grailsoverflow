@@ -16,7 +16,7 @@
     <div class="col-xs-12 col-sm-9">
         <div class="page-header">
             <h1><small>${user.displayName}</small></h1>
-            <g:if test="${session.user.id == user.id}">
+            <g:if test="${session.user?.id == user.id}">
                 <g:link class="subtitle-right" controller="user" action="edit" params='[id: "${session.user.id}"]'>edit</g:link>
             </g:if>
         </div>
@@ -59,7 +59,7 @@
                     <tr>
                         <td></td>
                         <td>last visit</td>
-                        <td>${user.lastVisit}</td>
+                        <td>${user.lastVisit.format('dd MMM yyyy')}</td>
                     </tr>
                     </tbody>
                 </table>

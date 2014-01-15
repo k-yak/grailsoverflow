@@ -20,8 +20,24 @@
         </div>
 
         <div class="row">
+            <g:form action="editInfo">
+                <div class="form-group">
+                    <label for="displayName">Display name</label>
+                    <input name="displayName" type="text" class="form-control" id="displayName" value="${user.displayName}" placeholder="Your display name ...">
+                </div>
+                <div class="form-group">
+                    <label for="website">Website</label>
+                    <input name="website" type="text" class="form-control" id="website" value="${user.website}" placeholder="Your website ...">
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input name="location" type="text" class="form-control" id="location" value="${user.location}" placeholder="Your location ...">
+                </div>
 
-
+                <button type="submit" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-ok"></span> Save profile
+                </button>
+            </g:form>
         </div>
     </div>
 </div>

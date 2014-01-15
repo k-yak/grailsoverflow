@@ -13,4 +13,14 @@ class UserService {
     def createUser(def email, def displayName) {
         new User(email: email, displayName: displayName).save(failOnError: true)
     }
+
+    def updateUser(def userId, def displayName, def website, def location) {
+        User user = getUserById(userId)
+
+        user.setDisplayName(displayName)
+        user.setWebsite(website)
+        user.setLocation(location)
+
+        user.save(failOnError: true)
+    }
 }

@@ -4,14 +4,11 @@ class UserController {
 
     def userService
 
-    def index() {}
-
     def show() {
         // call userService to get the user corresponding to params.id
         User user = userService.getUserById(params.id)
 
-        if(user == null)
-        {
+        if(user == null) {
             //error user not found
             redirect(controller: "question", action: "index")
         }
@@ -23,12 +20,22 @@ class UserController {
         // call userService to get the user corresponding to params.id
         User user = userService.getUserById(params.id)
 
-        if(session.user == null || session.user.email != user?.email)
-        {
+        if(session.user == null || session.user.email != user?.email) {
             redirect(controller: "question", action: "index")
         }
 
         return [user: user]
+    }
+
+    //post call by form
+    def editInfo() {
+        if(session.user == null) {
+            redirect(controller: "question", action: "index")
+        }
+
+        userService.updateUser(session.user.id, params.displayName, params.website, params.location)
+
+        redirect(controller: "user", action: "show", id: session.user.id )
     }
 
 

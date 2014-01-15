@@ -101,7 +101,7 @@ class QuestionController {
         if (session.user == null) {
             redirect(controller: "question", action: "index")
         } else {
-            answerService.answerToQuestion(params.id, params.answerContent, session.user)
+            questionService.answerToQuestion(params.id, params.answerContent, session.user)
 
             redirect(uri: "/question/show/${params.id}")
         }

@@ -33,9 +33,6 @@ class VoteService {
         message.save(failOnError: true)
         message.vote.save(failOnError: true)
         sessionService.reloadUserSession()
-
-        User other = User.findById(user.id)
-        Message otherMessage = Message.findById(message.id)
     }
 
     def changeUserVote(Message message, User user, int newValue) {

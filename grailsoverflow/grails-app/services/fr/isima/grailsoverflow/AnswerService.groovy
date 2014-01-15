@@ -3,27 +3,15 @@ package fr.isima.grailsoverflow
 class AnswerService {
     static transactional = true
 
-    def questionService
     def sessionService
 
-    def answerToQuestion(def questionId, def content, def currentUser) {
-        def user = User.get(currentUser.id)
-        def question = questionService.getQuestion(questionId)
-
-        Answer answer = new Answer(
-                content: content - "<p>&nbsp;</p>",
-                dateCreated: new Date(),
-                user: user,
-                question: question
+    def createAnswer(def content, def user, def question) {
+        new Answer(
+            content: content - "<p>&nbsp;</p>",
+            dateCreated: new Date(),
+            user: user,
+            question: question
         )
-
-        answer.user.score += AppConfig.ANSWER_SCORE
-
-        user.save(failOnError: true)
-        answer.save(failOnError: true)
-
-        questionService.addAnswer(question, answer)
-        sessionService.reloadUserSession()
     }
 
     def acceptAnswer(def answerId) {
@@ -35,7 +23,6 @@ class AnswerService {
                 it.user.score -= AppConfig.ACCEPT_ANSWER_SCORE
                 it.accepted = false
             }
-            questionService.updateStatus(it.question)
 
             it.save(failOnError: true)
         }
@@ -43,14 +30,13 @@ class AnswerService {
         if (oldState == false) {
             answer.accepted = true
             answer.user.score += AppConfig.ACCEPT_ANSWER_SCORE
-            questionService.updateStatus(answer.question)
 
             answer.save(failOnError: true)
         }
         sessionService.reloadUserSession()
     }
 
-    def clearUserScoreForAnswer(def answer) {
+    def beforeDeleteActions(def answer) {
         // Remove user score for answer
         answer.user.score -= AppConfig.ANSWER_SCORE
 
@@ -84,9 +70,8 @@ class AnswerService {
         def question = answer.question
 
         if (currentUser.isOwnerOfAnswer(answer)) {
+            beforeDeleteActions(answer)
             question.removeFromAnswers(answer)
-            questionService.updateStatus(question)
-            question.save(failOnError: true)
         }
 
         return question

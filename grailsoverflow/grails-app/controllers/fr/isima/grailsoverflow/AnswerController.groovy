@@ -2,9 +2,14 @@ package fr.isima.grailsoverflow
 
 class AnswerController {
     def answerService
+    def questionService
 
     def accept() {
+        def answer = answerService.getAnswerById(params.id)
+        def question = answer.question
+
         answerService.acceptAnswer(params.id)
+        questionService.updateStatus(question)
     }
 
     def edit() {
@@ -29,6 +34,7 @@ class AnswerController {
             redirect(controller: "question", action: "index")
         } else {
             def question = answerService.deleteAnswer(params.answer, session.user)
+            questionService.updateStatus(question)
 
             redirect(uri: "/question/show/${question.id}")
         }

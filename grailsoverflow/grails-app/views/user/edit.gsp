@@ -13,10 +13,21 @@
 
 <body>
 <div class="row row-offcanvas row-offcanvas-right">
-    <div class="col-xs-12 col-sm-9">
+    <div class="col-xs-18 col-sm-12">
         <div class="page-header">
-            <h1><small>${user.displayName}</small></h1>
-            <g:link class="subtitle-right" controller="user" action="show" params='[id: "${session.user.id}"]'>show</g:link>
+            <div class="row">
+                <div class="col-xs-10 col-sm-11">
+                    <h1>User <small>${user.displayName}</small></h1>
+                </div>
+                <div class="col-xs-3 col-sm-1">
+                    <g:link controller="user" action="show" params='[id: "${session.user.id}"]'>
+                        <button type="button" class="btn btn-default rightButton">
+                            <span class="glyphicon glyphicon-user"></span>
+                            Show
+                        </button>
+                    </g:link>
+                </div>
+            </div>
         </div>
 
         <div class="row">

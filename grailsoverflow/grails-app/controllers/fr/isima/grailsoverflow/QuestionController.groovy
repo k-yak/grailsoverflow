@@ -6,8 +6,6 @@ class QuestionController {
     def searchableService
     def questionService
     def tagService
-    def answerService
-    def sessionService
 
     String subtitle = "Latest questions"
     
@@ -48,12 +46,19 @@ class QuestionController {
     def edit() {
         def question = questionService.getQuestion(params.question)
 
-        return [question: question]
+        if (session.user == null || !session.user.isOwnerOfQuestion(question)) {
+            log.warn "WARNING : Address ${request.getRemoteAddr()} try to edit question ${params.question} but do not have rights"
+            redirect(controller: "question", action: "index")
+        } else {
+            return [question: question]
+        }
     }
 
     def search() {
         def error = false
         def searchedQuestions = null
+
+        log.info "DEBUG : Searching entry '${params.q}' ..."
 
         if (!params.q?.trim()) {
             error = true
@@ -62,7 +67,9 @@ class QuestionController {
             try {
                 // .results .offset .total .max can be used on searchedQuestions
                 searchedQuestions = searchableService.search(params.q, params)
+                log.info "DEBUG : Found ${searchedQuestions.results.size()} results"
             } catch (SearchEngineQueryParseException ex) {
+                log.error "ERROR : Search error"
                 error = true
             }
         }
@@ -74,6 +81,7 @@ class QuestionController {
         def question = questionService.getQuestion(params.id)
 
         if (session.user == null || !session.user.isOwnerOfQuestion(question)) {
+            log.warn "WARNING : Address ${request.getRemoteAddr()} try to edit question ${params.id} but do not have rights"
             redirect(controller: "question", action: "index")
         } else {
             questionService.editQuestion(params.id, params.newQuestionTitle, params.newQuestionContent, params.tags)
@@ -87,6 +95,8 @@ class QuestionController {
 
         if (session.user != null && session.user.isOwnerOfQuestion(question)) {
             questionService.deleteQuestion(params.question, session.user)
+        } else {
+            log.warn "WARNING : Address ${request.getRemoteAddr()} try to delete question ${params.question} but do not have rights"
         }
         
         redirect(controller: "question", action: "index")

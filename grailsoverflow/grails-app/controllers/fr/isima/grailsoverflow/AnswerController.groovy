@@ -16,7 +16,12 @@ class AnswerController {
         def answer = answerService.getAnswerById(params.answer)
         def question = answer.question
 
-        return [question: question, answer: answer]
+        if (session.user == null || !session.user.isOwnerOfAnswer(answer)) {
+            log.warn "WARNING : Address ${request.getRemoteAddr()} try to edit answer ${params.answer} but do not have rights"
+            redirect(controller: "question", action: "index")
+        } else {
+            return [question: question, answer: answer]
+        }
     }
 
     def editAnswer() {
@@ -32,6 +37,7 @@ class AnswerController {
     def delete() {
         if (session.user == null) {
             redirect(controller: "question", action: "index")
+            log.warn "WARNING : Address ${request.getRemoteAddr()} try to delete answer ${params.answer} but do not have rights"
         } else {
             def question = answerService.deleteAnswer(params.answer, session.user)
             questionService.updateStatus(question)

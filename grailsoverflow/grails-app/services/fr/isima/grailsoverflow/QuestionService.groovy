@@ -111,6 +111,7 @@ class QuestionService {
                 answerService.beforeDeleteActions(answer)
             }
 
+            log.info "DEBUG : Question ${questionId} deleted by user ${currentUser.id} (${currentUser.email})"
             beforeDeleteActions(question)
             user.removeFromQuestions(question)
 

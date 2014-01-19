@@ -20,9 +20,9 @@ class SessionService {
         if (!user) {
             log.info "DEBUG : New User created : " + email
             user = userService.createUser(email, email)
-        } else {
-            log.info "DEBUG : User " + email + " found"
         }
+        log.info "DEBUG : User " + email + " authenticated"
+
         user.lastVisit = new Date()
         user.save(failOnError: true)
 

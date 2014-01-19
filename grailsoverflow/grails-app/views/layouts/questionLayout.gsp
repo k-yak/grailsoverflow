@@ -83,9 +83,8 @@
         <g:layoutBody/>
 
         <hr>
-
         <footer>
-            <p>© GrailsOverflow 2013</p>
+            <p>© GrailsOverflow 2014</p>
         </footer>
     </div>
     <g:javascript library="application"/>

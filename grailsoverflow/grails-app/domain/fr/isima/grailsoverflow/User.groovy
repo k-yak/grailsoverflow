@@ -17,6 +17,24 @@ class User {
 
     Set favoriteTags = []
 
+    def favoriteTagsToString() {
+        def tagsBuilder = new StringBuffer()
+
+        favoriteTags?.each() { tag ->
+            tagsBuilder << tag.name << ','
+        }
+
+        String tagsString = tagsBuilder.toString()
+        int lastCommaIndex = tagsString.lastIndexOf(",")
+
+        if (lastCommaIndex != -1) {
+            tagsString = tagsString.substring(0, lastCommaIndex)
+        }
+
+        return tagsString.toString()
+    }
+
+
     def isOwnerOfQuestion(def question) {
         question.user.email == email
     }

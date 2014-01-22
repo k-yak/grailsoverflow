@@ -35,7 +35,9 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <img class="avatar" src="https://www.gravatar.com/avatar/${user.email.encodeAsMD5()}?s=128&r=pg" alt="" />
+                    <a href="http://gravatar.com">
+                        <img class="avatar" src="https://www.gravatar.com/avatar/${user.email.encodeAsMD5()}?s=128&r=pg" alt="" />
+                    </a>
                     <p class="score">${user.score}</p>
                 </div>
 
@@ -71,6 +73,22 @@
                             <td></td>
                             <td>last visit</td>
                             <td>${user.lastVisit.format('dd MMM yyyy')}</td>
+                        </tr>
+                        <tr class="info-title">
+                            <td>favorite tags</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>tags</td>
+                            <td>
+                                <g:each in="${user.favoriteTags}" var="tag">
+                                    <g:link style="text-decoration: none" controller="question" action="questionsForTag" params='[tag: "${tag.name}"]'>
+                                        <span class="label label-primary" >${tag.name}</span>
+                                    </g:link>
+                                </g:each>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

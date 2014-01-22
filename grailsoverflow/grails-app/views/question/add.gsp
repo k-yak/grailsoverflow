@@ -48,7 +48,7 @@
                 <g:form action="addQuestion">
                     <div class="form-group">
                         <label for="inputTitle">Title</label>
-                        <input name="newQuestionTitle" type="text" class="form-control" id="inputTitle" placeholder="Question title ..." required>
+                        <input name="newQuestionTitle" type="text" class="form-control" id="inputTitle" placeholder="Question title ..." requiredtag>
                     </div>
                     <div class="form-group">
                         <label for="CKEditor">Content</label>

@@ -19,7 +19,7 @@ class BootStrap {
                 User admin = userService.createUser("kevin.renella@gmail.com", "kevin.renella@gmail.com")
                 User floyd = userService.createUser("florian.rotagnon@gmail.com", "florian.rotagnon@gmail.com")
                 floyd.admin = true;
-                floyd.ban = true;
+                //floyd.ban = true;
 
                 Tag groovy = tagService.createTag("groovy")
                 Tag unused = tagService.createTag("unused")

@@ -41,4 +41,17 @@ class UserService {
 
         user.save(failOnError: true)
     }
+
+    def banUser(def userId) {
+        User user = getUserById(userId)
+        user.ban = true
+        user.save()
+    }
+
+    def unbanUser(def userId) {
+        User user = getUserById(userId)
+        user.ban = false
+        user.save()
+    }
+
 }

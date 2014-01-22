@@ -28,6 +28,28 @@ class UserController {
         return [user: user]
     }
 
+    def ban() {
+        User user = userService.getUserById(params.id)
+        def textButton
+        //auto-ban impossible
+        if(session.user == null || session.user.admin == false || user.id == session.user.id ) {
+            log.warn "WARNING : Address ${request.getRemoteAddr()} try to ban user ${params.id} but do not have rights"
+            redirect(controller: "question", action: "index")
+        }
+        if(!user.ban)
+        {
+            textButton="Unban"
+            userService.banUser(params.id)
+        }
+        else
+        {
+            textButton="Ban"
+            userService.unbanUser(params.id)
+        }
+
+        render(text:textButton, contentType:'text/html')
+    }
+
     //post call by form
     def editInfo() {
         if(session.user == null || (params.id != session.user.id && session.user.admin == false)) {

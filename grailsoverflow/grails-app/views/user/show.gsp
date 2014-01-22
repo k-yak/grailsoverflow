@@ -17,13 +17,28 @@
 
             <div class="page-header">
                 <div class="row">
-                    <div class="col-xs-10 col-sm-11">
+                    <div class="col-xs-10 col-sm-10">
                         <h1>User <small>${user.displayName}</small></h1>
                     </div>
-                    <div class="col-xs-3 col-sm-1">
-                        <g:if test="${session.user?.id == user.id || session.user.admin == true}">
+                    <div class="col-xs-3 col-sm-2 rightButton">
+                        <g:if test="${session.user!=null && session.user.admin == true && session.user.id != user.id}">
+                            <g:remoteLink controller="user" action="ban" params='[id: "${user.id}"]' style="text-decoration:none;" update="banStatus">
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-minus-sign"></span>
+                                    <span id="banStatus">
+                                        <g:if test="${user.ban}">
+                                            Unban
+                                        </g:if>
+                                        <g:else>
+                                            Ban
+                                        </g:else>
+                                    </span>
+                                </button>
+                            </g:remoteLink>
+                        </g:if>
+                        <g:if test="${session.user?.id == user.id || session.user?.admin == true}">
                             <g:link controller="user" action="edit" params='[id: "${user.id}"]'>
-                                <button type="button" class="btn btn-default rightButton">
+                                <button type="button" class="btn btn-default">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                      Edit
                                 </button>
@@ -35,19 +50,18 @@
 
             <div class="row">
                 <div class="col-md-4">
-<<<<<<< HEAD
-                    <img class="avatar" src="https://www.gravatar.com/avatar/${user.email.encodeAsMD5()}?s=128&r=pg" alt="" />
-                    <g:if test="${user.admin == true}">
+                    <a href="http://gravatar.com">
+                        <img class="avatar" src="https://www.gravatar.com/avatar/${user.email.encodeAsMD5()}?s=128&r=pg" alt="" />
+                    </a>
+                    <g:if test="${user.admin}">
                         <p class="admin">admin</p>
+                    </g:if>
+                    <g:if test="${user.ban}">
+                        <p class="admin">banned</p>
                     </g:if>
                     <g:if test="${user.email == "daniel.petisme@gmail.com" }">
                         <p class="admin">Corrector who gives a very good mark for the grails practice.</p>
                     </g:if>
-=======
-                    <a href="http://gravatar.com">
-                        <img class="avatar" src="https://www.gravatar.com/avatar/${user.email.encodeAsMD5()}?s=128&r=pg" alt="" />
-                    </a>
->>>>>>> 082eb0e34f136b87be70d067a8d3de63161c870c
                     <p class="score">${user.score}</p>
                 </div>
 

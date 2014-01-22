@@ -12,13 +12,18 @@ class SessionService {
         def session = webRequest.session
 
         def googleAccessToken = session[oauthService.findSessionKeyForAccessToken('google')]
-        def userInfo = oauthService.getGoogleResource(googleAccessToken, 'https://www.googleapis.com/oauth2/v1/userinfo')
-        def email = JSON.parse(userInfo.body).email
+        //def userInfo = oauthService.getGoogleResource(googleAccessToken, 'https://www.googleapis.com/oauth2/v1/userinfo')
+        def userInfo = oauthService.getGoogleResource(googleAccessToken, 'https://www.googleapis.com/plus/v1/people/me')
+
+        def email = JSON.parse(userInfo.body).emails[0].value
+        def displayName = JSON.parse(userInfo.body).displayName
+        def website = JSON.parse(userInfo.body).urls[0]?.value ?: ""
+
 
         User user = User.findByEmail(email);
         if (!user) {
             log.info "DEBUG : New User created : " + email
-            user = new User(email: email, displayName: email).save(failOnError: true)
+            user = new User(email: email, displayName: displayName, website: website).save(failOnError: true)
         }
         log.info "DEBUG : User " + email + " authenticated"
 

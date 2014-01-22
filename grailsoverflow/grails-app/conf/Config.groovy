@@ -103,12 +103,13 @@ log4j = {
 oauth {
     providers {
         google {
-            api = org.scribe.builder.api.GoogleApi
-            key = '561476212517.apps.googleusercontent.com'
-            secret = 'Yk92uV3BfO9tmSEJ8RpvqNZb'
+            //api = org.scribe.builder.api.GoogleApi
+            api = fr.isima.grailsoverflow.GoogleApi20
+            key = '36150249647-nr9fbf0ioulcm60qe41c91mt1hrtqalj.apps.googleusercontent.com'
+            secret = 'qfey9TGXvPa05AyVMrjRw2bQ'
             successUri = "/authenticate/success"
             failureUri = "/authenticate/failure"
-            scope = 'https://www.googleapis.com/auth/userinfo.email'
+            scope = 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
             callback = "${grails.serverURL}/oauth/google/callback"
         }
     }

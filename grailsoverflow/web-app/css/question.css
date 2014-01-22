@@ -162,3 +162,16 @@ a.userLink {
 a.userLink:hover {
     color: #696969;
 }
+
+.commentPanel {
+    background-color: #ffffff;
+}
+
+.comment {
+    max-width: 500px;
+    width: auto;
+    padding: 10px;
+    margin: 6px;
+    background-color: rgba(201, 196, 211, 0.18);
+    border-radius: 5px;
+}

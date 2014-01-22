@@ -35,6 +35,7 @@
 
             <div class="row">
                 <div class="col-md-4">
+<<<<<<< HEAD
                     <img class="avatar" src="https://www.gravatar.com/avatar/${user.email.encodeAsMD5()}?s=128&r=pg" alt="" />
                     <g:if test="${user.admin == true}">
                         <p class="admin">admin</p>
@@ -42,6 +43,11 @@
                     <g:if test="${user.email == "daniel.petisme@gmail.com" }">
                         <p class="admin">Corrector who gives a very good mark for the grails practice.</p>
                     </g:if>
+=======
+                    <a href="http://gravatar.com">
+                        <img class="avatar" src="https://www.gravatar.com/avatar/${user.email.encodeAsMD5()}?s=128&r=pg" alt="" />
+                    </a>
+>>>>>>> 082eb0e34f136b87be70d067a8d3de63161c870c
                     <p class="score">${user.score}</p>
                 </div>
 
@@ -77,6 +83,22 @@
                             <td></td>
                             <td>last visit</td>
                             <td>${user.lastVisit.format('dd MMM yyyy')}</td>
+                        </tr>
+                        <tr class="info-title">
+                            <td>favorite tags</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>tags</td>
+                            <td>
+                                <g:each in="${user.favoriteTags}" var="tag">
+                                    <g:link style="text-decoration: none" controller="question" action="questionsForTag" params='[tag: "${tag.name}"]'>
+                                        <span class="label label-primary" >${tag.name}</span>
+                                    </g:link>
+                                </g:each>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

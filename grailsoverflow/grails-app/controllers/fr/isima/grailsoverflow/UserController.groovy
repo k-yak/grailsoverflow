@@ -21,6 +21,7 @@ class UserController {
         User user = userService.getUserById(params.id)
 
         if(session.user == null ||( session.user.email != user?.email && session.user.admin == false )) {
+            log.warn "WARNING : Address ${request.getRemoteAddr()} try to edit user ${params.id} but do not have rights"
             redirect(controller: "question", action: "index")
         }
 
@@ -30,11 +31,11 @@ class UserController {
     //post call by form
     def editInfo() {
         if(session.user == null || (params.id != session.user.id && session.user.admin == false)) {
+            log.warn "WARNING : Address ${request.getRemoteAddr()} try to edit user ${params.id} but do not have rights"
             redirect(controller: "question", action: "index")
         }
 
-        userService.updateUser(params.id, params.displayName, params.website, params.location)
-
+        userService.updateUser(session.user.id, params.displayName, params.website, params.location, params.tags)
         redirect(controller: "user", action: "show", id: params.id )
     }
 

@@ -2,6 +2,7 @@ package fr.isima.grailsoverflow
 
 class Tag {
     String name
+    Set questions = []
 
     String toString() { 
         return name 

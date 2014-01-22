@@ -61,11 +61,9 @@ class QuestionService {
     }
 
     def newTagsFromString(Question question, String tagsAsString) {
-        def tags = question.tags
+        question.tags = []
 
         if (!tagsAsString.isEmpty()) {
-            tags?.clear()
-
             def newTags = tagsAsString.split(',')
             newTags.each() { tagName ->
                 tagName = tagName.toLowerCase()
@@ -85,8 +83,6 @@ class QuestionService {
 
         // Manage tags
         newTagsFromString(question, tags)
-
-        question.save(failOnError: true)
     }
 
 

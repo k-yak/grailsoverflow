@@ -6,7 +6,6 @@ import org.codehaus.groovy.grails.web.util.WebUtils
 
 class SessionService {
     def oauthService
-    def userService
 
     def authenticate() {
         GrailsWebRequest webRequest = WebUtils.retrieveGrailsWebRequest()
@@ -16,10 +15,10 @@ class SessionService {
         def userInfo = oauthService.getGoogleResource(googleAccessToken, 'https://www.googleapis.com/oauth2/v1/userinfo')
         def email = JSON.parse(userInfo.body).email
 
-        User user = userService.getUserByEmail(email);
+        User user = User.findByEmail(email);
         if (!user) {
             log.info "DEBUG : New User created : " + email
-            user = userService.createUser(email, email)
+            user = new User(email: email, displayName: email).save(failOnError: true)
         }
         log.info "DEBUG : User " + email + " authenticated"
 
@@ -48,6 +47,7 @@ class SessionService {
             }
         } catch (IllegalStateException e) {
             log.error "ERROR: GrailsWebRequest isn't available, any session instanciated ?"
+            log.error "ERROR: This error could be due to the bootstrap initialization (no session at this step)"
         }
     }
 }

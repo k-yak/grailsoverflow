@@ -20,7 +20,7 @@
             <li class="list-group-item"><b>Status :</b> ${question.status}</li>
             <li class="list-group-item"><b>Tags :</b>
                 <g:each in="${question.tags}" var="tag">
-                    <g:link class="${styleClass}" style="text-decoration: none" action="questionsForTag" params='[tag: "${tag.name}"]'>
+                    <g:link style="text-decoration: none" action="questionsForTag" params='[tag: "${tag.name}"]'>
                         <span class="label label-primary" >${tag.name}</span>
                     </g:link>
                 </g:each>

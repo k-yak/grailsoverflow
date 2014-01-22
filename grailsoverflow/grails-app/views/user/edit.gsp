@@ -9,6 +9,26 @@
 
     <link type="text/css" href="${resource(dir: 'css', file: 'question.css')}" rel="stylesheet">
     <link type="text/css" href="${resource(dir: 'css', file: 'user.css')}" rel="stylesheet">
+    <link href="${resource(dir: 'css/tagit', file: 'jquery.tagit.css')}" rel="stylesheet">
+    <link href="${resource(dir: 'css/tagit', file: 'tagit.ui-zendesk.css')}" rel="stylesheet">
+
+    <g:javascript src="tagit/tag-it.js" />
+
+    <script>
+        $(function(){
+            var sampleTags = ['c', 'ant', 'c++', 'java', 'php', 'c#', 'groovy', 'jquery', 'grails', 'javascript', 'asp', 'ruby', 'python', 'scala', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
+
+            //-------------------------------
+            // Single field
+            //-------------------------------
+            $('#tagit_singleFieldTags').tagit({
+                availableTags: sampleTags,
+                // This will make Tag-it submit a single form value, as a comma-delimited field.
+                singleField: true,
+                singleFieldNode: $('#tagit_singleFieldTags_value')
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -46,6 +66,11 @@
                 <div class="form-group">
                     <label for="location">Location</label>
                     <input name="location" type="text" class="form-control" id="location" value="${user.location}" placeholder="Your location ...">
+                </div>
+                <div class="form-group">
+                    <label for="tagit_singleFieldTags">Tags</label>
+                    <input name="tags" id="tagit_singleFieldTags_value" value="${user.favoriteTagsToString()}" hidden="true">
+                    <ul id="tagit_singleFieldTags"></ul>
                 </div>
 
                 <button type="submit" class="btn btn-default btn-lg">

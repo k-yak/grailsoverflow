@@ -28,11 +28,9 @@ class UserService {
     }
 
     def newFavoriteTagsFromString(User user, String tagsAsString) {
-        def tags = user.favoriteTags
+        user.favoriteTags = []
 
         if (!tagsAsString.isEmpty()) {
-            tags?.clear()
-
             def newTags = tagsAsString.split(',')
             newTags.each() { tagName ->
                 tagName = tagName.toLowerCase()

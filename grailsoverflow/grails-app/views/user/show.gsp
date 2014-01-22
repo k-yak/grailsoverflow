@@ -21,8 +21,8 @@
                         <h1>User <small>${user.displayName}</small></h1>
                     </div>
                     <div class="col-xs-3 col-sm-1">
-                        <g:if test="${session.user?.id == user.id}">
-                            <g:link controller="user" action="edit" params='[id: "${session.user.id}"]'>
+                        <g:if test="${session.user?.id == user.id || session.user.admin == true}">
+                            <g:link controller="user" action="edit" params='[id: "${user.id}"]'>
                                 <button type="button" class="btn btn-default rightButton">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                      Edit
@@ -36,6 +36,12 @@
             <div class="row">
                 <div class="col-md-4">
                     <img class="avatar" src="https://www.gravatar.com/avatar/${user.email.encodeAsMD5()}?s=128&r=pg" alt="" />
+                    <g:if test="${user.admin == true}">
+                        <p class="admin">admin</p>
+                    </g:if>
+                    <g:if test="${user.email == "daniel.petisme@gmail.com" }">
+                        <p class="admin">Corrector who gives a very good mark for the grails practice.</p>
+                    </g:if>
                     <p class="score">${user.score}</p>
                 </div>
 

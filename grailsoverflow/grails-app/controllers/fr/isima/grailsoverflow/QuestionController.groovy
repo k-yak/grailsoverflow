@@ -46,7 +46,7 @@ class QuestionController {
     def edit() {
         def question = questionService.getQuestion(params.question)
 
-        if (session.user == null || !session.user.isOwnerOfQuestion(question)) {
+        if (session.user == null || (!session.user.isOwnerOfQuestion(question)  && session.user.admin == false) ) {
             log.warn "WARNING : Address ${request.getRemoteAddr()} try to edit question ${params.question} but do not have rights"
             redirect(controller: "question", action: "index")
         } else {
@@ -80,7 +80,7 @@ class QuestionController {
     def editQuestion() {
         def question = questionService.getQuestion(params.id)
 
-        if (session.user == null || !session.user.isOwnerOfQuestion(question)) {
+        if (session.user == null || (!session.user.isOwnerOfQuestion(question)  && session.user.admin == false) ) {
             log.warn "WARNING : Address ${request.getRemoteAddr()} try to edit question ${params.id} but do not have rights"
             redirect(controller: "question", action: "index")
         } else {
@@ -93,7 +93,7 @@ class QuestionController {
     def delete() {
         def question = questionService.getQuestion(params.question)
 
-        if (session.user != null && session.user.isOwnerOfQuestion(question)) {
+        if (session.user != null && (session.user.isOwnerOfQuestion(question)  || session.user.admin == true)) {
             questionService.deleteQuestion(params.question, session.user)
         } else {
             log.warn "WARNING : Address ${request.getRemoteAddr()} try to delete question ${params.question} but do not have rights"

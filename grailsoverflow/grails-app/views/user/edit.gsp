@@ -20,7 +20,7 @@
                     <h1>User <small>${user.displayName}</small></h1>
                 </div>
                 <div class="col-xs-3 col-sm-1">
-                    <g:link controller="user" action="show" params='[id: "${session.user.id}"]'>
+                    <g:link controller="user" action="show" params='[id: "${user.id}"]'>
                         <button type="button" class="btn btn-default rightButton">
                             <span class="glyphicon glyphicon-user"></span>
                             Show
@@ -32,6 +32,9 @@
 
         <div class="row">
             <g:form action="editInfo">
+
+                <input name="id" type="hidden" class="form-control" id="id" value="${user.id}">
+
                 <div class="form-group">
                     <label for="displayName">Display name</label>
                     <input name="displayName" type="text" class="form-control" id="displayName" value="${user.displayName}" placeholder="Your display name ...">

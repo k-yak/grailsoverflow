@@ -51,7 +51,7 @@
             <g:link class="userLink" controller="user" action="show" params='[id: "${answer.user.id}"]'>${answer.user.displayName}</g:link></small>
 
              <!-- Edit/Delete panel -->
-            <g:if test="${session.user != null && session.user.isOwnerOfAnswer(answer)}" >
+            <g:if test="${session.user != null && (session.user.isOwnerOfAnswer(answer) || session.user.admin == true)}" >
                 <br />
                 <g:link style="text-decoration: none;" controller="answer" action="edit" params='[answer: "${answer.id}"]'>
                     <button type="button" class="btn btn-default btn-xs">Edit</button>

@@ -20,7 +20,7 @@ class UserController {
         // call userService to get the user corresponding to params.id
         User user = userService.getUserById(params.id)
 
-        if(session.user == null || session.user.email != user?.email) {
+        if(session.user == null ||( session.user.email != user?.email && session.user.admin == false )) {
             redirect(controller: "question", action: "index")
         }
 
@@ -29,13 +29,13 @@ class UserController {
 
     //post call by form
     def editInfo() {
-        if(session.user == null) {
+        if(session.user == null || (params.id != session.user.id && session.user.admin == false)) {
             redirect(controller: "question", action: "index")
         }
 
-        userService.updateUser(session.user.id, params.displayName, params.website, params.location)
+        userService.updateUser(params.id, params.displayName, params.website, params.location)
 
-        redirect(controller: "user", action: "show", id: session.user.id )
+        redirect(controller: "user", action: "show", id: params.id )
     }
 
 

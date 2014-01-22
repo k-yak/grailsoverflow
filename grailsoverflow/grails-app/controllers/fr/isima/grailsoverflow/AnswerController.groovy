@@ -16,7 +16,7 @@ class AnswerController {
         def answer = answerService.getAnswerById(params.answer)
         def question = answer.question
 
-        if (session.user == null || !session.user.isOwnerOfAnswer(answer)) {
+        if (session.user == null || (!session.user.isOwnerOfAnswer(answer) && session.user.admin == false)) {
             log.warn "WARNING : Address ${request.getRemoteAddr()} try to edit answer ${params.answer} but do not have rights"
             redirect(controller: "question", action: "index")
         } else {

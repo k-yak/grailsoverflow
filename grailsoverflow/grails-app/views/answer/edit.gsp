@@ -13,7 +13,7 @@
 </head>
 <body>
 <!-- Security test -->
-<g:if test="${session.user != null && session.user.isOwnerOfAnswer(answer)}" >
+<g:if test="${session.user != null && ( session.user.isOwnerOfAnswer(answer) || session.user.admin)}" >
     <div class="page-header">
         <h1>Question : ${question.title}<br />
             <small>Edit your answer</small>

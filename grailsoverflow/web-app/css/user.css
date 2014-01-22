@@ -13,6 +13,13 @@ h1{
     font-weight: bold;
 }
 
+.admin{
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: darkred;
+}
+
 tr.info-title{
     background-color: #f9f9f9;
 }

@@ -14,6 +14,8 @@ class User {
     int score = 0
     Date lastVisit = new Date()
     int profileView = 0
+    boolean admin = false
+    boolean ban = false
 
     Set favoriteTags = []
 

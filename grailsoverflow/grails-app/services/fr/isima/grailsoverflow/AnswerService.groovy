@@ -69,7 +69,7 @@ class AnswerService {
         def answer = getAnswerById(answerId)
         def question = answer.question
 
-        if (currentUser.isOwnerOfAnswer(answer)) {
+        if (currentUser.isOwnerOfAnswer(answer) || currentUser.admin == true) {
             log.info "DEBUG : Answer ${answerId} deleted by user ${currentUser.id} (${currentUser.email})"
             beforeDeleteActions(answer)
             question.removeFromAnswers(answer)

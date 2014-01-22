@@ -104,7 +104,7 @@ class QuestionService {
     def deleteQuestion(def questionId, User currentUser) {
         def question = getQuestion(questionId)
 
-        if (currentUser != null && currentUser.isOwnerOfQuestion(question)) {
+        if (currentUser != null && (currentUser.isOwnerOfQuestion(question) || currentUser.admin == true)) {
             User user = question.user
 
             question.answers.each() { answer ->

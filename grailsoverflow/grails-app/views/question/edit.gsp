@@ -33,7 +33,7 @@
     </head>
     <body>
         <!-- Security test -->
-        <g:if test="${session.user != null && session.user.isOwnerOfQuestion(question)}" >
+        <g:if test="${session.user != null && ( session.user.isOwnerOfQuestion(question) || session.user.admin == true ) }" >
             <div class="page-header">
                 <h1>${question.title}<br />
                     <small>Edit your question</small>

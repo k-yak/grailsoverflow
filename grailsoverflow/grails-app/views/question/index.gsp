@@ -11,8 +11,16 @@
     </head>
 
     <body>
+
         <div class="row row-offcanvas row-offcanvas-right">
             <div class="col-xs-12 col-sm-9">
+
+                <g:if test="${message != null}">
+                    <div class="alert alert-${type}">
+                        ${message}
+                    </div>
+                </g:if>
+
                 <div class="page-header">
                     <h1>Questions <small>${subtitle}</small></h1>
                 </div>

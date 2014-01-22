@@ -3,6 +3,7 @@ package fr.isima.grailsoverflow
 class AnswerController {
     def answerService
     def questionService
+    def sessionService
 
     def accept() {
         def answer = answerService.getAnswerById(params.id)
@@ -18,6 +19,7 @@ class AnswerController {
 
         if (session.user == null || (!session.user.isOwnerOfAnswer(answer) && session.user.admin == false)) {
             log.warn "WARNING : Address ${request.getRemoteAddr()} try to edit answer ${params.answer} but do not have rights"
+            sessionService.addMessage("danger", "You do not have right to do that!")
             redirect(controller: "question", action: "index")
         } else {
             return [question: question, answer: answer]
@@ -26,16 +28,17 @@ class AnswerController {
 
     def editAnswer() {
         if (session.user == null) {
+            sessionService.addMessage("danger", "You do not have right to do that!")
             redirect(controller: "question", action: "index")
         } else {
             def answer = answerService.editAnswer(params.id, params.newAnswerContent)
-
             redirect(uri: "/question/show/${answer.question.id}")
         }
     }
         
     def delete() {
         if (session.user == null) {
+            sessionService.addMessage("danger", "You do not have right to do that!")
             redirect(controller: "question", action: "index")
             log.warn "WARNING : Address ${request.getRemoteAddr()} try to delete answer ${params.answer} but do not have rights"
         } else {

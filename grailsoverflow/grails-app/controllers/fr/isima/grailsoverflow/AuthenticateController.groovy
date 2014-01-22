@@ -12,11 +12,14 @@ class AuthenticateController {
         if(session.user.ban == true)
         {
             log.warn "WARNING : User ${session.user.id} try to connect but has been banned"
-            logout()
+            sessionService.addMessage("danger", "You have been banned!")
+            sessionService.logout()
+            redirect(uri: "/question/index")
         }
         else
         {
             def targetUri = session.targetUri ?: "/question/index"
+            sessionService.addMessage("success", "Authentication succeeded!")
             redirect(uri: targetUri)
         }
     }
@@ -29,7 +32,6 @@ class AuthenticateController {
         def targetUri = session.targetUri ?: "/question/index"
 
         sessionService.logout()
-
         redirect(uri: targetUri)
     }
 }

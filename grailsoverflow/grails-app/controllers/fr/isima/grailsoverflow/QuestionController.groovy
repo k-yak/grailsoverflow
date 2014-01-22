@@ -6,6 +6,7 @@ class QuestionController {
     def searchableService
     def questionService
     def tagService
+    def sessionService
 
     String subtitle = "Latest questions"
     
@@ -16,13 +17,17 @@ class QuestionController {
         def offset = params?.offset ?: 0
         def max = params?.max ?: AppConfig.MAX_QUESTION
 
+        def message = sessionService.getMessage()
+        def type = sessionService.getType()
+        sessionService.clearMessage()
+
         def latestQuestionsPaginate = questionService.getLatestQuestions(offset, max)
         def completeQuestionList = questionService.getLatestQuestions(0, 100)
         def tags = questionService.tagsForQuestions(completeQuestionList)
         
-        return [questionsToDisplay: latestQuestionsPaginate, completeQuestionList: completeQuestionList, completePaginationList: completeQuestionList, tags: tags, subtitle: subtitle]
+        return [questionsToDisplay: latestQuestionsPaginate, completeQuestionList: completeQuestionList, completePaginationList: completeQuestionList, tags: tags, subtitle: subtitle, message: message, type: type]
     }
-    
+
     def questionsForTag() {
         def offset = params?.offset ?: 0
         def max = params?.max ?: AppConfig.MAX_QUESTION
@@ -48,6 +53,7 @@ class QuestionController {
 
         if (session.user == null || (!session.user.isOwnerOfQuestion(question)  && session.user.admin == false) ) {
             log.warn "WARNING : Address ${request.getRemoteAddr()} try to edit question ${params.question} but do not have rights"
+            sessionService.addMessage("danger", "You do not have right to do that!")
             redirect(controller: "question", action: "index")
         } else {
             return [question: question]
@@ -82,6 +88,7 @@ class QuestionController {
 
         if (session.user == null || (!session.user.isOwnerOfQuestion(question)  && session.user.admin == false) ) {
             log.warn "WARNING : Address ${request.getRemoteAddr()} try to edit question ${params.id} but do not have rights"
+            sessionService.addMessage("danger", "You do not have right to do that!")
             redirect(controller: "question", action: "index")
         } else {
             questionService.editQuestion(params.id, params.newQuestionTitle, params.newQuestionContent, params.tags)

@@ -27,7 +27,7 @@ class QuestionService {
         sessionService.reloadUserSession()
     }
 
-    def getUnacceptedQuestions(int offset, int max) {
+    def getUnacceptedQuestions(def offset, def max) {
         Question.findAllByStatusNotEqual("Accepted", [sort: "dateCreated", order: "desc", offset: offset, max: max])
     }
 
@@ -35,7 +35,7 @@ class QuestionService {
         Question.findAllByStatusNotEqualAndIdInList("Accepted", idList, [sort: "dateCreated", order: "desc", offset: offset, max: max])
     }
 
-    def getLatestQuestions(int offset, int max) {
+    def getLatestQuestions(def offset, def max) {
         Question.list(sort: "dateCreated", order: "desc", offset: offset, max: max)
     }
 

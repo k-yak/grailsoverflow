@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta name="layout" content="questionLayout"/>
-        <title>GrailsOverflow - Questions</title>
+        <title><g:message code="grow.index.title" /></title>
 
         <link href="${resource(dir: 'css', file: 'question.css')}" rel="stylesheet">
     </head>
@@ -17,12 +17,12 @@
 
                 <g:if test="${message != null}">
                     <div class="alert alert-${type}">
-                        ${message}
+                        <g:message code="${message}" />
                     </div>
                 </g:if>
 
                 <div class="page-header">
-                    <h1>Questions <small>${subtitle}</small></h1>
+                    <h1><g:message code="grow.index.question" /> <small><g:message code="${subtitle}" /></small></h1>
                 </div>
               
                 <div class="row">
@@ -39,7 +39,7 @@
             <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" >
                 <g:if test="${tags != null && !tags.isEmpty()}">
                     <div class="form-group">
-                        <label for="sidebar">Related tags</label>
+                        <label for="sidebar"><g:message code="grow.index.related.tags" /></label>
                         <ul class="list-group">
                             <g:render template="/question/tagTemplate" collection="${tags}" var="tag"/>
                         </ul>
@@ -47,7 +47,7 @@
                 </g:if>
                 <g:if test="${session.user != null && session.user.favoriteTags != null && !session.user.favoriteTags.isEmpty()}">
                     <div class="form-group">
-                        <label for="sidebar">Favorite tags</label>
+                        <label for="sidebar"><g:message code="grow.index.favorite.tags" /></label>
                         <ul class="list-group">
                             <g:render template="/question/tagTemplate" collection="${session.user.favoriteTags}" var="tag"/>
                         </ul>

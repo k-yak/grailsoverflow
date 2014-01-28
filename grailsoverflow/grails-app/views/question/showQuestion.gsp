@@ -20,20 +20,20 @@
             <div id="js_voteLogin" style="display: none;" class="alert alert-danger">
                 <a class="close">&times;</a>
                 <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />
-                You must be <oauth:connect class="alert-link" provider="google" id="google-connect-link">logged in</oauth:connect> to vote.
+                <g:message code="grow.question.showQuestion.you.must.be" /><oauth:connect class="alert-link" provider="google" id="google-connect-link"><g:message code="grow.question.showQuestion.logged.in" /></oauth:connect> <g:message code="grow.question.showQuestion.to.vote" />.
             </div>
         </g:if>
 
         <!-- Answer points message -->
-        <g:if test="${question.status != 'Accepted'}">
+        <g:if test="${question.status != 'grow.status.accepted'}">
             <div class="alert alert-info">
-                <strong>+${AppConfig.ANSWER_SCORE}</strong> to anyone that answer this question.
+                <strong>+${AppConfig.ANSWER_SCORE}</strong> <g:message code="grow.question.showQuestion.give.point" />.
                 <g:if test="${session.user != null}">
                     <span class="alert-link">Try your luck!</span>
                 </g:if>
                 <g:else>
                     <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />
-                    <oauth:connect class="alert-link" provider="google" id="google-connect-link">Sign In!</oauth:connect>
+                    <oauth:connect class="alert-link" provider="google" id="google-connect-link"><g:message code="grow.question.showQuestion.sign.in" />!</oauth:connect>
                     </g:else>
             </div>
         </g:if>
@@ -68,25 +68,25 @@
                 <div class="col-md-11 col-sm-4 col-xs-10">
                     <blockquote>
                         <p>${question.content}</p>
-                        <small>Asked ${question.dateCreated.format('dd MMM yyyy')} at ${question.dateCreated.format('HH:mm')} by
+                        <small><g:message code="grow.question.showQuestion.asked" /> ${question.dateCreated.format('dd MMM yyyy')} <g:message code="grow.question.showQuestion.at" /> ${question.dateCreated.format('HH:mm')} <g:message code="grow.question.showQuestion.by" />
                             <g:link class="userLink" controller="user" action="show" params='[id: "${question.user.id}"]'>${question.user.displayName}</g:link></small>
 
                         <!-- Edit/Delete panel -->
                             <g:if test="${session.user != null && (session.user.isOwnerOfQuestion(question) || session.user.admin == true)}" >
                             <br />
                             <g:link style="text-decoration: none;" action="edit" params='[question: "${question.id}"]'>
-                                <button type="button" class="btn btn-default btn-xs">Edit</button>
+                                <button type="button" class="btn btn-default btn-xs"><g:message code="grow.question.showQuestion.edit" /></button>
                             </g:link>
                             <g:link style="text-decoration: none;" action="delete" params='[question: "${question.id}"]'>
-                                <button type="button" class="btn btn-danger btn-xs">Delete</button>
+                                <button type="button" class="btn btn-danger btn-xs"><g:message code="grow.question.showQuestion.delete" /></button>
                             </g:link>
                         </g:if>
                     </blockquote>
                 </div>
             </div>
             <ul class="list-group">
-                <li class="list-group-item"><b>Status :</b> ${question.status}</li>
-                <li class="list-group-item"><b>Tags :</b>
+                <li class="list-group-item"><b><g:message code="grow.question.showQuestion.status" /> :</b> <g:message code="${question.status}"/></li>
+                <li class="list-group-item"><b><g:message code="grow.question.showQuestion.tags" /> :</b>
                     <g:each in="${question.tags}" var="tag">
                         <g:link class="${styleClass}" style="text-decoration: none" action="questionsForTag" params='[tag: "${tag.name}"]'>
                             <span class="label label-primary" >${tag.name}</span>
@@ -99,7 +99,7 @@
         <!-- Answers panel -->
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h2>${question.answers.size()} answer<g:if test="${question.answers.size() > 1}">s</g:if></h2>
+                <h2>${question.answers.size()} <g:message code="grow.question.showQuestion.answer" /> <g:if test="${question.answers.size() > 1}">s</g:if></h2>
                 </div>
             <g:render template="/question/answerTemplate" collection="${question.sortedAnswers()}" var="answer" />
         </div>
@@ -108,12 +108,12 @@
         <g:if test="${session.user != null}">
             <div id="js_contentRequired" style="display: none;" class="alert alert-danger">
                 <a class="close">&times;</a>
-                Your answer is empty.
+                <g:message code="grow.question.showQuestion.answer.empty" />
             </div>
             <g:form action="answer" id="${question.id}">
                 <textarea name="answerContent" id="CKEditor" placeholder="Your answer here ..." required></textarea><br />
                 <button type="submit" class="btn btn-default btn-lg">
-                    <span class="glyphicon glyphicon-ok"></span> Post your answer
+                    <span class="glyphicon glyphicon-ok"></span> <g:message code="grow.question.showQuestion.post.answer" />
                 </button>
             </g:form>
             <script>

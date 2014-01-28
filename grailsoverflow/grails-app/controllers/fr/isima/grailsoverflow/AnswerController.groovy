@@ -19,7 +19,7 @@ class AnswerController {
 
         if (session.user == null || (!session.user.isOwnerOfAnswer(answer) && session.user.admin == false)) {
             log.warn "WARNING : Address ${request.getRemoteAddr()} try to edit answer ${params.answer} but do not have rights"
-            sessionService.addMessage("danger", "You do not have right to do that!")
+            sessionService.addMessage("danger", "grow.error.access.forbidden")
             redirect(controller: "question", action: "index")
         } else {
             return [question: question, answer: answer]
@@ -28,7 +28,7 @@ class AnswerController {
 
     def editAnswer() {
         if (session.user == null) {
-            sessionService.addMessage("danger", "You do not have right to do that!")
+            sessionService.addMessage("danger", "grow.error.access.forbidden")
             redirect(controller: "question", action: "index")
         } else {
             def answer = answerService.editAnswer(params.id, params.newAnswerContent)
@@ -38,7 +38,7 @@ class AnswerController {
         
     def delete() {
         if (session.user == null) {
-            sessionService.addMessage("danger", "You do not have right to do that!")
+            sessionService.addMessage("danger", "grow.error.access.forbidden")
             redirect(controller: "question", action: "index")
             log.warn "WARNING : Address ${request.getRemoteAddr()} try to delete answer ${params.answer} but do not have rights"
         } else {

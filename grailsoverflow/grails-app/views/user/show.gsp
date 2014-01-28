@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta name="layout" content="questionLayout"/>
-    <title>GrailsOverflow - User</title>
+    <title>GrailsOverflow - <g:message code="grow.user.user" /></title>
 
     <link type="text/css" href="${resource(dir: 'css', file: 'question.css')}" rel="stylesheet">
     <link type="text/css" href="${resource(dir: 'css', file: 'user.css')}" rel="stylesheet">
@@ -18,7 +18,7 @@
             <div class="page-header">
                 <div class="row">
                     <div class="col-xs-10 col-sm-10">
-                        <h1>User <small>${user.displayName}</small></h1>
+                        <h1><g:message code="grow.user.user" /> <small>${user.displayName}</small></h1>
                     </div>
                     <div class="col-xs-3 col-sm-2 rightButton">
                         <g:if test="${session.user!=null && session.user.admin == true && session.user.id != user.id}">
@@ -27,10 +27,10 @@
                                     <span class="glyphicon glyphicon-minus-sign"></span>
                                     <span id="banStatus">
                                         <g:if test="${user.ban}">
-                                            Unban
+                                            <g:message code="grow.user.unban" />
                                         </g:if>
                                         <g:else>
-                                            Ban
+                                            <g:message code="grow.user.ban" />
                                         </g:else>
                                     </span>
                                 </button>
@@ -40,7 +40,7 @@
                             <g:link controller="user" action="edit" params='[id: "${user.id}"]'>
                                 <button type="button" class="btn btn-default">
                                     <span class="glyphicon glyphicon-pencil"></span>
-                                     Edit
+                                    <g:message code="grow.user.edit" />
                                 </button>
                             </g:link>
                         </g:if>
@@ -54,13 +54,13 @@
                         <img class="avatar" src="https://www.gravatar.com/avatar/${user.email.encodeAsMD5()}?s=128&r=pg" alt="" />
                     </a>
                     <g:if test="${user.admin}">
-                        <p class="admin">admin</p>
+                        <p class="admin"><g:message code="grow.user.admin" /></p>
                     </g:if>
                     <g:if test="${user.ban}">
-                        <p class="admin">banned</p>
+                        <p class="admin"><g:message code="grow.user.banned" /></p>
                     </g:if>
                     <g:if test="${user.email == "daniel.petisme@gmail.com" }">
-                        <p class="admin">Corrector who gives a very good mark for the grails practice.</p>
+                        <p class="admin"><g:message code="grow.user.private.joke" />.</p>
                     </g:if>
                     <p class="score">${user.score}</p>
                 </div>
@@ -69,43 +69,43 @@
                     <table class="table">
                         <tbody>
                         <tr class="info-title">
-                            <td>bio</td>
+                            <td><g:message code="grow.user.bio" /></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>website</td>
+                            <td><g:message code="grow.user.website" /></td>
                             <td>${user.website}</td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>location</td>
+                            <td><g:message code="grow.user.location" /></td>
                             <td>${user.location}</td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>email</td>
+                            <td><g:message code="grow.user.email" /></td>
                             <td>${user.email}</td>
                         </tr>
                         <tr class="info-title">
-                            <td>visits</td>
+                            <td><g:message code="grow.user.visits" /></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>last visit</td>
+                            <td><g:message code="grow.user.last.visit" /></td>
                             <td>${user.lastVisit.format('dd MMM yyyy')}</td>
                         </tr>
                         <tr class="info-title">
-                            <td>favorite tags</td>
+                            <td><g:message code="grow.user.favorite.tags" /></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>tags</td>
+                            <td><g:message code="grow.user.tags" /></td>
                             <td>
                                 <g:each in="${user.favoriteTags}" var="tag">
                                     <g:link style="text-decoration: none" controller="question" action="questionsForTag" params='[tag: "${tag.name}"]'>

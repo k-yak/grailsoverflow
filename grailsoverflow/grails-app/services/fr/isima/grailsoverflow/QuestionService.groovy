@@ -147,11 +147,11 @@ class QuestionService {
 
     def updateStatus(Question question) {
         if (question.answers.isEmpty()) {
-            question.status = "Unanswered"
+            question.status = "grow.status.unanswered"
         } else if (getAcceptedAnswerForQuestion(question) != null) {
-            question.status = "Accepted"
+            question.status = "grow.status.accepted"
         } else {
-            question.status = "Answered"
+            question.status = "grow.status.answered"
         }
 
         question.save(failOnError: true)

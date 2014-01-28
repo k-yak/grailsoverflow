@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta name="layout" content="questionLayout"/>
-    <title>GrailsOverflow - Search</title>
+    <title>GrailsOverflow - <g:message code="grow.question.search.search" /></title>
 
     <link href="${resource(dir: 'css', file: 'question.css')}" rel="stylesheet">
 </head>
@@ -14,7 +14,7 @@
 <div class="row row-offcanvas row-offcanvas-right">
     <div class="col-xs-12 col-sm-12">
         <div class="page-header">
-            <h1>Questions <small>Search</small></h1>
+            <h1><g:message code="grow.question.search.questions" /> <small><g:message code="grow.question.search.search" /></small></h1>
         </div>
 
         <div class="row">
@@ -30,11 +30,11 @@
                     </div>
                 </g:if>
                 <g:else>
-                    <div class="center">Nothing matched your query</div>
+                    <div class="center"><g:message code="grow.question.search.no.match" /></div>
                 </g:else>
             </g:if>
             <g:else>
-                <div class="center">Nothing matched your query</div>
+                <div class="center"><g:message code="grow.question.search.no.match" /></div>
             </g:else>
         </div>
     </div>

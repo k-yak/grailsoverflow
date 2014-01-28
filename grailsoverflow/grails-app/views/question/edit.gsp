@@ -36,33 +36,33 @@
         <g:if test="${session.user != null && ( session.user.isOwnerOfQuestion(question) || session.user.admin == true ) }" >
             <div class="page-header">
                 <h1>${question.title}<br />
-                    <small>Edit your question</small>
+                    <small><g:message code="grow.question.edit.edit.your.question" /></small>
                 </h1>
             </div>
             <div id="js_contentRequired" style="display: none;" class="alert alert-danger">
                 <a class="close">&times;</a>
-                Your answer is empty.
+                <g:message code="grow.question.edit.answer.empty" />.
             </div>
             <g:form action="editQuestion" id="${question.id}">
                 <div class="form-group">
-                    <label for="inputTitle">Title</label>
+                    <label for="inputTitle"><g:message code="grow.question.edit.title" /></label>
                     <input name="newQuestionTitle" type="text" class="form-control" id="inputTitle" placeholder="Question title ..." value="${question.title}" required>
                 </div>
                 <div class="form-group">
-                    <label for="CKEditor">Content</label>
+                    <label for="CKEditor"><g:message code="grow.question.edit.content" /></label>
                     <textarea name="newQuestionContent" id="CKEditor" placeholder="Your question here ..." required><br />
                         ${question.content}
                     </textarea>
                 </div>
                 <div class="form-group">
-                    <label for="tagit_singleFieldTags">Tags</label>
+                    <label for="tagit_singleFieldTags"><g:message code="grow.question.edit.tags" /></label>
                     <input name="tags" id="tagit_singleFieldTags_value" value="${question.tagsToString()}" hidden="true">
                     <ul id="tagit_singleFieldTags"></ul>
                 </div>
                 <g:link style="text-decoration: none;" action="showQuestion" params='[question: "${question.id}"]'>
-                    <button type="button" class="btn btn-default">Cancel</button>
+                    <button type="button" class="btn btn-default"><g:message code="grow.question.edit.cancel" /></button>
                 </g:link>
-                <button type="submit" class="btn btn-primary">Accept</button>
+                <button type="submit" class="btn btn-primary"><g:message code="grow.question.edit.accept" /></button>
             </g:form>
             
             <script>

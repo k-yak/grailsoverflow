@@ -1,7 +1,7 @@
 package fr.isima.grailsoverflow
 
 class Question extends Message {
-    String status = "Unanswered"
+    String status = "grow.status.unanswered"
     String title
     int views
     Set answers = []
@@ -36,7 +36,7 @@ class Question extends Message {
     static constraints = {
         title blank: false
         content blank: false, maxSize: 1000
-        status inList: [ "Unanswered", "Answered", "Accepted" ]
+        status inList: [ "grow.status.unanswered", "grow.status.answered", "grow.status.accepted" ]
         views min: 0
     }
     

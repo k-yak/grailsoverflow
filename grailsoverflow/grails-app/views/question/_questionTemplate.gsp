@@ -11,14 +11,14 @@
                 <own:oneLineContent content="${question.content}" />
             </p>
             <div style="float: right; color: darkgray;">
-                <small>Asked ${question.dateCreated.format('dd MMM yyyy')} at ${question.dateCreated.format('HH:mm')} by
+                <small><g:message code="grow.question.showQuestion.asked" /> ${question.dateCreated.format('dd MMM yyyy')} <g:message code="grow.question.showQuestion.at" /> ${question.dateCreated.format('HH:mm')} <g:message code="grow.question.showQuestion.by" />
                     <g:link class="userLink" controller="user" action="show" params='[id: "${question.user.id}"]'>${question.user.displayName}</g:link></small>
             </div>
         </div>
         
         <ul class="list-group">
-            <li class="list-group-item"><b>Status :</b> ${question.status}</li>
-            <li class="list-group-item"><b>Tags :</b>
+            <li class="list-group-item"><b><g:message code="grow.question.showQuestion.status" /> :</b> <g:message code="${question.status}"/></li>
+            <li class="list-group-item"><b><g:message code="grow.question.showQuestion.tags" /> :</b>
                 <g:each in="${question.tags}" var="tag">
                     <g:link style="text-decoration: none" action="questionsForTag" params='[tag: "${tag.name}"]'>
                         <span class="label label-primary" >${tag.name}</span>

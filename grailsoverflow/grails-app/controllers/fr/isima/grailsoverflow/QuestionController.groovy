@@ -8,7 +8,7 @@ class QuestionController {
     def tagService
     def sessionService
 
-    String subtitle = "Latest questions"
+    String subtitle = "grow.substitle.latest.questions"
     
     /**
      * Latest questions
@@ -88,7 +88,7 @@ class QuestionController {
 
         if (session.user == null || (!session.user.isOwnerOfQuestion(question)  && session.user.admin == false) ) {
             log.warn "WARNING : Address ${request.getRemoteAddr()} try to edit question ${params.id} but do not have rights"
-            sessionService.addMessage("danger", "You do not have right to do that!")
+            sessionService.addMessage("danger", "grow.error.access.forbidden")
             redirect(controller: "question", action: "index")
         } else {
             questionService.editQuestion(params.id, params.newQuestionTitle, params.newQuestionContent, params.tags)

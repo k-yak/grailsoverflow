@@ -28,11 +28,11 @@ class QuestionService {
     }
 
     def getUnacceptedQuestions(def offset, def max) {
-        Question.findAllByStatusNotEqual("Accepted", [sort: "dateCreated", order: "desc", offset: offset, max: max])
+        Question.findAllByStatusNotEqual("grow.status.accepted", [sort: "dateCreated", order: "desc", offset: offset, max: max])
     }
 
     def getUnacceptedQuestionsInList(def idList, def offset, def max) {
-        Question.findAllByStatusNotEqualAndIdInList("Accepted", idList, [sort: "dateCreated", order: "desc", offset: offset, max: max])
+        Question.findAllByStatusNotEqualAndIdInList("grow.status.accepted", idList, [sort: "dateCreated", order: "desc", offset: offset, max: max])
     }
 
     def getLatestQuestions(def offset, def max) {

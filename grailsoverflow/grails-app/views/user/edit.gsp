@@ -57,15 +57,15 @@
 
                 <div class="form-group">
                     <label for="displayName"><g:message code="grow.user.display.name" /></label>
-                    <input name="displayName" type="text" class="form-control" id="displayName" value="${user.displayName}" placeholder="Your display name ...">
+                    <input name="displayName" type="text" class="form-control" id="displayName" value="${user.displayName}" placeholder="${ message( code:'grow.user.your.display.name' ) } ...">
                 </div>
                 <div class="form-group">
                     <label for="website"><g:message code="grow.user.website" /></label>
-                    <input name="website" type="text" class="form-control" id="website" value="${user.website}" placeholder="Your website ...">
+                    <input name="website" type="text" class="form-control" id="website" value="${user.website}" placeholder="${ message( code:'grow.user.your.website' ) } ...">
                 </div>
                 <div class="form-group">
                     <label for="location"><g:message code="grow.user.location" /></label>
-                    <input name="location" type="text" class="form-control" id="location" value="${user.location}" placeholder="Your location ...">
+                    <input name="location" type="text" class="form-control" id="location" value="${user.location}" placeholder="${ message( code:'grow.user.your.location' ) } ...">
                 </div>
                 <div class="form-group">
                     <label for="tagit_singleFieldTags"><g:message code="grow.user.tags" /></label>

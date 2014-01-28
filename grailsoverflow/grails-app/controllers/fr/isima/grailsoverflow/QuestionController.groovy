@@ -25,7 +25,7 @@ class QuestionController {
         def completeQuestionList = questionService.getLatestQuestions(0, 100)
         def tags = questionService.tagsForQuestions(completeQuestionList)
         
-        return [questionsToDisplay: latestQuestionsPaginate, completeQuestionList: completeQuestionList, completePaginationList: completeQuestionList, tags: tags, subtitle: subtitle, message: message, type: type]
+        return [questionsToDisplay: latestQuestionsPaginate, completeQuestionList: completeQuestionList, completePaginationList: completeQuestionList, tags: tags, subtitle: subtitle, messageContent: message, type: type]
     }
 
     def questionsForTag() {

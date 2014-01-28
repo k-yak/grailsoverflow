@@ -48,11 +48,11 @@
                 <g:form action="addQuestion">
                     <div class="form-group">
                         <label for="inputTitle"><g:message code="grow.question.add.title" /></label>
-                        <input name="newQuestionTitle" type="text" class="form-control" id="inputTitle" placeholder="Question title ..." requiredtag>
+                        <input name="newQuestionTitle" type="text" class="form-control" id="inputTitle" placeholder="${ message( code:'grow.add.title' ) } ..." requiredtag>
                     </div>
                     <div class="form-group">
                         <label for="CKEditor"><g:message code="grow.question.add.content" /></label>
-                        <textarea name="newQuestionContent" id="CKEditor" placeholder="Your question here ..." required><br />
+                        <textarea name="newQuestionContent" id="CKEditor" placeholder="${ message( code:'grow.add.question.content' ) } ..." required><br />
                         </textarea>
                     </div>
                     <div class="form-group">

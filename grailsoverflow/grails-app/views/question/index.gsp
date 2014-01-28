@@ -15,9 +15,9 @@
         <div class="row row-offcanvas row-offcanvas-right">
             <div class="col-xs-12 col-sm-9">
 
-                <g:if test="${message != null}">
+                <g:if test="${messageContent != null}">
                     <div class="alert alert-${type}">
-                        <g:message code="${message}" />
+                        <g:message code="${messageContent}" />
                     </div>
                 </g:if>
 

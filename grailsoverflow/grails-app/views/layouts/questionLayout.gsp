@@ -28,9 +28,9 @@
         <div class="container">
             <!-- Navigation bar -->
             <div class="navbar-header">
-                <g:link class="navbar-brand" controller="question" action="index">
-                    GrailsOverflow
-                </g:link>
+            <g:link class="navbar-brand" controller="question" action="index" style="font-family:'Airstream', Verdana, Geneva, Arial, Helvetica, sans-serif;">
+                <div class="glyphicon glyphicon-leaf"></div>GROW
+            </g:link>
 
                 <!-- Left side  -->
                 <ul class="nav navbar-nav">
@@ -48,34 +48,34 @@
                 <!-- Right side -->
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                    <g:if test="${session.user != null}">
                         <li>
-                            <g:link controller="user" action="show" params='[id: "${session.user.id}"]'>
-                                <img class="smallGravatar" src="https://www.gravatar.com/avatar/${session.user.email.encodeAsMD5()}?s=24&r=pg" alt="" />
-                                ${session.user.displayName} (${session.user.score} pts)
+                            <g:form style="width: 275px;" class="input-group navbar-form" url='[controller: "question", action: "search"]' method="get">
+                                <input type="text" name="q" size="50" class="form-control" placeholder="Search" value="${params.q}" required>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                                </span>
+                            </g:form>
+                        </li>
+                        <g:if test="${session.user != null}">
+                            <li>
+                                <g:link controller="user" action="show" params='[id: "${session.user.id}"]'>
+                                    <img class="smallGravatar" src="https://www.gravatar.com/avatar/${session.user.email.encodeAsMD5()}?s=24&r=pg" alt="" />
+                                    ${session.user.displayName} (${session.user.score} pts)
+                                </g:link>
+                            </li>
+                            <li>
+                                <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />
+                                <g:link controller="authenticate" action="logout" class="glyphicon glyphicon-off" title="${ message( code:'grow.questionlayout.logout' ) }">
+                                <%--<g:message code="grow.questionlayout.logout" />--%>
                             </g:link>
                         </li>
+                    </g:if>
+                    <g:else>
                         <li>
                             <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />
-                            <g:link controller="authenticate" action="logout" class="glyphicon glyphicon-off" title="${ message( code:'grow.questionlayout.logout' ) }">
-                            <%--<g:message code="grow.questionlayout.logout" />--%>
-                        </g:link>
-                    </li>
-                </g:if>
-                <g:else>
-                    <li>
-                        <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />
-                        <oauth:connect provider="google" id="google-connect-link"><g:message code="grow.questionlayout.google.connection" /></oauth:connect>
-                    </li>
-                </g:else>
-                <li>
-                    <g:form style="width: 275px;" class="input-group navbar-form" url='[controller: "question", action: "search"]' method="get">
-                        <input type="text" name="q" size="50" class="form-control" placeholder="Search" value="${params.q}" required>
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-                        </span>
-                    </g:form>
-                </li>
+                            <oauth:connect provider="google" id="google-connect-link"><g:message code="grow.questionlayout.google.connection" /></oauth:connect>
+                        </li>
+                    </g:else>
             </ul>
         </div>
     </div>

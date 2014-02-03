@@ -3,6 +3,7 @@ body {
     overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 body {
+    background-color: #ffffff;
     padding-top: 70px;
 }
 footer {

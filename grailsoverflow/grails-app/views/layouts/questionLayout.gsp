@@ -28,8 +28,8 @@
         <div class="container">
             <!-- Navigation bar -->
             <div class="navbar-header">
-                <g:link class="navbar-brand" controller="question" action="index">
-                    GrailsOverflow
+                <g:link class="navbar-brand" controller="question" action="index" style="font-family:'Airstream', Verdana, Geneva, Arial, Helvetica, sans-serif;">
+                    <div class="glyphicon glyphicon-leaf"></div>GROW
                 </g:link>
 
                 <!-- Left side  -->

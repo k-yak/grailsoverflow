@@ -21,12 +21,12 @@
                     </div>
                 </g:if>
 
-                <div class="page-header">
+                <div class="page-header" style="margin: -20px 0 20px;">
                     <h1><g:message code="grow.index.question" /> <small><g:message code="${subtitle}" /></small></h1>
                 </div>
               
                 <div class="row">
-                    <g:render template="/question/questionTemplate" collection="${questionsToDisplay}" var="question"/>
+                    <g:render template="/question/questionTemplateWindow" collection="${questionsToDisplay}" var="question"/>
 
                     <div class="center">
                         <g:set var="totalPages" value="${Math.ceil(completePaginationList.size() / AppConfig.MAX_QUESTION)}" />

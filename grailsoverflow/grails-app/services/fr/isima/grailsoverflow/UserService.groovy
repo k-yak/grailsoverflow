@@ -54,4 +54,9 @@ class UserService {
         user.save()
     }
 
+    def addProfileVisit(def user) {
+        ++user.profileView;
+
+        user.save(failOnError: true)
+    }
 }

@@ -36,7 +36,6 @@ class User {
         return tagsString.toString()
     }
 
-
     def isOwnerOfQuestion(def question) {
         question.user.email == email
     }
@@ -45,7 +44,7 @@ class User {
         answer.user.email == email
     }
 
-    static hasMany = [questions: Question, favoriteTags: Tag]
+    static hasMany = [questions: Question, favoriteTags: Tag, medals: Medal]
 
     static constraints = {
         email blank: false, unique: true

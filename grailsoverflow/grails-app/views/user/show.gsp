@@ -98,6 +98,11 @@
                             <td><g:message code="grow.user.last.visit" /></td>
                             <td>${user.lastVisit.format('dd MMM yyyy')}</td>
                         </tr>
+                        <tr>
+                            <td></td>
+                            <td><g:message code="grow.user.last.profileView" /></td>
+                            <td>${user.profileView}</td>
+                        </tr>
                         <tr class="info-title">
                             <td><g:message code="grow.user.favorite.tags" /></td>
                             <td></td>
@@ -112,6 +117,20 @@
                                         <span class="label label-primary" >${tag.name}</span>
                                     </g:link>
                                 </g:each>
+                            </td>
+                        </tr>
+                        <tr class="info-title">
+                            <td><g:message code="grow.user.yourmedals" /></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><g:message code="grow.user.medals" /></td>
+                            <td>
+                                <g:img dir="images/medals" file="medal-bronze.png" />
+                                <g:img dir="images/medals" file="medal-silver.png" />
+                                <g:img dir="images/medals" file="medal-gold.png" />
                             </td>
                         </tr>
                         </tbody>

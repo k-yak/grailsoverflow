@@ -36,12 +36,12 @@
     <div class="col-xs-18 col-sm-12">
         <div class="page-header">
             <div class="row">
-                <div class="col-xs-10 col-sm-11">
+                <div class="col-xs-10 col-sm-10">
                     <h1><g:message code="grow.user.user" /> <small>${user.displayName}</small></h1>
                 </div>
-                <div class="col-xs-3 col-sm-1">
+                <div class="col-xs-2 col-sm-2 rightButton">
                     <g:link controller="user" action="show" params='[id: "${user.id}"]'>
-                        <button type="button" class="btn btn-default rightButton">
+                        <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-user"></span>
                             <g:message code="grow.user.show" />
                         </button>

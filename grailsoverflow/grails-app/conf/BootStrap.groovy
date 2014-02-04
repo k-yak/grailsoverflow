@@ -17,7 +17,10 @@ class BootStrap {
         switch (GrailsUtil.environment) {
             case "development":
                 User admin = userService.createUser("admin@admin.com", "Admin")
-                User floyd = userService.createUser("florian.rotagnon@gmail.com", "florian.rotagnon@gmail.com")
+                User floyd = userService.createUser("florian.rotagnon@gmail.com", "Florian Rotagnon")
+                User drusy = userService.createUser("kevin.renella@gmail.com", "Kevin Renella")
+
+                drusy.admin = true;
                 floyd.admin = true;
                 //floyd.ban = true;
 

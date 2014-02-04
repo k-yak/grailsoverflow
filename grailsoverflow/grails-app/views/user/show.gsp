@@ -17,10 +17,10 @@
 
             <div class="page-header">
                 <div class="row">
-                    <div class="col-xs-10 col-sm-10">
+                    <div class="col-xs-9 col-sm-9">
                         <h1><g:message code="grow.user.user" /> <small>${user.displayName}</small></h1>
                     </div>
-                    <div class="col-xs-3 col-sm-2 rightButton">
+                    <div class="col-xs-3 col-sm-3 rightButton">
                         <g:if test="${session.user!=null && session.user.admin == true && session.user.id != user.id}">
                             <g:remoteLink controller="user" action="ban" params='[id: "${user.id}"]' style="text-decoration:none;" update="banStatus">
                                 <button type="button" class="btn btn-default">

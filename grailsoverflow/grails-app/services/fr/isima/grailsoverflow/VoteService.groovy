@@ -2,6 +2,7 @@ package fr.isima.grailsoverflow
 
 class VoteService {
     def sessionService
+    def userService
 
     def userVote(Message message, User user, int newValue) {
         def oldValue = message.vote.getUserVote(user)
@@ -27,6 +28,9 @@ class VoteService {
                 }
                 break;
         }
+
+        userService.testScoreMedals(message.user);
+
         message.user.save(failOnError: true)
         message.save(failOnError: true)
         message.vote.save(failOnError: true)

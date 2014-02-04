@@ -1,4 +1,5 @@
 import fr.isima.grailsoverflow.AppConfig
+import fr.isima.grailsoverflow.Medal
 import fr.isima.grailsoverflow.Question
 import fr.isima.grailsoverflow.Tag
 import fr.isima.grailsoverflow.User
@@ -24,10 +25,14 @@ class BootStrap {
                 floyd.admin = true;
                 //floyd.ban = true;
 
-                Tag groovy = tagService.createTag("groovy")
-                Tag unused = tagService.createTag("unused")
-                Tag grails = tagService.createTag("grails")
-                Tag jenkins = tagService.createTag("jenkins")
+                // test medals
+                for (int i = 0; i < 10; ++i) {
+                    floyd.addToMedals(new Medal(Medal.BRONZE, "Test Bronze Medal"))
+                }
+                for (int i = 0; i < 5; ++i) {
+                    floyd.addToMedals(new Medal(Medal.SILVER, "Test Silver Medal"))
+                }
+                floyd.addToMedals(new Medal(Medal.GOLD, "Test Gold Medal"))
 
                 def question = questionService.addQuestion(
                     "Is Groovy a good way deploy a web app ?",

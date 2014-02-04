@@ -54,9 +54,39 @@ class UserService {
         user.save()
     }
 
-    def addProfileVisit(def user) {
+    def testVisitMedals(User user) {
+        if (user.profileView == AppConfig.BRONZE_VISITS) {
+            user.addToMedals(new Medal(Medal.BRONZE, "grow.medal.bronzeVisits"))
+        } else if (user.profileView == AppConfig.SILVER_VISITS) {
+            user.addToMedals(new Medal(Medal.SILVER, "grow.medal.silverVisits"))
+        } else if (user.profileView == AppConfig.GOLD_VISITS) {
+            user.addToMedals(new Medal(Medal.GOLD, "grow.medal.goldVisits"))
+        }
+    }
+
+    def testScoreMedals(User user) {
+        Medal medal;
+        if (user.score >= AppConfig.BRONZE_SCORE) {
+            medal = new Medal(Medal.BRONZE, "grow.medal.bronzeScore")
+            if (!user.haveMedal(medal))
+                user.addToMedals(medal)
+        } else if (user.score >= AppConfig.SILVER_SCORE) {
+            medal = new Medal(Medal.SILVER, "grow.medal.silverScore")
+            if (!user.haveMedal(medal))
+                user.addToMedals(medal)
+        } else if (user.score >= AppConfig.GOLD_SCORE) {
+            medal = new Medal(Medal.GOLD, "grow.medal.goldScore")
+            if (!user.haveMedal(medal))
+                user.addToMedals(medal)
+        }
+    }
+
+    def addProfileVisit(User user) {
         ++user.profileView;
 
+        testVisitMedals(user)
+
         user.save(failOnError: true)
+        sessionService.reloadUserSession()
     }
 }

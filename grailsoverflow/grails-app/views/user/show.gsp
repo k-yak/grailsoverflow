@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
-<%@page import="fr.isima.grailsoverflow.AppConfig; fr.isima.grailsoverflow.User" %>
+<%@page import="fr.isima.grailsoverflow.Medal; fr.isima.grailsoverflow.AppConfig; fr.isima.grailsoverflow.User" %>
 
 <html>
 <head>
@@ -128,9 +128,9 @@
                             <td></td>
                             <td><g:message code="grow.user.medals" /></td>
                             <td>
-                                <g:img dir="images/medals" file="medal-bronze.png" />
-                                <g:img dir="images/medals" file="medal-silver.png" />
-                                <g:img dir="images/medals" file="medal-gold.png" />
+                                ${user.getMedalsOfType(Medal.BRONZE)}<g:img class="medals" dir="images/medals" file="medal-bronze.png" />
+                                ${user.getMedalsOfType(Medal.SILVER)}<g:img class="medals" dir="images/medals" file="medal-silver.png" />
+                                ${user.getMedalsOfType(Medal.GOLD)}<g:img  class="medals" dir="images/medals" file="medal-gold.png" />
                             </td>
                         </tr>
                         </tbody>

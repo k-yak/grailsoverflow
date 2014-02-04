@@ -44,6 +44,27 @@ class User {
         answer.user.email == email
     }
 
+    def getMedalsOfType(int type) {
+        int count = 0;
+
+       medals.each() { medal ->
+            if (medal.getType() == type) {
+                ++count
+            }
+        }
+
+        return count
+    }
+
+    def haveMedal(Medal medal) {
+        boolean found = false
+
+        if (medals != null && medals.contains(medal))
+            found = true;
+
+        return found
+    }
+
     static hasMany = [questions: Question, favoriteTags: Tag, medals: Medal]
 
     static constraints = {

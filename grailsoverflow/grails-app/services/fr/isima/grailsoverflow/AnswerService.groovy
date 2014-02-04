@@ -4,6 +4,7 @@ class AnswerService {
     static transactional = true
 
     def sessionService
+    def userService
 
     def createAnswer(def content, def user, def question) {
         new Answer(
@@ -33,6 +34,8 @@ class AnswerService {
 
             answer.save(failOnError: true)
         }
+        userService.testScoreMedals(answer.user)
+        answer.user.save(failOnError: true)
         sessionService.reloadUserSession()
     }
 
@@ -48,6 +51,7 @@ class AnswerService {
             answer.user.score -= AppConfig.ACCEPT_ANSWER_SCORE
         }
 
+        userService.testScoreMedals(answer.user);
         answer.user.save(failOnError: true)
         sessionService.reloadUserSession()
     }

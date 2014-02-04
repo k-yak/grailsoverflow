@@ -9,7 +9,7 @@ class UserController {
         // call userService to get the user corresponding to params.id
         User user = userService.getUserById(params.id)
 
-        if (user.email != session.user.email) {
+        if (user.email != session.user?.email) {
             userService.addProfileVisit(user);
         }
 

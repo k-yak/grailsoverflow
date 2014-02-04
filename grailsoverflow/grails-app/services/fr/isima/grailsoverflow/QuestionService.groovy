@@ -5,6 +5,7 @@ class QuestionService {
 
     def sessionService
     def answerService
+    def userService
 
     def answerToQuestion(def questionId, def content, def currentUser) {
         def user = User.get(currentUser.id)
@@ -12,6 +13,7 @@ class QuestionService {
         def answer = answerService.createAnswer(content, user, question)
 
         answer.user.score += AppConfig.ANSWER_SCORE
+        userService.testScoreMedals(answer.user);
         user.save(failOnError: true)
 
         addAnswer(question, answer)
@@ -22,6 +24,8 @@ class QuestionService {
 
     def afterInsertActions(def question) {
         question.user.score += AppConfig.QUESTION_SCORE
+
+        userService.testScoreMedals(question.user);
 
         question.user.save(failOnError: true)
         sessionService.reloadUserSession()
@@ -92,6 +96,8 @@ class QuestionService {
 
         // Remove user score for votes
         question.user.score -= question.vote.value * AppConfig.VOTE_SCORE
+
+        userService.testScoreMedals(question.user);
 
         question.user.save(failOnError: true)
         sessionService.reloadUserSession()

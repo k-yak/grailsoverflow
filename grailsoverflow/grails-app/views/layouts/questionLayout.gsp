@@ -35,9 +35,9 @@
         <div class="container">
             <!-- Navigation bar -->
             <div class="navbar-header">
-            <g:link class="navbar-brand" controller="question" action="index" style="font-family:'Airstream', Verdana, Geneva, Arial, Helvetica, sans-serif;">
-                <div class="glyphicon glyphicon-leaf"></div>GROW
-            </g:link>
+                <g:link class="navbar-brand" controller="question" action="index" style="font-family:'Airstream', Verdana, Geneva, Arial, Helvetica, sans-serif;">
+                    <div class="glyphicon glyphicon-leaf"></div>GROW
+                </g:link>
 
                 <!-- Left side  -->
                 <ul class="nav navbar-nav">
@@ -83,7 +83,8 @@
                             <oauth:connect provider="google" id="google-connect-link"><g:message code="grow.questionlayout.google.connection" /></oauth:connect>
                         </li>
                     </g:else>
-            </ul>
+                 </ul>
+            </div>
         </div>
     </div>
 </div>

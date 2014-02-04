@@ -55,6 +55,10 @@
                 </g:if>
             </div>
         </div>
+
+    <!--<div id="growImage">
+        <g:img dir="images/background" file="seed_background.jpg" height="550px"/>
+    </div>-->
     </body>
 </html>
 

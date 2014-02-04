@@ -179,3 +179,15 @@ a.userLink:hover {
 .page-header {
     margin-top: 0px;
 }
+
+body {
+    position: relative;
+}
+
+#growImage {
+    position: absolute;
+    bottom: 150px;
+    opacity: 0.1;
+    right: 0;
+    z-index: -100;
+}

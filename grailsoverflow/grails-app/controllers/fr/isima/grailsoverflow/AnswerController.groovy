@@ -37,10 +37,12 @@ class AnswerController {
     }
         
     def delete() {
-        if (session.user == null) {
+        def answer = answerService.getAnswerById(params.answer)
+
+        if (session.user == null || (!session.user.isOwnerOfAnswer(answer) && session.user.admin == false)) {
             sessionService.addMessage("danger", "grow.error.access.forbidden")
-            redirect(controller: "question", action: "index")
             log.warn "WARNING : Address ${request.getRemoteAddr()} try to delete answer ${params.answer} but do not have rights"
+            redirect(controller: "question", action: "index")
         } else {
             def question = answerService.deleteAnswer(params.answer, session.user)
             questionService.updateStatus(question)

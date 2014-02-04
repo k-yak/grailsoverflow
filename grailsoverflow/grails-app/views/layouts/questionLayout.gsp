@@ -19,6 +19,13 @@
         <g:javascript src="jquery.min.js"/>
         <g:javascript src="jquery-ui.min.js"/>
         <g:javascript src="bootstrap/bootstrap.min.js" />
+
+        <script>
+        $( document ).ready(function() {
+            $("#messageFadeOut").delay(1500).fadeOut(2000);
+        });
+
+        </script>
         
         <g:layoutHead/>
     <r:layoutResources />
@@ -82,6 +89,7 @@
 </div>
 
 <div class="container">
+    <own:displayMessage/>
     <g:layoutBody/>
 
     <hr>

@@ -17,15 +17,13 @@ class QuestionController {
         def offset = params?.offset ?: 0
         def max = params?.max ?: AppConfig.MAX_QUESTION
 
-        def message = sessionService.getMessage()
-        def type = sessionService.getType()
-        sessionService.clearMessage()
+
 
         def latestQuestionsPaginate = questionService.getLatestQuestions(offset, max)
         def completeQuestionList = questionService.getLatestQuestions(0, 100)
         def tags = questionService.tagsForQuestions(completeQuestionList)
         
-        return [questionsToDisplay: latestQuestionsPaginate, completeQuestionList: completeQuestionList, completePaginationList: completeQuestionList, tags: tags, subtitle: subtitle, messageContent: message, type: type]
+        return [questionsToDisplay: latestQuestionsPaginate, completeQuestionList: completeQuestionList, completePaginationList: completeQuestionList, tags: tags, subtitle: subtitle]
     }
 
     def questionsForTag() {
@@ -53,7 +51,7 @@ class QuestionController {
 
         if (session.user == null || (!session.user.isOwnerOfQuestion(question)  && session.user.admin == false) ) {
             log.warn "WARNING : Address ${request.getRemoteAddr()} try to edit question ${params.question} but do not have rights"
-            sessionService.addMessage("danger", "You do not have right to do that!")
+            sessionService.addMessage("danger", "grow.error.access.forbidden")
             redirect(controller: "question", action: "index")
         } else {
             return [question: question]
@@ -104,6 +102,7 @@ class QuestionController {
             questionService.deleteQuestion(params.question, session.user)
         } else {
             log.warn "WARNING : Address ${request.getRemoteAddr()} try to delete question ${params.question} but do not have rights"
+            sessionService.addMessage("danger", "grow.error.access.forbidden")
         }
         
         redirect(controller: "question", action: "index")

@@ -49,12 +49,16 @@ class SessionService {
                 session.user = User.get(session.user.id);
             }
         } catch (IllegalStateException e) {
-            log.error "ERROR: GrailsWebRequest isn't available, any session instanciated ?"
-            log.error "ERROR: This error could be due to the bootstrap initialization (no session at this step)"
+            logSessionError()
         }
     }
 
-    def     addMessage(def type, def message) {
+    def logSessionError() {
+        log.error "ERROR: GrailsWebRequest isn't available, any session instanciated ?"
+        log.error "ERROR: This error could be due to the bootstrap initialization (no session at this step)"
+    }
+
+    def addMessage(def type, def message) {
         try {
             GrailsWebRequest webRequest = WebUtils.retrieveGrailsWebRequest()
             def session = webRequest.session
@@ -64,8 +68,7 @@ class SessionService {
                 session.type = type;
             }
         } catch (IllegalStateException e) {
-            log.error "ERROR: GrailsWebRequest isn't available, any session instanciated ?"
-            log.error "ERROR: This error could be due to the bootstrap initialization (no session at this step)"
+            logSessionError()
         }
     }
 
@@ -79,8 +82,7 @@ class SessionService {
                 return session?.message
             }
         } catch (IllegalStateException e) {
-            log.error "ERROR: GrailsWebRequest isn't available, any session instanciated ?"
-            log.error "ERROR: This error could be due to the bootstrap initialization (no session at this step)"
+            logSessionError()
         }
     }
 
@@ -94,8 +96,7 @@ class SessionService {
                 return session?.type
             }
         } catch (IllegalStateException e) {
-            log.error "ERROR: GrailsWebRequest isn't available, any session instanciated ?"
-            log.error "ERROR: This error could be due to the bootstrap initialization (no session at this step)"
+            logSessionError()
         }
     }
 
@@ -110,8 +111,7 @@ class SessionService {
                 session.message = null
             }
         } catch (IllegalStateException e) {
-            log.error "ERROR: GrailsWebRequest isn't available, any session instanciated ?"
-            log.error "ERROR: This error could be due to the bootstrap initialization (no session at this step)"
+            logSessionError()
         }
     }
 }

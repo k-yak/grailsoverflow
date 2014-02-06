@@ -6,6 +6,7 @@ class QuestionService {
     def sessionService
     def answerService
     def medalService
+    def historyService
 
     def answerToQuestion(def questionId, def content, def currentUser) {
         def user = User.get(currentUser.id)
@@ -17,6 +18,8 @@ class QuestionService {
         user.save(failOnError: true)
 
         addAnswer(question, answer)
+
+        historyService.addAnswer(user, answer)
         sessionService.reloadUserSession()
 
         return answer
@@ -152,7 +155,8 @@ class QuestionService {
         // Test medals
         medalService.testQuestionsMedals(user);
 
-        sessionService.reloadUserSession()
+        // History
+        historyService.addQuestion(user, question)
 
         return question
     }

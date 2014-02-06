@@ -8,6 +8,7 @@ class AppConfig {
     static final int QUESTION_SCORE = 100
     static final int MAX_QUESTION = 5
     static final int MAX_TAGS = 15
+    static final int HISTORY = 10
 
     // Medals params
     static final int BRONZE_VISITS = 100

@@ -5,6 +5,7 @@ class AnswerService {
 
     def sessionService
     def medalService
+    def historyService
 
     def createAnswer(def content, def user, def question) {
         new Answer(
@@ -36,6 +37,8 @@ class AnswerService {
         }
         medalService.testScoreMedals(answer.user)
         answer.user.save(failOnError: true)
+
+        historyService.addAcceptAnswer(answer.user, answer)
         sessionService.reloadUserSession()
     }
 

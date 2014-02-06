@@ -65,4 +65,12 @@ class UserService {
         user.save(failOnError: true)
         sessionService.reloadUserSession()
     }
+
+    def getUserHistory(User user, int historyCount) {
+        def history = user.history.sort { a, b ->
+            a.date < b.date ? 1 : -1
+        }
+
+        history.take(historyCount)
+    }
 }

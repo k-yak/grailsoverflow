@@ -18,7 +18,9 @@ class UserController {
             redirect(controller: "question", action: "index")
         }
 
-        return [user: user]
+        def userHistory = userService.getUserHistory(user, AppConfig.HISTORY)
+
+        return [user: user, userHistory: userHistory]
     }
 
     def edit() {

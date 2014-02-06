@@ -156,6 +156,9 @@
                 <div class="page-header">
                     <h3><g:message code="grow.user.history" /></h3>
                 </div>
+                <dl class="dl-horizontal">
+                    <g:render template="/user/historyTemplate" collection="${userHistory}" var="historyElement"/>
+                </dl>
             </div>
         </div>
     </div>

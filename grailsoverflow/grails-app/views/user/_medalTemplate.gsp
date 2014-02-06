@@ -9,4 +9,6 @@
         <g:img class="medals" dir="images/medals" file="medal-gold.png" />
     </g:if>
 </dt>
-<dd><g:message code="${medal.title}" args="${[medal.value]}"/></dd>
+<dd>
+    <g:message code="${medal.title}" args="${[medal.value]}"/>
+</dd>

@@ -63,7 +63,7 @@ class User {
         return found
     }
 
-    static hasMany = [questions: Question, favoriteTags: Tag, medals: Medal]
+    static hasMany = [questions: Question, favoriteTags: Tag, medals: Medal, history: HistoryElement]
 
     static constraints = {
         email blank: false, unique: true

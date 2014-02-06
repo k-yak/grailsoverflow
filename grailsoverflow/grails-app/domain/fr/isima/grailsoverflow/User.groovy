@@ -1,8 +1,6 @@
 package fr.isima.grailsoverflow
 
 import groovy.transform.EqualsAndHashCode
-import org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequest
-import org.codehaus.groovy.grails.web.util.WebUtils
 
 @EqualsAndHashCode
 class User {
@@ -16,7 +14,6 @@ class User {
     int profileView = 0
     boolean admin = false
     boolean ban = false
-
     Set favoriteTags = []
 
     def favoriteTagsToString() {

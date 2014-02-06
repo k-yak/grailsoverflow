@@ -27,6 +27,7 @@
                     // This will make Tag-it submit a single form value, as a comma-delimited field.
                     singleField: true,
                     singleFieldNode: $('#tagit_singleFieldTags_value')
+
                 });
             });
         </script>

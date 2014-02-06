@@ -15,7 +15,7 @@ class UnacceptedController {
 
         def completeQuestionList = questionService.getUnacceptedQuestions(0, 100)
         def unacceptedQuestions = questionService.getUnacceptedQuestions(offset, max)
-        def tags = questionService.tagsForQuestions(completeQuestionList)
+        def tags = questionService.tagsForQuestions(completeQuestionList, AppConfig.MAX_TAGS)
 
         def map =  [questionsToDisplay: unacceptedQuestions, completeQuestionList: completeQuestionList, completePaginationList: completeQuestionList, tags: tags, subtitle: subtitle]
         render(view: "/question/index", model: map)
@@ -29,7 +29,7 @@ class UnacceptedController {
         def neededTag = tagService.getTagByName(params.tag)
         def unacceptedForNeededTag = questionService.getUnacceptedQuestionsInList(neededTag.questions*.id, 0, 100)
         def completePaginationList = questionService.getUnacceptedQuestionsInList(neededTag.questions*.id, offset, max)
-        def tags = questionService.tagsForQuestions(unacceptedQuestions)
+        def tags = questionService.tagsForQuestions(unacceptedQuestions, AppConfig.MAX_TAGS)
         
         def map = [questionsToDisplay: unacceptedForNeededTag, completeQuestionList: unacceptedQuestions, completePaginationList: completePaginationList, neededTag: neededTag, tags: tags, subtitle: subtitle]
         render(view: "/question/index", model: map)

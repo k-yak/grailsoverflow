@@ -14,4 +14,8 @@ class Tag {
     static constraints = {
         name blank: false, unique: true
     }
+
+    static mapping = {
+        questions lazy: false
+    }
 }

@@ -43,7 +43,7 @@ class QuestionService {
         Question.list(sort: "dateCreated", order: "desc", offset: offset, max: max)
     }
 
-    def tagsForQuestions(List<Question> questions) {
+    def tagsForQuestions(List<Question> questions, int limit) {
         def tags = []
 
         for (def question in questions) {
@@ -51,9 +51,18 @@ class QuestionService {
                 tags << tag
             }
         }
+
+        // Sort by size first, then by name
         tags = tags.unique().sort { a, b ->
-            a.questions.size() < b.questions.size() ? 1 : -1
+            if (a.questions.size() == b.questions.size()) {
+                return a.name > b.name ? 1 : -1
+            } else {
+                return a.questions.size() < b.questions.size() ? 1 : -1
+            }
         }
+
+        // Take limit elements
+        tags.take(limit)
     }
 
     def getLatestQuestionsInList(def idList, int offset, int max) {

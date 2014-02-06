@@ -1,6 +1,8 @@
 package fr.isima.grailsoverflow
 
 class VoteService {
+    static transactional = true
+
     def sessionService
     def userService
 

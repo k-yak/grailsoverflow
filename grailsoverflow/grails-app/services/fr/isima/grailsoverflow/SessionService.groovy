@@ -5,6 +5,8 @@ import org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequest
 import org.codehaus.groovy.grails.web.util.WebUtils
 
 class SessionService {
+    static transactional = true
+
     def oauthService
 
     def authenticate() {

@@ -49,7 +49,7 @@
                     <div class="form-group">
                         <label for="sidebar"><g:message code="grow.index.favorite.tags" /></label>
                         <ul class="list-group">
-                            <g:render template="/question/tagTemplate" collection="${session.user.favoriteTags}" var="tag"/>
+                            <g:render template="/question/tagTemplate" collection="${session.user.favoriteTags.take(AppConfig.MAX_TAGS)}" var="tag"/>
                         </ul>
                     </div>
                 </g:if>

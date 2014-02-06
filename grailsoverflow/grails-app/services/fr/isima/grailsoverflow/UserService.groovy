@@ -1,6 +1,8 @@
 package fr.isima.grailsoverflow
 
 class UserService {
+    static transactional = true
+
     def sessionService
 
     def getUserById(def userId) {
@@ -55,6 +57,16 @@ class UserService {
     }
 
     def testVisitMedals(User user) {
+        if (user.profileView == AppConfig.BRONZE_VISITS) {
+            user.addToMedals(new Medal(Medal.BRONZE, "grow.medal.bronzeVisits"))
+        } else if (user.profileView == AppConfig.SILVER_VISITS) {
+            user.addToMedals(new Medal(Medal.SILVER, "grow.medal.silverVisits"))
+        } else if (user.profileView == AppConfig.GOLD_VISITS) {
+            user.addToMedals(new Medal(Medal.GOLD, "grow.medal.goldVisits"))
+        }
+    }
+
+    def testConnectionMedals(User user) {
         if (user.profileView == AppConfig.BRONZE_VISITS) {
             user.addToMedals(new Medal(Medal.BRONZE, "grow.medal.bronzeVisits"))
         } else if (user.profileView == AppConfig.SILVER_VISITS) {

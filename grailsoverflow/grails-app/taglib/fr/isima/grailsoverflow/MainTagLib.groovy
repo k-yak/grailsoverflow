@@ -21,7 +21,7 @@ class MainTagLib {
         def messageType = session.type
 
         if (messageContent != null && messageType != null) {
-            log.info "Display message " + message(code : messageContent)
+            log.info "DEBUG : Displaying message '" + message(code : messageContent) + "'"
 
             out << "<div id='messageFadeOut' class='alert alert-" + messageType + "'>\n";
             out << message (code : messageContent) + "\n";

@@ -17,11 +17,9 @@ class QuestionController {
         def offset = params?.offset ?: 0
         def max = params?.max ?: AppConfig.MAX_QUESTION
 
-
-
         def latestQuestionsPaginate = questionService.getLatestQuestions(offset, max)
         def completeQuestionList = questionService.getLatestQuestions(0, 100)
-        def tags = questionService.tagsForQuestions(completeQuestionList)
+        def tags = questionService.tagsForQuestions(completeQuestionList, AppConfig.MAX_TAGS)
         
         return [questionsToDisplay: latestQuestionsPaginate, completeQuestionList: completeQuestionList, completePaginationList: completeQuestionList, tags: tags, subtitle: subtitle]
     }
@@ -34,7 +32,7 @@ class QuestionController {
         def neededTag = tagService.getTagByName(params.tag)
         def latestForNeededTag = questionService.getLatestQuestionsInList(neededTag.questions*.id , 0, 100)
         def completePaginationList = questionService.getLatestQuestionsInList(neededTag.questions*.id, offset, max)
-        def tags = questionService.tagsForQuestions(completeQuestionList)
+        def tags = questionService.tagsForQuestions(completeQuestionList, AppConfig.MAX_TAGS)
         
         def map = [questionsToDisplay: latestForNeededTag, completeQuestionList: completeQuestionList, completePaginationList: completePaginationList, neededTag: neededTag, tags: tags, subtitle: subtitle]
         render(view: "index", model: map)
@@ -129,7 +127,7 @@ class QuestionController {
 
     def add() {
         def latestQuestions = questionService.getLatestQuestions(0, 100)
-        def tags = questionService.tagsForQuestions(latestQuestions)
+        def tags = questionService.tagsForQuestions(latestQuestions, AppConfig.MAX_TAGS)
 
         [tags: tags, completeQuestionList: latestQuestions]
     }

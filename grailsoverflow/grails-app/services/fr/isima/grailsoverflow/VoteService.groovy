@@ -4,7 +4,7 @@ class VoteService {
     static transactional = true
 
     def sessionService
-    def userService
+    def medalService
 
     def userVote(Message message, User user, int newValue) {
         def oldValue = message.vote.getUserVote(user)
@@ -31,7 +31,7 @@ class VoteService {
                 break;
         }
 
-        userService.testScoreMedals(message.user);
+        medalService.testScoreMedals(message.user);
 
         message.user.save(failOnError: true)
         message.save(failOnError: true)

@@ -15,6 +15,7 @@
 
         <title><g:layoutTitle default="Grails"/></title>
 
+        <link rel="icon" type="image/png" href="${resource(dir: 'images', file: 'favicon.png')}" />
         <link type="text/css" href="${resource(dir: 'css/bootstrap', file: 'bootstrap.min.css')}" rel="stylesheet">
         <g:javascript src="jquery.min.js"/>
         <g:javascript src="jquery-ui.min.js"/>

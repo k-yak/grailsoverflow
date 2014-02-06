@@ -1,5 +1,8 @@
 package fr.isima.grailsoverflow
 
+import groovy.transform.EqualsAndHashCode
+
+@EqualsAndHashCode
 class Medal {
     static final int GOLD = 0;
     static final int SILVER = 1;
@@ -7,10 +10,12 @@ class Medal {
 
     int type = BRONZE;
     String title;
+    int value;
 
-    Medal(def type, def title) {
-        this.type = type;
-        this.title = title;
+    Medal(def type, def title, def value) {
+        this.type = type
+        this.title = title
+        this.value = value
     }
 
     static constraints = {

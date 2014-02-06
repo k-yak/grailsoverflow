@@ -8,6 +8,7 @@ class SessionService {
     static transactional = true
 
     def oauthService
+    def medalService
 
     def authenticate() {
         GrailsWebRequest webRequest = WebUtils.retrieveGrailsWebRequest()
@@ -30,7 +31,10 @@ class SessionService {
         log.info "DEBUG : User " + email + " authenticated"
 
         user.lastVisit = new Date()
+        user.connectionCounter++
         user.save(failOnError: true)
+
+        medalService.testConnectionsMedals(user)
 
         session.user = user
     }

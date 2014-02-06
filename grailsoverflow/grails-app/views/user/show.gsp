@@ -103,6 +103,11 @@
                             <td><g:message code="grow.user.last.profileView" /></td>
                             <td>${user.profileView}</td>
                         </tr>
+                        <tr>
+                            <td></td>
+                            <td><g:message code="grow.user.last.connectionCounter" /></td>
+                            <td>${user.connectionCounter}</td>
+                        </tr>
                         <tr class="info-title">
                             <td><g:message code="grow.user.favorite.tags" /></td>
                             <td></td>
@@ -136,7 +141,21 @@
                         </tbody>
                     </table>
                 </div>
-
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-9 col-sm-6">
+                <div class="page-header">
+                    <h3><g:message code="grow.user.lastMedals" /></h3>
+                </div>
+                <dl class="dl-horizontal">
+                    <g:render template="/user/medalTemplate" collection="${user.medals}" var="medal"/>
+                </dl>
+            </div>
+            <div class="col-xs-9 col-sm-6">
+                <div class="page-header">
+                    <h3><g:message code="grow.user.history" /></h3>
+                </div>
             </div>
         </div>
     </div>

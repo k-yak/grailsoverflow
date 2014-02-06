@@ -10,6 +10,7 @@ class User {
     String website
     String location
     int score = 0
+    int connectionCounter = 0
     Date lastVisit = new Date()
     int profileView = 0
     boolean admin = false

@@ -26,13 +26,9 @@ class BootStrap {
                 //floyd.ban = true;
 
                 // test medals
-                for (int i = 0; i < 10; ++i) {
-                    floyd.addToMedals(new Medal(Medal.BRONZE, "Test Bronze Medal"))
-                }
-                for (int i = 0; i < 5; ++i) {
-                    floyd.addToMedals(new Medal(Medal.SILVER, "Test Silver Medal"))
-                }
-                floyd.addToMedals(new Medal(Medal.GOLD, "Test Gold Medal"))
+                floyd.addToMedals(new Medal(Medal.BRONZE, "Test Bronze Medal", 0))
+                floyd.addToMedals(new Medal(Medal.SILVER, "Test Silver Medal", 0))
+                floyd.addToMedals(new Medal(Medal.GOLD, "Test Gold Medal", 0))
 
                 def question = questionService.addQuestion(
                     "Is Groovy a good way deploy a web app ?",

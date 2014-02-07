@@ -99,7 +99,7 @@
         <!-- Answers panel -->
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h2>${question.answers.size()} <g:message code="grow.question.showQuestion.answer" /> <g:if test="${question.answers.size() > 1}">s</g:if></h2>
+                <h2>${question.answers.size()} <g:message code="grow.question.showQuestion.answer" /><g:if test="${question.answers.size() > 1}">s</g:if></h2>
                 </div>
             <g:render template="/question/answerTemplate" collection="${question.sortedAnswers()}" var="answer" />
         </div>
@@ -121,7 +121,6 @@
                     $("#js_contentRequired").fadeIn(1000);
                     evt.cancel(); // Prevent submit.
                 });
-
 
                 $("#vote a").click(function() {
                     var shouldSelect = true;

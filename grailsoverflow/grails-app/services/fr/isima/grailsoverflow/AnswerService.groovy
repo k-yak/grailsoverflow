@@ -24,6 +24,7 @@ class AnswerService {
             if (it.accepted) {
                 it.user.score -= AppConfig.ACCEPT_ANSWER_SCORE
                 it.accepted = false
+                historyService.removeAcceptAnswer(it.user, answer)
             }
 
             it.save(failOnError: true)
@@ -32,13 +33,13 @@ class AnswerService {
         if (oldState == false) {
             answer.accepted = true
             answer.user.score += AppConfig.ACCEPT_ANSWER_SCORE
+            historyService.addAcceptAnswer(answer.user, answer)
 
             answer.save(failOnError: true)
         }
         medalService.testScoreMedals(answer.user)
         answer.user.save(failOnError: true)
 
-        historyService.addAcceptAnswer(answer.user, answer)
         sessionService.reloadUserSession()
     }
 

@@ -7,6 +7,7 @@ class QuestionController {
     def questionService
     def tagService
     def sessionService
+    def userService
 
     String subtitle = "grow.substitle.latest.questions"
     
@@ -20,8 +21,9 @@ class QuestionController {
         def latestQuestionsPaginate = questionService.getLatestQuestions(offset, max)
         def completeQuestionList = questionService.getLatestQuestions(0, 100)
         def tags = questionService.tagsForQuestions(completeQuestionList, AppConfig.MAX_TAGS)
+        def user = userService.getUserById(session.user?.id)
         
-        return [questionsToDisplay: latestQuestionsPaginate, completeQuestionList: completeQuestionList, completePaginationList: completeQuestionList, tags: tags, subtitle: subtitle]
+        return [questionsToDisplay: latestQuestionsPaginate, completeQuestionList: completeQuestionList, completePaginationList: completeQuestionList, tags: tags, subtitle: subtitle, user: user]
     }
 
     def questionsForTag() {
@@ -33,8 +35,9 @@ class QuestionController {
         def latestForNeededTag = questionService.getLatestQuestionsInList(neededTag.questions*.id , 0, 100)
         def completePaginationList = questionService.getLatestQuestionsInList(neededTag.questions*.id, offset, max)
         def tags = questionService.tagsForQuestions(completeQuestionList, AppConfig.MAX_TAGS)
+        def user = userService.getUserById(session.user?.id)
         
-        def map = [questionsToDisplay: latestForNeededTag, completeQuestionList: completeQuestionList, completePaginationList: completePaginationList, neededTag: neededTag, tags: tags, subtitle: subtitle]
+        def map = [questionsToDisplay: latestForNeededTag, completeQuestionList: completeQuestionList, completePaginationList: completePaginationList, neededTag: neededTag, tags: tags, subtitle: subtitle, user: user]
         render(view: "index", model: map)
     }
     

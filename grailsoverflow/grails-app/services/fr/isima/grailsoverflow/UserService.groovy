@@ -38,6 +38,7 @@ class UserService {
             newTags.each() { tagName ->
                 tagName = tagName.toLowerCase()
                 Tag tag = Tag.findByName(tagName) ?: new Tag(name: tagName).save(failOnError: true)
+                tag.save(failOnError: true)
                 user.addToFavoriteTags(tag)
             }
         }

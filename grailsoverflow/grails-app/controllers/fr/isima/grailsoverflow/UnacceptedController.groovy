@@ -3,6 +3,7 @@ package fr.isima.grailsoverflow
 class UnacceptedController {
     def questionService
     def tagService
+    def userService
 
     String subtitle = "grow.substitle.unnacepted.questions"
     
@@ -16,8 +17,9 @@ class UnacceptedController {
         def completeQuestionList = questionService.getUnacceptedQuestions(0, 100)
         def unacceptedQuestions = questionService.getUnacceptedQuestions(offset, max)
         def tags = questionService.tagsForQuestions(completeQuestionList, AppConfig.MAX_TAGS)
+        def user = userService.getUserById(session.user?.id)
 
-        def map =  [questionsToDisplay: unacceptedQuestions, completeQuestionList: completeQuestionList, completePaginationList: completeQuestionList, tags: tags, subtitle: subtitle]
+        def map =  [questionsToDisplay: unacceptedQuestions, completeQuestionList: completeQuestionList, completePaginationList: completeQuestionList, tags: tags, subtitle: subtitle, user: user]
         render(view: "/question/index", model: map)
     }
     
@@ -30,8 +32,9 @@ class UnacceptedController {
         def unacceptedForNeededTag = questionService.getUnacceptedQuestionsInList(neededTag.questions*.id, 0, 100)
         def completePaginationList = questionService.getUnacceptedQuestionsInList(neededTag.questions*.id, offset, max)
         def tags = questionService.tagsForQuestions(unacceptedQuestions, AppConfig.MAX_TAGS)
+        def user = userService.getUserById(session.user?.id)
         
-        def map = [questionsToDisplay: unacceptedForNeededTag, completeQuestionList: unacceptedQuestions, completePaginationList: completePaginationList, neededTag: neededTag, tags: tags, subtitle: subtitle]
+        def map = [questionsToDisplay: unacceptedForNeededTag, completeQuestionList: unacceptedQuestions, completePaginationList: completePaginationList, neededTag: neededTag, tags: tags, subtitle: subtitle, user: user]
         render(view: "/question/index", model: map)
     }
 }

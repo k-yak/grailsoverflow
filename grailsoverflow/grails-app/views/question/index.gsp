@@ -45,20 +45,22 @@
                         </ul>
                     </div>
                 </g:if>
-                <g:if test="${session.user != null && session.user.favoriteTags != null && !session.user.favoriteTags.isEmpty()}">
+                <g:if test="${user != null && user.favoriteTags != null && !user.favoriteTags.isEmpty()}">
                     <div class="form-group">
                         <label for="sidebar"><g:message code="grow.index.favorite.tags" /></label>
                         <ul class="list-group">
-                            <g:render template="/question/tagTemplate" collection="${session.user.favoriteTags.take(AppConfig.MAX_TAGS)}" var="tag"/>
+                            <g:render template="/question/tagTemplate" collection="${user.favoriteTags.take(AppConfig.MAX_TAGS)}" var="tag"/>
                         </ul>
                     </div>
                 </g:if>
             </div>
         </div>
 
-    <!--<div id="growImage">
+    <!--
+    <div id="growImage">
         <g:img dir="images/background" file="seed_background.jpg" height="550px"/>
-    </div>-->
+    </div>
+    -->
     </body>
 </html>
 

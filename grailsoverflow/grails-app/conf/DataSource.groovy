@@ -54,7 +54,7 @@ environments {
             dialect = 'org.hibernate.dialect.MySQL5InnoDBDialect'
             pooled = false
 
-            dbCreate = 'update' // WARNING! on production, should probably be 'update' or 'validate'
+            dbCreate = 'validate' // WARNING! on production, should probably be 'update' or 'validate'
             jndiName = 'java:comp/env/jdbc/mydb'
         }
     }

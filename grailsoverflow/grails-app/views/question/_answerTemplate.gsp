@@ -54,10 +54,10 @@
             <g:if test="${session.user != null && (session.user.isOwnerOfAnswer(answer) || session.user.admin == true)}" >
                 <br />
                 <g:link style="text-decoration: none;" controller="answer" action="edit" params='[answer: "${answer.id}"]'>
-                    <button type="button" class="btn btn-default btn-xs">Edit</button>
+                    <button type="button" class="btn btn-default btn-xs"><g:message code="grow.question.showQuestion.edit" /></button>
                 </g:link>
                 <g:link style="text-decoration: none;" controller="answer" action="delete" params='[answer: "${answer.id}"]'>
-                    <button type="button" class="btn btn-danger btn-xs">Delete</button>
+                    <button type="button" class="btn btn-danger btn-xs"><g:message code="grow.question.showQuestion.delete" /></button>
                 </g:link>
             </g:if>
         </blockquote>

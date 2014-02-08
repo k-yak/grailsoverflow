@@ -60,7 +60,11 @@ class VoteService {
         if (currentUser != null) {
             changeUserVote(message, currentUser, value)
         } else {
-            log.info "DEBUG : User ${currentUser.email} tryed to vote but is not logged in"
+            if (currentUser == null) {
+                log.info "DEBUG : Unlogged uer tried to vote but is not logged in"
+            } else {
+                log.info "DEBUG : User ${currentUser.email} tried to vote but is not logged in"
+            }
         }
 
         return message.vote.value

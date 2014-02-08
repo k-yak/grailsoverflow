@@ -29,7 +29,7 @@
             <g:if test="${session.user != null && question.user.email == session.user.email}">
                 <div id="answerTick">
                     <hr />
-                    <g:remoteLink class="${tickStyle}" controller="answer" action="accept" update="" id="${answer.id}">
+                    <g:remoteLink class="${tickStyle} allowed" controller="answer" action="accept" update="" id="${answer.id}">
                         <span class="glyphicon glyphicon-ok tick"></span>
                     </g:remoteLink>
                 </div>
@@ -37,9 +37,9 @@
             <g:elseif test="${answer.accepted == true}">
                 <div id="answerTick">
                     <hr />
-                    <g:remoteLink class="gray-tick selected">
+                    <a class="gray-tick selected">
                         <span class="glyphicon glyphicon-ok tick"></span>
-                    </g:remoteLink>
+                    </a>
                 </div>
             </g:elseif>
         </div>

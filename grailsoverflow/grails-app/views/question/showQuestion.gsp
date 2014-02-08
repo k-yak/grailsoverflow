@@ -20,7 +20,7 @@
             <div id="js_voteLogin" style="display: none;" class="alert alert-danger">
                 <a class="close">&times;</a>
                 <g:set var="targetUri" value="${request.forwardURI - request.contextPath}" scope="session" />
-                <g:message code="grow.question.showQuestion.you.must.be" /><oauth:connect class="alert-link" provider="google" id="google-connect-link"><g:message code="grow.question.showQuestion.logged.in" /></oauth:connect> <g:message code="grow.question.showQuestion.to.vote" />.
+                <g:message code="grow.question.showQuestion.you.must.be" /> <oauth:connect class="alert-link" provider="google" id="google-connect-link"><g:message code="grow.question.showQuestion.logged.in" /></oauth:connect> <g:message code="grow.question.showQuestion.to.vote" />.
             </div>
         </g:if>
 
@@ -129,9 +129,13 @@
                         shouldSelect = false;
 
                     if ($(this).parent().attr('id') == "answerTick") {
-                        $("body").find("#answerTick a").each(function(){
-                            $(this).removeClass('selected');
-                        });
+                        if (this.classList.contains('allowed')) {
+                            $("body").find("#answerTick a").each(function(){
+                                $(this).removeClass('selected');
+                            });
+                        } else {
+                            shouldSelect = false;
+                        }
                     } else {
                         $(this).parent().find('a').each(function(){
                         if ($(this).parent().attr('id') != "answerTick")

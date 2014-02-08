@@ -54,8 +54,8 @@ class VoteService {
         }
     }
 
-    def processVote(def id, int value, User currentUser) {
-        Message message = Message.get(id)
+    def processVote(def messageId, int value, User currentUser) {
+        Message message = Message.get(messageId)
 
         if (currentUser != null) {
             changeUserVote(message, currentUser, value)

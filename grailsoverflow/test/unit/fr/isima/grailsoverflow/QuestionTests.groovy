@@ -7,6 +7,7 @@ import org.junit.*
 @TestFor(Question)
 @Mock([User, Tag, Question, Answer])
 class QuestionTests {
+
     User testUser = new User(email: "testEmail", displayName: "testDisplayName")
     Tag testTag = new Tag(name: "testTag")
     Tag testTag2 = new Tag(name: "testTag2")

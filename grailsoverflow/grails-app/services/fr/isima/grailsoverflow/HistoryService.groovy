@@ -52,7 +52,7 @@ class HistoryService {
 
     def addMedal(User user, Medal medal) {
         def historyTitle = "grow.history.medal"
-        def medalMessage = grailsApplication.getMainContext().getMessage(medal.title, [medal.value] as Object[], "", org.springframework.context.i18n.LocaleContextHolder.locale)
+        def medalMessage = grailsApplication?.getMainContext()?.getMessage(medal.title, [medal.value] as Object[], "", org.springframework.context.i18n.LocaleContextHolder.locale)
         def medalImage = ""
 
         if (medal.type == medal.BRONZE) {

@@ -13,7 +13,7 @@ class AnswerService {
             dateCreated: new Date(),
             user: user,
             question: question
-        )
+        ).save(failOnError: true)
     }
 
     def acceptAnswer(def answerId) {

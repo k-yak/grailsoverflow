@@ -6,7 +6,7 @@ class VoteService {
     def sessionService
     def medalService
 
-    def userVote(Message message, User user, int newValue) {
+    private def userVote(Message message, User user, int newValue) {
         def oldValue = message.vote.getUserVote(user)
 
         message.vote.value += newValue
@@ -39,7 +39,7 @@ class VoteService {
         sessionService.reloadUserSession()
     }
 
-    def changeUserVote(Message message, User user, int newValue) {
+    private def changeUserVote(Message message, User user, int newValue) {
         def oldValue = message.vote.getUserVote(user)
 
         // Remove old vote

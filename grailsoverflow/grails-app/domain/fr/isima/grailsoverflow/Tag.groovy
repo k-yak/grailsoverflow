@@ -1,7 +1,9 @@
 package fr.isima.grailsoverflow
 
 class Tag {
+    /// Name of the tag
     String name
+    /// List of questions that got this tag
     Set questions = []
 
     String toString() { 

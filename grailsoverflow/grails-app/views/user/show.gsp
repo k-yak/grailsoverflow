@@ -133,9 +133,9 @@
                             <td></td>
                             <td><g:message code="grow.user.medals" /></td>
                             <td>
-                                ${user.getMedalsOfType(Medal.BRONZE)}<g:img class="medals" dir="images/medals" file="medal-bronze.png" />
-                                ${user.getMedalsOfType(Medal.SILVER)}<g:img class="medals" dir="images/medals" file="medal-silver.png" />
-                                ${user.getMedalsOfType(Medal.GOLD)}<g:img  class="medals" dir="images/medals" file="medal-gold.png" />
+                                ${user.countMedalsOfType(Medal.BRONZE)}<g:img class="medals" dir="images/medals" file="medal-bronze.png" />
+                                ${user.countMedalsOfType(Medal.SILVER)}<g:img class="medals" dir="images/medals" file="medal-silver.png" />
+                                ${user.countMedalsOfType(Medal.GOLD)}<g:img  class="medals" dir="images/medals" file="medal-gold.png" />
                             </td>
                         </tr>
                         </tbody>

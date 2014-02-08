@@ -4,13 +4,17 @@ import groovy.transform.EqualsAndHashCode
 
 @EqualsAndHashCode
 class Medal {
-    static final int GOLD = 0;
-    static final int SILVER = 1;
-    static final int BRONZE = 2;
+    /// Available medal types
+    static final int GOLD = 0
+    static final int SILVER = 1
+    static final int BRONZE = 2
 
-    int type = BRONZE;
-    String title;
-    int value;
+    /// Current type
+    int type = BRONZE
+    /// Title of the medal
+    String title
+    /// Score needed to get the medal
+    int value
 
     Medal(def type, def title, def value) {
         this.type = type

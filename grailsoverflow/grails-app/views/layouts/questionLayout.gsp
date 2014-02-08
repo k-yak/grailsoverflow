@@ -20,13 +20,7 @@
         <g:javascript src="jquery.min.js"/>
         <g:javascript src="jquery-ui.min.js"/>
         <g:javascript src="bootstrap/bootstrap.min.js" />
-
-        <script>
-        $( document ).ready(function() {
-            $("#messageFadeOut").delay(1500).fadeOut(2000);
-        });
-
-        </script>
+        <g:javascript src="fadeout_message.js" />
         
         <g:layoutHead/>
     <r:layoutResources />
@@ -53,6 +47,7 @@
                     </g:if>
                 </ul>
                 </div>
+
                 <!-- Right side -->
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">

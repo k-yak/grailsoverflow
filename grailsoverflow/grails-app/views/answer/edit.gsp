@@ -31,25 +31,13 @@
         <g:link style="text-decoration: none;" controller="question" action="showQuestion" params='[question: "${question.id}"]'>
             <button type="button" class="btn btn-default"><g:message code="grow.edit.edit.cancel" /></button>
         </g:link>
-            <button type="submit" class="btn btn-primary"><g:message code="grow.edit.edit.accept" /></button>
+        <button type="submit" class="btn btn-primary"><g:message code="grow.edit.edit.accept" /></button>
     </g:form>
-
-    <script>
-        CKEDITOR.replace('CKEditor').on('required', function( evt ) {
-            $("#js_contentRequired").fadeIn(1000);
-            evt.cancel(); // Prevent submit.
-        });
-    </script>
+    <g:javascript src="ckeditor/ckeditor_trigger.js" />
 </g:if>
 <g:else>
     <own:redirectIndex />
 </g:else>
-
-<script>
-    $(".close").click(function() {
-        $(this).parent().fadeOut(500);
-        return false;
-    });
-</script>
+<g:javascript src="fadeout_close.js" />
 </body>
 </html>

@@ -6,7 +6,7 @@ class UserController {
     def sessionService
 
     def show() {
-        // call userService to get the user corresponding to params.id
+        // Call userService to get the user corresponding to params.id
         User user = userService.getUserById(params.id)
 
         if (user.email != session.user?.email) {
@@ -14,7 +14,7 @@ class UserController {
         }
 
         if(user == null) {
-            //error user not found
+            // Error user not found
             redirect(controller: "question", action: "index")
         }
 
@@ -24,7 +24,7 @@ class UserController {
     }
 
     def edit() {
-        // call userService to get the user corresponding to params.id
+        // Call userService to get the user corresponding to params.id
         User user = userService.getUserById(params.id)
 
         if(session.user == null ||( session.user.email != user?.email && session.user.admin == false )) {
@@ -39,7 +39,7 @@ class UserController {
     def ban() {
         User user = userService.getUserById(params.id)
         def textButton
-        //auto-ban impossible
+        // Auto-ban impossible
         if(session.user == null || session.user.admin == false || user.id == session.user.id ) {
             sessionService.addMessage("danger", "grow.error.access.forbidden")
             log.warn "WARNING : Address ${request.getRemoteAddr()} try to ban user ${params.id} but do not have rights"
@@ -59,7 +59,7 @@ class UserController {
         render(text:textButton, contentType:'text/html')
     }
 
-    //post call by form
+    // Post call by form
     def editInfo() {
         if(session.user == null || (params.id != session.user.id && session.user.admin == false)) {
             sessionService.addMessage("danger", "grow.error.access.forbidden")

@@ -11,9 +11,7 @@ class QuestionController {
 
     String subtitle = "grow.subtitle.latest.questions"
     
-    /**
-     * Latest questions
-     */
+    /// Latest questions
     def index() {
         def offset = params?.offset ?: 0
         def max = params?.max ?: AppConfig.MAX_QUESTION
@@ -26,6 +24,7 @@ class QuestionController {
         return [questionsToDisplay: latestQuestionsPaginate, completeQuestionList: completeQuestionList, completePaginationList: completeQuestionList, tags: tags, subtitle: subtitle, user: user]
     }
 
+    /// Questions for a choosen tag
     def questionsForTag() {
         def offset = params?.offset ?: 0
         def max = params?.max ?: AppConfig.MAX_QUESTION
@@ -59,6 +58,7 @@ class QuestionController {
         }
     }
 
+    /// @see Searchable plugin
     def search() {
         def error = false
         def searchedQuestions = null

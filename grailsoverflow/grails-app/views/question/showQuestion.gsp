@@ -116,49 +116,11 @@
                     <span class="glyphicon glyphicon-ok"></span> <g:message code="grow.question.showQuestion.post.answer" />
                 </button>
             </g:form>
-            <script>
-                CKEDITOR.replace('CKEditor').on('required', function( evt ) {
-                    $("#js_contentRequired").fadeIn(1000);
-                    evt.cancel(); // Prevent submit.
-                });
-
-                $("#vote a").click(function() {
-                    var shouldSelect = true;
-
-                    if (this.classList.contains('selected'))
-                        shouldSelect = false;
-
-                    if ($(this).parent().attr('id') == "answerTick") {
-                        if (this.classList.contains('allowed')) {
-                            $("body").find("#answerTick a").each(function(){
-                                $(this).removeClass('selected');
-                            });
-                        } else {
-                            shouldSelect = false;
-                        }
-                    } else {
-                        $(this).parent().find('a').each(function(){
-                        if ($(this).parent().attr('id') != "answerTick")
-                            $(this).removeClass('selected');
-                        });
-                    }
-
-                    if (shouldSelect)
-                        $(this).addClass('selected');
-                });
-            </script>
+            <g:javascript src="ckeditor/ckeditor_trigger.js" />
+            <g:javascript src="vote_accept.js" />
         </g:if>
-        <script>
-            $(".vote").click(function() {
-                $("#js_voteLogin").fadeIn(1000);
-                return false;
-            });
-
-            $(".close").click(function() {
-                $(this).parent().fadeOut(500);
-                return false;
-            });
-        </script>
+        <g:javascript src="fadeout_close.js" />
+        <g:javascript src="fadeout_vote.js" />
     </body>
 </html>
 

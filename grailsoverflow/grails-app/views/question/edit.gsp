@@ -14,23 +14,7 @@
 
         <g:javascript src="tagit/tag-it.js" />
         <g:javascript src="ckeditor/ckeditor.js" />
-
-        <script>
-            $(function(){
-                var sampleTags = ['c', 'ant', 'c++', 'java', 'php', 'c#', 'groovy', 'jquery', 'grails', 'javascript', 'asp', 'ruby', 'python', 'scala', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
-
-                //-------------------------------
-                // Single field
-                //-------------------------------
-                $('#tagit_singleFieldTags').tagit({
-                    availableTags: sampleTags,
-                    // This will make Tag-it submit a single form value, as a comma-delimited field.
-                    singleField: true,
-                    singleFieldNode: $('#tagit_singleFieldTags_value')
-
-                });
-            });
-        </script>
+        <g:javascript src="tagit_trigger.js" />
     </head>
     <body>
         <!-- Security test -->
@@ -65,23 +49,13 @@
                 </g:link>
                 <button type="submit" class="btn btn-primary"><g:message code="grow.question.edit.accept" /></button>
             </g:form>
-            
-            <script>
-                CKEDITOR.replace('CKEditor').on('required', function( evt ) {
-                    $("#js_contentRequired").fadeIn(1000);
-                    evt.cancel(); // Prevent submit.
-                });
-            </script>
+
+            <g:javascript src="ckeditor/ckeditor_trigger.js" />
         </g:if>
         <g:else>
             <own:redirectIndex />
         </g:else>
-            
-        <script>
-            $(".close").click(function() {
-                $(this).parent().fadeOut(500);
-                return false;
-            });
-        </script>
+
+    <g:javascript src="fadeout_close.js" />
 </body>
 </html>

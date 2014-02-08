@@ -7,9 +7,7 @@ class UnacceptedController {
 
     String subtitle = "grow.subtitle.unnacepted.questions"
     
-    /**
-     * Unaccepted questions
-     */
+    /// Unaccepted questions
     def index() {
         def offset = params?.offset ?: 0
         def max = params?.max ?: AppConfig.MAX_QUESTION

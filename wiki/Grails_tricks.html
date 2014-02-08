@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Grails tricks</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<style>
+body { font:80% Verdana,Tahoma,Arial,sans-serif; }
+h1, h2, h3, h4 {  font-family: "Trebuchet MS",Georgia,"Times New Roman",serif; }
+ul.toc { padding: 4px; margin-left: 0; }
+ul.toc li { list-style-type:none; }
+ul.toc li.heading2 { margin-left: 1em; }
+ul.toc li.heading3 { margin-left: 2em; }
+a.wiki-anchor { display: none; margin-left: 6px; text-decoration: none; }
+a.wiki-anchor:hover { color: #aaa !important; text-decoration: none; }
+h1:hover a.wiki-anchor, h2:hover a.wiki-anchor, h3:hover a.wiki-anchor { display: inline; color: #ddd; }
+</style>
+</head>
+<body>
+<a name="Grails-tricks"></a>
+<h1 >Grails tricks<a href="#Grails-tricks" class="wiki-anchor">&para;</a></h1>
+
+
+	<a name="Back-to-last-visited-page"></a>
+<h2 >Back to last visited page<a href="#Back-to-last-visited-page" class="wiki-anchor">&para;</a></h2>
+
+
+	<p>Back to the last visited page could be really useful, for example in case of login or logout.<br />It is boring for the user to be redirected to the index page each login..</p>
+
+
+	<a name="Explanation"></a>
+<h4 >Explanation<a href="#Explanation" class="wiki-anchor">&para;</a></h4>
+
+
+	<p>Take the example of the following URL <a class="external" href="http://localhost:8080/yourApp/yourController/yourAction">http://localhost:8080/yourApp/yourController/yourAction</a><br />On one hand, the following code will result in the same URL as above</p>
+
+
+<pre><code class="shell syntaxhl"><span class="CodeRay">${request.forwardURI}
+</span></code></pre>
+
+	<p>On the other hand, the following code will result in your application context : <a class="external" href="http://localhost:8080/yourApp">http://localhost:8080/yourApp</a></p>
+
+
+<pre><code class="shell syntaxhl"><span class="CodeRay">${request.contextPath}
+</span></code></pre>
+
+	<p>Finaly, we can get the app relative URL /mycontroller/myaction using</p>
+
+
+<pre><code class="shell syntaxhl"><span class="CodeRay">${request.forwardURI - request.contextPath}
+</span></code></pre>
+
+	<a name="Implementation"></a>
+<h4 >Implementation<a href="#Implementation" class="wiki-anchor">&para;</a></h4>
+
+
+	<p>In your GSP file, set a session variable with your current URL<br /><pre><code class="java syntaxhl"><span class="CodeRay">&lt;g:set var=<span class="string"><span class="delimiter">&quot;</span><span class="content">targetUri</span><span class="delimiter">&quot;</span></span> value=<span class="string"><span class="delimiter">&quot;</span><span class="content">${request.forwardURI - request.contextPath}</span><span class="delimiter">&quot;</span></span> scope=<span class="string"><span class="delimiter">&quot;</span><span class="content">session</span><span class="delimiter">&quot;</span></span> /&gt;
+</span></code></pre></p>
+
+
+	<p>In your controller, redirect back to the session variable</p>
+
+
+<pre><code class="java syntaxhl"><span class="CodeRay">def targetUri = session.targetUri ?: <span class="string"><span class="delimiter">&quot;</span><span class="content">/index</span><span class="delimiter">&quot;</span></span> 
+redirect(uri: targetUri)
+</span></code></pre>
+</body>
+</html>

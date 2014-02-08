@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Cloudbees  Jenkins</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<style>
+body { font:80% Verdana,Tahoma,Arial,sans-serif; }
+h1, h2, h3, h4 {  font-family: "Trebuchet MS",Georgia,"Times New Roman",serif; }
+ul.toc { padding: 4px; margin-left: 0; }
+ul.toc li { list-style-type:none; }
+ul.toc li.heading2 { margin-left: 1em; }
+ul.toc li.heading3 { margin-left: 2em; }
+a.wiki-anchor { display: none; margin-left: 6px; text-decoration: none; }
+a.wiki-anchor:hover { color: #aaa !important; text-decoration: none; }
+h1:hover a.wiki-anchor, h2:hover a.wiki-anchor, h3:hover a.wiki-anchor { display: inline; color: #ddd; }
+</style>
+</head>
+<body>
+<a name="Cloudbees-38-Jenkins"></a>
+<h1 >Cloudbees &#38; Jenkins<a href="#Cloudbees-38-Jenkins" class="wiki-anchor">&para;</a></h1>
+
+
+	<a name="Cloudbees"></a>
+<h2 >Cloudbees<a href="#Cloudbees" class="wiki-anchor">&para;</a></h2>
+
+
+	<p>We have choosen Cloudbees as a production solution for our solution.</p>
+
+
+	<a name="Continuous-Integration"></a>
+<h2 >Continuous Integration<a href="#Continuous-Integration" class="wiki-anchor">&para;</a></h2>
+
+
+	<p>This project is deployed with Jenkins, an open source continuous integration tool.<br />Jenkins link : <a class="external" href="https://drusy.ci.cloudbees.com/job/grailsoverflow/">https://drusy.ci.cloudbees.com/job/grailsoverflow/</a><br />Deployed app link : <a class="external" href="http://grow.drusy.cloudbees.net">http://grow.drusy.cloudbees.net</a> (<strong>BE PATIENT, IT COULD BE SLOW</strong>)</p>
+
+
+The process of the CI job is simple :
+	<ul>
+	<li>Compute some changes on the <code>grailsw</code> deploy files</li>
+	</ul>
+
+
+<blockquote>
+
+	<ul>
+	<li>Change line separators from dos to unix (using <code>tr</code> command)</li>
+		<li>Make it executable (using <code>chmod +x</code>)</li>
+	</ul>
+
+
+</blockquote>
+
+	<ul>
+	<li>Build the app</li>
+		<li>Test the app</li>
+		<li>Deploy the app</li>
+	</ul>
+
+
+	<p>Last build status : <img src="https://drusy.ci.cloudbees.com/job/grailsoverflow/badge/icon" alt="" /></p>
+
+
+	<p>Production web site : <a class="external" href="http://grow.drusy.cloudbees.net/">http://grow.drusy.cloudbees.net/</a></p>
+</body>
+</html>

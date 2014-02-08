@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Project subject</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<style>
+body { font:80% Verdana,Tahoma,Arial,sans-serif; }
+h1, h2, h3, h4 {  font-family: "Trebuchet MS",Georgia,"Times New Roman",serif; }
+ul.toc { padding: 4px; margin-left: 0; }
+ul.toc li { list-style-type:none; }
+ul.toc li.heading2 { margin-left: 1em; }
+ul.toc li.heading3 { margin-left: 2em; }
+a.wiki-anchor { display: none; margin-left: 6px; text-decoration: none; }
+a.wiki-anchor:hover { color: #aaa !important; text-decoration: none; }
+h1:hover a.wiki-anchor, h2:hover a.wiki-anchor, h3:hover a.wiki-anchor { display: inline; color: #ddd; }
+</style>
+</head>
+<body>
+<a name="Functionnal-specifications"></a>
+<h1 >Functionnal specifications<a href="#Functionnal-specifications" class="wiki-anchor">&para;</a></h1>
+
+
+	<p>The goal if to implement a StackOverflow like, basically, a Q&#38;A application?</p>
+
+
+	<p>Expected feature :</p>
+
+
+	<ul>
+	<li>The project will offer a system to ask and answer questions.</li>
+		<li>An answer can be upvoted. It means it's the more accurate answer for the question. Of course, they can also be downvoted.</li>
+		<li>The answers will be ordered by number of votes, this feature should be a matter of </li>
+		<li>presentation.</li>
+		<li>Questions can also be voted to reflect their interests in the community.</li>
+		<li>A question can be tagged to appear in categories.</li>
+		<li>A question or an answer can be edited to add some additional information or to fix a typo.</li>
+		<li>A reputation mechanism brings a gamification to the application (The rules have to be defined).</li>
+		<li>Some actions (to be defined) will allow the user togain some badges (part of the gamification).</li>
+		<li>Users can fill a profile.</li>
+		<li>The profile will sum up all the user's actions (questions asked, answers given, edits, ...) and the earned reputation.</li>
+		<li>The profile will compute the grand total of the user's reputation.</li>
+		<li>Admins should act as moderators.</li>
+	</ul>
+
+
+The application <strong>MUST</strong>:
+	<ul>
+	<li>Be internationalized (French &#38; English)</li>
+		<li>Developed in English (code + comments)</li>
+		<li>Be tested (unit tests, acceptance tests, etc.)</li>
+		<li>Follow coding standards</li>
+		<li>Have meaningful Logs</li>
+		<li>Be versioned (use whatever VCS you want: SVN, Git, hg, etc.)</li>
+		<li>The final version of your application will be taggedand the url will be sent by mail</li>
+	</ul>
+
+
+	<a name="Technical-specifications"></a>
+<h1 >Technical specifications<a href="#Technical-specifications" class="wiki-anchor">&para;</a></h1>
+
+
+	<ul>
+	<li>A  Grails based application.</li>
+		<li>A RDBMS will store the application's data</li>
+	</ul>
+</body>
+</html>

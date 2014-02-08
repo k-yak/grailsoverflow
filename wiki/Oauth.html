@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Oauth</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<style>
+body { font:80% Verdana,Tahoma,Arial,sans-serif; }
+h1, h2, h3, h4 {  font-family: "Trebuchet MS",Georgia,"Times New Roman",serif; }
+ul.toc { padding: 4px; margin-left: 0; }
+ul.toc li { list-style-type:none; }
+ul.toc li.heading2 { margin-left: 1em; }
+ul.toc li.heading3 { margin-left: 2em; }
+a.wiki-anchor { display: none; margin-left: 6px; text-decoration: none; }
+a.wiki-anchor:hover { color: #aaa !important; text-decoration: none; }
+h1:hover a.wiki-anchor, h2:hover a.wiki-anchor, h3:hover a.wiki-anchor { display: inline; color: #ddd; }
+</style>
+</head>
+<body>
+<a name="Oauth"></a>
+<h1 >Oauth<a href="#Oauth" class="wiki-anchor">&para;</a></h1>
+
+
+	<p>Oauth let us manage authentication with Google</p>
+
+
+	<a name="Informations"></a>
+<h2 >Informations<a href="#Informations" class="wiki-anchor">&para;</a></h2>
+
+
+	<p><strong>Client ID</strong><br />36150249647-nr9fbf0ioulcm60qe41c91mt1hrtqalj.apps.googleusercontent.com</p>
+
+
+	<p><strong>Client secret</strong><br />qfey9TGXvPa05AyVMrjRw2bQ</p>
+
+
+	<a name="Installation"></a>
+<h2 >Installation<a href="#Installation" class="wiki-anchor">&para;</a></h2>
+
+
+	<a name="Install-Oauth-BuildConfiggroovy"></a>
+<h3 >Install Oauth (BuildConfig.groovy)<a href="#Install-Oauth-BuildConfiggroovy" class="wiki-anchor">&para;</a></h3>
+
+
+<pre><code class="java syntaxhl"><span class="CodeRay">plugins {
+        <span class="comment">// ...</span>
+        compile <span class="string"><span class="delimiter">'</span><span class="content">:oauth:2.1.0</span><span class="delimiter">'</span></span>
+        <span class="comment">// ...</span>
+}
+</span></code></pre>
+
+	<a name="Setup-Oauth-config-Configgroovy"></a>
+<h3 >Setup Oauth config (Config.groovy)<a href="#Setup-Oauth-config-Configgroovy" class="wiki-anchor">&para;</a></h3>
+
+
+<pre><code class="java syntaxhl"><span class="CodeRay">oauth {
+    providers {
+        google {
+            <span class="comment">//api = org.scribe.builder.api.GoogleApi</span>
+            api = fr.isima.grailsoverflow.GoogleApi20
+            key = <span class="string"><span class="delimiter">'</span><span class="content">36150249647-nr9fbf0ioulcm60qe41c91mt1hrtqalj.apps.googleusercontent.com</span><span class="delimiter">'</span></span>
+            secret = <span class="string"><span class="delimiter">'</span><span class="content">qfey9TGXvPa05AyVMrjRw2bQ</span><span class="delimiter">'</span></span>
+            successUri = <span class="string"><span class="delimiter">&quot;</span><span class="content">/authenticate/success</span><span class="delimiter">&quot;</span></span> 
+            failureUri = <span class="string"><span class="delimiter">&quot;</span><span class="content">/authenticate/failure</span><span class="delimiter">&quot;</span></span> 
+            scope = <span class="string"><span class="delimiter">'</span><span class="content">https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read</span><span class="delimiter">'</span></span>
+            callback = <span class="string"><span class="delimiter">&quot;</span><span class="content">${grails.serverURL}/oauth/google/callback</span><span class="delimiter">&quot;</span></span> 
+        }
+    }
+}
+</span></code></pre>
+
+	<a name="Setup-Url-configuration-Configgroovy"></a>
+<h3 >Setup Url configuration (Config.groovy)<a href="#Setup-Url-configuration-Configgroovy" class="wiki-anchor">&para;</a></h3>
+
+
+<pre><code class="java syntaxhl"><span class="CodeRay">environments {
+    development {
+        <span class="comment">// ...</span>
+        grails.serverURL = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://localhost:8080/${appName}</span><span class="delimiter">&quot;</span></span> 
+    }
+    production {
+        <span class="comment">// ...</span>
+        grails.serverURL = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://grow.drusy.cloudbees.net</span><span class="delimiter">&quot;</span></span> 
+    }
+}
+</span></code></pre>
+
+	<a name="Connection-link-GSP-file"></a>
+<h3 >Connection link (GSP file)<a href="#Connection-link-GSP-file" class="wiki-anchor">&para;</a></h3>
+
+
+<pre><code class="xml syntaxhl"><span class="CodeRay"><span class="tag">&lt;oauth:connect</span> <span class="attribute-name">provider</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">google</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">google-connect-link</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Google Connection<span class="tag">&lt;/oauth:connect&gt;</span>
+</span></code></pre>
+
+	<a name="Using-callback-controller"></a>
+<h3 >Using callback (controller)<a href="#Using-callback-controller" class="wiki-anchor">&para;</a></h3>
+
+
+<pre><code class="groovy syntaxhl"><span class="CodeRay"><span class="keyword">def</span> <span class="function">success</span>() { 
+        <span class="keyword">def</span> googleAccessToken = session[oauthService.findSessionKeyForAccessToken(<span class="string"><span class="delimiter">'</span><span class="content">google</span><span class="delimiter">'</span></span>)] 
+        <span class="comment">//def userInfo = oauthService.getGoogleResource(googleAccessToken, 'https://www.googleapis.com/oauth2/v1/userinfo') </span>
+        <span class="keyword">def</span> userInfo = oauthService.getGoogleResource(googleAccessToken, <span class="string"><span class="delimiter">'</span><span class="content">https://www.googleapis.com/plus/v1/people/me</span><span class="delimiter">'</span></span>)
+        <span class="keyword">def</span> email = JSON.parse(userInfo.body).email
+
+        <span class="keyword">def</span> email = JSON.parse(userInfo.body).emails[<span class="integer">0</span>].value
+        <span class="keyword">def</span> displayName = JSON.parse(userInfo.body).displayName
+        <span class="keyword">def</span> website = JSON.parse(userInfo.body).urls[<span class="integer">0</span>]?.value ?: <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> 
+
+        <span class="comment">// ...</span>
+}
+
+<span class="keyword">def</span> <span class="function">logout</span>() {
+        session.user = <span class="predefined-constant">null</span>
+}
+</span></code></pre>
+</body>
+</html>

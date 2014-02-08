@@ -59,7 +59,7 @@
                     <g:if test="${user.ban}">
                         <p class="admin"><g:message code="grow.user.banned" /></p>
                     </g:if>
-                    <g:if test="${user.email == "daniel.petisme@gmail.com" }">
+                    <g:if test="${user.email == 'daniel.petisme@gmail.com' }">
                         <p class="admin"><g:message code="grow.user.private.joke" />.</p>
                     </g:if>
                     <p class="score">${user.score}</p>

@@ -105,19 +105,4 @@ class SessionService {
             logSessionError()
         }
     }
-
-    def clearMessage()
-    {
-        try {
-            GrailsWebRequest webRequest = WebUtils.retrieveGrailsWebRequest()
-            def session = webRequest.session
-
-            if (session != null) {
-                session.type = null
-                session.message = null
-            }
-        } catch (IllegalStateException e) {
-            logSessionError()
-        }
-    }
 }

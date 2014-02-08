@@ -20,6 +20,7 @@ class BootStrap {
                 User admin = userService.createUser("admin@admin.com", "Admin")
                 User floyd = userService.createUser("florian.rotagnon@gmail.com", "Florian Rotagnon")
                 User drusy = userService.createUser("kevin.renella@gmail.com", "Kevin Renella")
+                User daniel = userService.createUser("daniel.petisme@gmail.com", "Daniel Petisme")
 
                 drusy.admin = true;
                 floyd.admin = true;

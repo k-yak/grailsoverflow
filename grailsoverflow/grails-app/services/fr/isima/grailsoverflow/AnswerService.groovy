@@ -20,6 +20,7 @@ class AnswerService {
         Answer answer = Answer.get(answerId)
         def oldState = answer.accepted
 
+        // Remove old accepted
         answer.question.answers.each() {
             if (it.accepted) {
                 it.user.score -= AppConfig.ACCEPT_ANSWER_SCORE
@@ -30,6 +31,7 @@ class AnswerService {
             it.save(failOnError: true)
         }
 
+        // Accept new answer
         if (oldState == false) {
             answer.accepted = true
             answer.user.score += AppConfig.ACCEPT_ANSWER_SCORE
@@ -37,9 +39,11 @@ class AnswerService {
 
             answer.save(failOnError: true)
         }
-        medalService.testScoreMedals(answer.user)
-        answer.user.save(failOnError: true)
 
+        // Manage score medals
+        medalService.testScoreMedals(answer.user)
+
+        answer.user.save(failOnError: true)
         sessionService.reloadUserSession()
     }
 

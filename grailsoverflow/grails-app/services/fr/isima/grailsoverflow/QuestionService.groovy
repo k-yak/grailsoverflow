@@ -13,10 +13,11 @@ class QuestionService {
         def question = getQuestion(questionId)
         def answer = answerService.createAnswer(content, user, question)
 
+        // Manage score
         answer.user.score += AppConfig.ANSWER_SCORE
         medalService.testScoreMedals(answer.user);
-        user.save(failOnError: true)
 
+        user.save(failOnError: true)
         addAnswer(question, answer)
 
         historyService.addAnswer(user, answer)
@@ -26,8 +27,8 @@ class QuestionService {
     }
 
     def afterInsertActions(def question) {
+        // Manage score
         question.user.score += AppConfig.QUESTION_SCORE
-
         medalService.testScoreMedals(question.user);
 
         question.user.save(failOnError: true)

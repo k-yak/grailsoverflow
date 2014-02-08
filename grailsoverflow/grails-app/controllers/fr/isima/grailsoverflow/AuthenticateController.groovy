@@ -25,7 +25,7 @@ class AuthenticateController {
     }
 
     def failure() {
-        render(view: "/error", model: [errorContent: "Authentication error"])
+        render(view: "/error", model: [errorContent: "grow.error.authentication"])
     }
     
     def logout() {

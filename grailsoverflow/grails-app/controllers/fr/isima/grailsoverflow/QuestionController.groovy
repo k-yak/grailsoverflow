@@ -9,7 +9,7 @@ class QuestionController {
     def sessionService
     def userService
 
-    String subtitle = "grow.substitle.latest.questions"
+    String subtitle = "grow.subtitle.latest.questions"
     
     /**
      * Latest questions

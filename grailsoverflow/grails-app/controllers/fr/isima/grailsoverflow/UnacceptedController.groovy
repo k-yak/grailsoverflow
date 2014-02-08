@@ -5,7 +5,7 @@ class UnacceptedController {
     def tagService
     def userService
 
-    String subtitle = "grow.substitle.unnacepted.questions"
+    String subtitle = "grow.subtitle.unnacepted.questions"
     
     /**
      * Unaccepted questions

@@ -99,7 +99,7 @@
             <ul>
                 <g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
                     <li>${plugin.name} - ${plugin.version}</li>
-                    </g:each>
+                </g:each>
             </ul>
         </div>
         <div id="page-body" role="main">

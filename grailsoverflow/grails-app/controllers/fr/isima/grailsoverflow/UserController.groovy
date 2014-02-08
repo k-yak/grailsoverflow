@@ -61,14 +61,14 @@ class UserController {
 
     // Post call by form
     def editInfo() {
-        if(session.user == null || (params.id != session.user.id && session.user.admin == false)) {
+        if(session.user == null || (params.id.equals(session.user.id) && session.user.admin == false)) {
             sessionService.addMessage("danger", "grow.error.access.forbidden")
             log.warn "WARNING : Address ${request.getRemoteAddr()} try to edit user ${params.id} but do not have rights"
             redirect(controller: "question", action: "index")
+        } else {
+            userService.updateUser(params.id, params.displayName, params.website, params.location, params.tags)
+            redirect(controller: "user", action: "show", id: params.id )
         }
-
-        userService.updateUser(session.user.id, params.displayName, params.website, params.location, params.tags)
-        redirect(controller: "user", action: "show", id: params.id )
     }
 
 

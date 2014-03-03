@@ -9,9 +9,9 @@ A StackOverflow like by Kevin Renella & Florian Rotagnon using Groovy on rails.
 This is an engineering school project (ISIMA http://www.isima.fr), we have time restrictions and so it is a quick & dirty implementation. This project aims to practice and get started with Grails.
 
 ## Licence
->The MIT License
+> The MIT License
 >
->Copyright (c) 2012, Daniel Petisme
+> Copyright (c) 2012, Florian Rotagnon & Kevin Renella
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal

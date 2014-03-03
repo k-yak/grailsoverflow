@@ -11,7 +11,7 @@ This is an engineering school project (ISIMA http://www.isima.fr), we have time 
 ## Licence
 > The MIT License
 >
-> Copyright (c) 2012, Florian Rotagnon & Kevin Renella
+> Copyright (c) 2014, Florian Rotagnon & Kevin Renella
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
